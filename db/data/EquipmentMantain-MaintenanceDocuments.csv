@@ -1,0 +1,6 @@
+ID,fileName,mimeType,documentType,fileSize,content,equipment_ID,maintenanceRequest_ID,workOrder_ID,createdAt,createdBy,modifiedAt,modifiedBy
+9608ed97-be55-4727-8afb-568718ebddd1,hydraulic-press-vibration.jpg,image/jpeg,Photo,0,,78693ca5-58c6-4493-9648-1f7cd4f900a8,,,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+bc89404e-abc7-40cb-9ae9-5d1b35933205,cooling-pump-leak.jpg,image/jpeg,Photo,0,,,341d8d11-a57d-4ec6-bf14-01c2e5d5e1ab,,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+0ebc00c6-fc5a-4cb6-9a6f-8d00aacd736f,pump-seal-service-report.pdf,application/pdf,Report,0,,,,a8398ec4-d2ed-46f8-b96a-2b01d33274b0,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+721f212f-61d3-447c-8db9-12a3bcbac830,air-compressor-inspection.pdf,application/pdf,Manual,0,,101b38b2-f921-4e7b-943f-bf4104d144b0,,,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+0bf77f31-dbce-4b5c-8c8e-12f9f7d735ee,industrial-fan-noise.jpg,image/jpeg,Photo,0,,2c4018da-71e1-491a-afd3-d0ce49c08e05,,,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system

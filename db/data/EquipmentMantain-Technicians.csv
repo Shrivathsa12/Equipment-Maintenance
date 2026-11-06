@@ -1,0 +1,6 @@
+ID,userId,name,email,skill,isActive,createdAt,createdBy,modifiedAt,modifiedBy
+90a67ae7-a099-4e36-a7a6-1b48ff44c56d,TECH001,Arun Kumar,arun.kumar@example.com,Mechanical,true,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+b45158a8-81d4-4003-a056-bf7ef67d7528,TECH002,Priya Sharma,priya.sharma@example.com,Mechanical,true,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+dc876307-6007-4281-a63b-74f8efa66268,TECH003,Rahul Nair,rahul.nair@example.com,Electrical,true,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+887eaaf9-ed24-4de7-9390-8798ab8b8c00,TECH004,Sneha Rao,sneha.rao@example.com,Instrumentation,true,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+1882c304-b9fd-41e3-9373-da157e9180c1,TECH005,Kiran Rao,kiran.rao@example.com,Electrical and rotating equipment,true,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system

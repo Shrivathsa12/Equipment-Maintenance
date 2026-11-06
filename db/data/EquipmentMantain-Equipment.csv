@@ -1,0 +1,6 @@
+ID,equipmentCode,equipmentName,description,manufacturer,serialNumber,criticality,warrantyEndDate,meterUnit,currentReading,location_ID,parentEquipment_ID,createdAt,createdBy,modifiedAt,modifiedBy
+78693ca5-58c6-4493-9648-1f7cd4f900a8,EQ-001,Hydraulic Press,Hydraulic press line 1,Bosch Rexroth,HR-2024-001,Critical,2027-06-30,Hours,4250,d9388f43-1c13-415c-9d2a-fad20f6fbe9a,,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+33b7c809-275b-4475-a902-2d813642ec79,EQ-002,Cooling Pump,Cooling water circulation pump,Grundfos,CP-2023-014,High,2027-03-31,Hours,3180,17da2d27-3932-47f6-a77d-8c3d2aad2e9e,,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+101b38b2-f921-4e7b-943f-bf4104d144b0,EQ-003,Air Compressor,Main air compressor,Atlas Copco,AC-2022-008,High,2026-12-31,Hours,7820,d9388f43-1c13-415c-9d2a-fad20f6fbe9a,,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+d6ed9ff8-59f6-40c7-a3fa-ebc6b83a7a2f,EQ-004,Conveyor Motor,Conveyor drive motor,Siemens,CM-2024-022,Medium,2027-09-30,Hours,2100,d9388f43-1c13-415c-9d2a-fad20f6fbe9a,78693ca5-58c6-4493-9648-1f7cd4f900a8,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+2c4018da-71e1-491a-afd3-d0ce49c08e05,EQ-005,Industrial Fan,Ventilation fan for assembly line B,ABB,IF-2025-005,Medium,2027-12-31,Hours,1650,72c1aaf4-22a0-4b12-8cb8-609dc413cd01,,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system

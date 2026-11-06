@@ -1,0 +1,6 @@
+ID,planCode,planName,triggerType,intervalValue,leadDays,lastMaintenanceDate,lastMaintenanceReading,nextDueDate,nextDueReading,isActive,equipment_ID,createdAt,createdBy,modifiedAt,modifiedBy
+9d7d0524-5aee-4fe3-ad6d-68787873e3fb,MP-001,Hydraulic Press Monthly Inspection,Calendar,30,5,2026-10-15,,2026-11-14,,true,78693ca5-58c6-4493-9648-1f7cd4f900a8,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+8339dfea-8d6e-4fc7-ba26-02f81d97a87a,MP-002,Cooling Pump 1000 Hour Service,Meter,1000,50,2026-08-01,2500,,3500,true,33b7c809-275b-4475-a902-2d813642ec79,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+96dbf658-ab18-4d97-8dcd-c15a3e024fc7,MP-003,Air Compressor Quarterly Service,Calendar,90,7,2026-09-01,,2026-11-30,,true,101b38b2-f921-4e7b-943f-bf4104d144b0,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+9e1e3b7e-9eff-46c1-8ae8-344221cd8ae7,MP-004,Conveyor Motor 500 Hour Inspection,Meter,500,25,2026-08-15,1800,,2300,true,d6ed9ff8-59f6-40c7-a3fa-ebc6b83a7a2f,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+b692ebe1-c42b-489f-a337-20dae3401fa9,MP-005,Industrial Fan Monthly Check,Calendar,30,5,2026-10-20,,2026-11-19,,true,2c4018da-71e1-491a-afd3-d0ce49c08e05,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system

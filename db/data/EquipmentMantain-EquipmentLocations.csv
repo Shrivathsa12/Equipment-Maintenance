@@ -1,0 +1,6 @@
+ID,locationCode,locationName,parentLocation_ID,createdAt,createdBy,modifiedAt,modifiedBy
+65c59d61-f793-4658-b12b-0f80193bbeba,LOC-001,Main Plant,,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+d9388f43-1c13-415c-9d2a-fad20f6fbe9a,LOC-002,Production Hall A,65c59d61-f793-4658-b12b-0f80193bbeba,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+17da2d27-3932-47f6-a77d-8c3d2aad2e9e,LOC-003,Utility Room,65c59d61-f793-4658-b12b-0f80193bbeba,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+72c1aaf4-22a0-4b12-8cb8-609dc413cd01,LOC-004,Assembly Line B,65c59d61-f793-4658-b12b-0f80193bbeba,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+2406884f-ced9-494a-a326-aff90f2396f3,LOC-005,Maintenance Workshop,65c59d61-f793-4658-b12b-0f80193bbeba,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system

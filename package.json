@@ -11,11 +11,11 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@cap-js/hana": "^3",
     "@sap/cds": "^10.2.2"
   },
   "devDependencies": {
-    "@sap/cds-dk": "^9.9.7"
+    "@sap/cds-dk": "^9.9.7",
+    "@cap-js/sqlite": "^3"
   }
 }
-
-

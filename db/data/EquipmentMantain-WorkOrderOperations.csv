@@ -1,0 +1,7 @@
+ID,sequenceNumber,operationName,plannedHours,actualHours,isMandatory,status,workOrder_ID,createdAt,createdBy,modifiedAt,modifiedBy
+cfea78c8-1183-4256-b350-29d3c80171a9,10,Inspect hydraulic lines,2,1,true,Completed,f0301670-f5a2-471c-a74b-6b0120f5b5bf,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+0a75585a-52cd-4fc7-8571-e1d1ee2c864a,20,Check pump and pressure,3,2,true,InProgress,f0301670-f5a2-471c-a74b-6b0120f5b5bf,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+23cffac1-a8d6-42ce-9e09-a5ac1a75a62f,30,Perform vibration test,3,,true,Pending,f0301670-f5a2-471c-a74b-6b0120f5b5bf,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+7d8abe18-cd03-46d3-a125-ceb94e284b98,10,Replace mechanical seal,3,2.5,true,Completed,a8398ec4-d2ed-46f8-b96a-2b01d33274b0,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+e4b72eed-adfc-43d0-917d-9304ff20d26d,20,Run pump and verify leakage,2,1.5,true,Completed,a8398ec4-d2ed-46f8-b96a-2b01d33274b0,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+0cb617e5-e104-4f9f-b762-7fc91ebd2d23,10,Inspect guards and lubrication,3,,true,Pending,f5b39d1b-731c-4707-9d5b-73a7f3db6bef,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system

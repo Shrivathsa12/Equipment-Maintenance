@@ -1,0 +1,6 @@
+ID,partNumber,partName,unitOfMeasure,standardCost,stockQuantity,createdAt,createdBy,modifiedAt,modifiedBy
+e9efff7d-e376-4682-945d-c04ff0e58197,SP-001,Hydraulic Hose,EA,2500,12,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+31a94cc6-b104-437c-95d7-f8d82ea4cb48,SP-002,Mechanical Seal,EA,1800,20,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+52373f07-2468-4730-b92e-024b94ca65ac,SP-003,Bearing 6205,EA,650,35,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+8d47c4e0-110d-4d84-8735-d47fed586ffd,SP-004,Lubricating Oil,L,450,80,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+24b8dff5-47df-4197-944b-c0050392dffb,SP-005,V-Belt,EA,900,15,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system

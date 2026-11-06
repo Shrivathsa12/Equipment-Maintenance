@@ -1,0 +1,6 @@
+ID,startTime,endTime,durationMinutes,reason,isPlanned,equipment_ID,workOrder_ID,createdAt,createdBy,modifiedAt,modifiedBy
+6a13e55a-13e1-4370-9daf-ae6b852a4510,2026-11-02T06:20:00Z,,0,Unplanned breakdown - vibration,false,78693ca5-58c6-4493-9648-1f7cd4f900a8,f0301670-f5a2-471c-a74b-6b0120f5b5bf,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+61bb1f1c-7db8-49d1-b70f-632f9f0daf84,2026-11-03T07:10:00Z,2026-11-03T12:10:00Z,300,Pump seal replacement,false,33b7c809-275b-4475-a902-2d813642ec79,a8398ec4-d2ed-46f8-b96a-2b01d33274b0,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+5a7a4b9c-c724-496f-87e5-9bf12025f2c5,2026-11-04T05:00:00Z,2026-11-04T06:30:00Z,90,Scheduled compressor filter replacement,true,101b38b2-f921-4e7b-943f-bf4104d144b0,,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+a91e04af-34da-4016-9eac-2dfd4530f878,2026-11-05T11:15:00Z,2026-11-05T12:00:00Z,45,Conveyor motor overheating inspection,false,d6ed9ff8-59f6-40c7-a3fa-ebc6b83a7a2f,,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
+eaf54661-7252-48db-9e3c-2de5fe7c9cdd,2026-11-06T08:00:00Z,,0,Industrial fan bearing noise investigation,false,2c4018da-71e1-491a-afd3-d0ce49c08e05,10df8c1a-2358-47a8-bf2f-39333e4ff676,2026-11-06T08:00:00Z,system,2026-11-06T08:00:00Z,system
