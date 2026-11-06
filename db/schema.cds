@@ -6,96 +6,179 @@ using {
 } from '@sap/cds/common';
 
 
-// Equipment Location Entity
+@assert.unique: {locationCode: [locationCode]}
 entity EquipmentLocations : cuid, managed {
-    locationCode   : String not null;
-    locationName   : String not null;
+    locationCode   : String(30) not null;
+    locationName   : String(100) not null;
     parentLocation : Association to EquipmentLocations;
-
 }
 
+
+// EQUIPMENT ENTITY
+
+
+@assert.unique: {equipmentCode: [equipmentCode]}
 entity Equipment : cuid, managed {
-    equipmentCode  : String not null;
-    equipmentName  : String not null;
-    description    : String;
-    manufacture    : String;
-    serialNumber   : String;
-    Criticality    : Criticality default 'Medium';
-    warantyEndDate : Date;
-    meterUnit      : String;
-    currentReading : Decimal(10, 2) default 0;
+    equipmentCode    : String(30) not null;
+    equipmentName    : String(100) not null;
+    description      : String(500);
+    manufacturer     : String(100);
+    serialNumber     : String(100);
 
+    criticality      : Criticality default #Medium;
+    warrantyEndDate  : Date;
+
+    meterUnit        : String(20);
+    currentReading   : Decimal(15, 3) default 0;
+
+    location         : Association to EquipmentLocations not null;
+    parentEquipment  : Association to Equipment;
+    childEquipment   : Association to many Equipment
+                           on childEquipment.parentEquipment = $self;
+
+    maintenancePlans : Composition of many MaintenancePlans
+                           on maintenancePlans.equipment = $self;
+
+    readings         : Composition of many EquipmentReadings
+                           on readings.equipment = $self;
+
+    documents        : Composition of many MaintenanceDocuments
+                           on documents.equipment = $self;
 }
 
-entity MaintancePlans : cuid, managed {
-    planCode             : String not null;
-    planName             : String;
-    triggerType          : PlanTrigger not null;
-    interValue           : Decimal(15, 2) default 0;
-    leadDays             : Integer default 7;
-    lastMaintanceDate    : Date;
-    lastMaintanceReading : Decimal(10, 2);
-    nextDueDate          : Date;
-    nextDueReading       : Decimal(10, 2);
-    isActive             : Boolean default true;
 
+// MAINTENANCE PLAN ENTITY
+
+
+@assert.unique: {planCode: [planCode]}
+entity MaintenancePlans : cuid, managed {
+    planCode               : String(30) not null;
+    planName               : String(100) not null;
+
+    triggerType            : PlanTrigger not null;
+    intervalValue          : Decimal(15, 3) not null;
+    leadDays               : Integer default 7;
+
+    lastMaintenanceDate    : Date;
+    lastMaintenanceReading : Decimal(15, 3);
+    nextDueDate            : Date;
+    nextDueReading         : Decimal(15, 3);
+
+    isActive               : Boolean default true;
+
+    equipment              : Association to Equipment not null;
 }
 
+
+// MAINTENANCE REQUEST ENTITY
+
+
+@assert.unique: {requestNumber: [requestNumber]}
 entity MaintenanceRequests : cuid, managed {
-    requestNumber     : String not null;
-    reportedBy        : String;
+    requestNumber     : String(30) not null;
+
+    reportedBy        : String(100) not null;
     reportedAt        : Timestamp;
-    symptom           : String not null;
-    description       : String;
+
+    symptom           : String(255) not null;
+    description       : String(1000);
+
     requestedPriority : Priority;
     priority          : Priority;
     priorityScore     : Integer;
-    safetyImpact      : ImpactLevel default 'None';
-    productionImapact : ImpactLevel default 'None';
+
+    safetyImpact      : ImpactLevel default #None;
+    productionImpact  : ImpactLevel default #None;
+
     category          : RequestCategory;
-    status            : RequestStatus default 'Pending';
+    status            : RequestStatus default #Submitted;
 
+    equipment         : Association to Equipment not null;
+    location          : Association to EquipmentLocations;
+    workOrder         : Association to WorkOrders;
+
+    documents         : Composition of many MaintenanceDocuments
+                            on documents.maintenanceRequest = $self;
 }
 
+
+// WORK ORDER ENTITY
+
+
+@assert.unique: {orderNumber: [orderNumber]}
 entity WorkOrders : cuid, managed {
-    orderNumber       : String(30) not null;
-    orderType         : WorkOrderType not null;
-    title             : String(150) not null;
-    description       : String(1000);
-    priority          : Priority;
-    priorityScore     : Integer;
-    status            : WorkOrderStatus default 'Created';
-    plannedStartDate  : Timestamp;
-    plannedEndDate    : Timestamp;
-    actualStartDate   : Timestamp;
-    actualEndDate     : Timestamp;
-    plannedHours      : Decimal(10, 2);
-    actualHours       : Decimal(10, 2);
-    estimatedCost     : Decimal(15, 2) default 0;
-    actualCost        : Decimal(15, 2) default 0;
-    approvalStatus    : ApprovalStatus default 'NotRequired';
-    approvedBy        : String(100);
-    approvalAt        : Timestamp;
-    approvalRemarks   : String(1000);
-    closureCode       : ClosureCode;
-    completionRemarks : String(1000);
-    completedBy       : String(100);
-    closedBy          : String(100);
-    closedAt          : Timestamp;
+    orderNumber        : String(30) not null;
+    orderType          : WorkOrderType not null;
 
+    title              : String(150) not null;
+    description        : String(1000);
+
+    priority           : Priority;
+    priorityScore      : Integer;
+    status             : WorkOrderStatus default #Created;
+
+    plannedStartDate   : Timestamp;
+    plannedEndDate     : Timestamp;
+    actualStartDate    : Timestamp;
+    actualEndDate      : Timestamp;
+
+    plannedHours       : Decimal(10, 2);
+    actualHours        : Decimal(10, 2);
+
+    estimatedCost      : Decimal(15, 2) default 0;
+    actualCost         : Decimal(15, 2) default 0;
+
+    approvalStatus     : ApprovalStatus default #NotRequired;
+    approvedBy         : String(100);
+    approvalAt         : Timestamp;
+    approvalRemarks    : String(1000);
+
+    closureCode        : ClosureCode;
+    completionRemarks  : String(1000);
+    completedBy        : String(100);
+    closedBy           : String(100);
+    closedAt           : Timestamp;
+
+    equipment          : Association to Equipment not null;
+    maintenanceRequest : Association to MaintenanceRequests;
+    maintenancePlan    : Association to MaintenancePlans;
+
+    operations         : Composition of many WorkOrderOperations
+                             on operations.workOrder = $self;
+
+    assignments        : Composition of many TechnicianAssignments
+                             on assignments.workOrder = $self;
+
+    confirmations      : Composition of many TimeConfirmations
+                             on confirmations.workOrder = $self;
+
+    partConsumptions   : Composition of many PartConsumptions
+                             on partConsumptions.workOrder = $self;
+
+    documents          : Composition of many MaintenanceDocuments
+                             on documents.workOrder = $self;
 }
+
+
+// WORK ORDER OPERATION ENTITY
+
 
 entity WorkOrderOperations : cuid, managed {
-    workOrder      : Association to WorkOrders not null;
     sequenceNumber : Integer not null;
     operationName  : String(150) not null;
     plannedHours   : Decimal(10, 2) default 0;
     actualHours    : Decimal(10, 2);
     isMandatory    : Boolean default true;
-    status         : OperationStatus default 'Pending';
+    status         : OperationStatus default #Pending;
 
+    workOrder      : Association to WorkOrders not null;
 }
 
+
+// TECHNICIAN ENTITY
+
+
+@assert.unique: {userId: [userId]}
 entity Technicians : cuid, managed {
     userId   : String(100) not null;
     name     : String(100) not null;
@@ -104,75 +187,122 @@ entity Technicians : cuid, managed {
     isActive : Boolean default true;
 }
 
-entity TechnicianAssignmemnts : cuid, managed {
-    workOrder        : Association to WorkOrders not null;
-    technician       : Association to Technicians not null;
+
+//  TECHNICIAN ASSIGNMENT ENTITY
+
+
+entity TechnicianAssignments : cuid, managed {
     technicianUserId : String(100);
     isLead           : Boolean default false;
     assignedAt       : Timestamp;
+
+    workOrder        : Association to WorkOrders not null;
+    technician       : Association to Technicians not null;
 }
+
+
+// TIME CONFIRMATION ENTITY
+
 
 entity TimeConfirmations : cuid, managed {
     technicianUserId : String(100) not null;
+
     startTime        : Timestamp not null;
     stopTime         : Timestamp;
     actualHours      : Decimal(10, 2);
+
     workDescription  : String(1000);
     findings         : String(1000);
-    meterReading     : Decimal(10, 2);
+    meterReading     : Decimal(15, 3);
+
+    workOrder        : Association to WorkOrders not null;
+    operation        : Association to WorkOrderOperations not null;
+    technician       : Association to Technicians not null;
 }
 
+
+// SPARE PART ENTITY
+
+
+@assert.unique: {partNumber: [partNumber]}
 entity SpareParts : cuid, managed {
     partNumber    : String(50) not null;
     partName      : String(150) not null;
     unitOfMeasure : String(20);
     standardCost  : Decimal(15, 2) default 0;
-    stockQuantity : Decimal(10, 2) default 0;
+    stockQuantity : Decimal(15, 3) default 0;
 }
 
-entity PartConsumption : cuid {
-    quantity    : Decimal(10, 2) not null;
-    unitCost    : Decimal(10, 2);
-    totalCost   : Decimal(10, 2);
-    consumnedAt : Timestamp;
+
+// PART CONSUMPTION ENTITY
+
+
+entity PartConsumptions : cuid, managed {
+    quantity   : Decimal(15, 3) not null;
+    unitCost   : Decimal(15, 2);
+    totalCost  : Decimal(15, 2);
+    consumedAt : Timestamp;
+
+    workOrder  : Association to WorkOrders not null;
+    operation  : Association to WorkOrderOperations;
+    sparePart  : Association to SpareParts not null;
 }
 
-entity DownTimeEvents : cuid, managed {
-    startTime        : Timestamp not null;
-    endTime          : Timestamp;
-    durantionMinutes : Integer;
-    reason           : String;
-    isPlanned        : Boolean default false;
+
+// DOWNTIME EVENT ENTITY
+
+
+entity DowntimeEvents : cuid, managed {
+    startTime       : Timestamp not null;
+    endTime         : Timestamp;
+    durationMinutes : Integer;
+    reason          : String(500);
+    isPlanned       : Boolean default false;
+
+    equipment       : Association to Equipment not null;
+    workOrder       : Association to WorkOrders;
 }
+
+
+//  EQUIPMENT READING ENTITY
+
 
 entity EquipmentReadings : cuid, managed {
-    equipment    : Association to Equipment not null;
     readingValue : Decimal(15, 3) not null;
     readingDate  : Timestamp not null;
+
+    equipment    : Association to Equipment not null;
 }
+
+
+// MAINTENANCE DOCUMENT ENTITY
+
 
 entity MaintenanceDocuments : cuid, managed {
     fileName           : String(255) not null;
 
     @Core.IsMediaType
     mimeType           : String(100) not null;
-    documentType       : DocumentType default 'Photo';
+
+    documentType       : DocumentType default #Photo;
     fileSize           : Integer64;
 
     @Core.MediaType                  : mimeType
     @Core.ContentDisposition.Filename: fileName
     content            : LargeBinary;
+
     equipment          : Association to Equipment;
     maintenanceRequest : Association to MaintenanceRequests;
     workOrder          : Association to WorkOrders;
 }
 
+// ENUM TYPES
 type Criticality     : String enum {
     Low;
     Medium;
     High;
-    Critica
-};
+    Critical;
+}
 
 type Priority        : String enum {
     Low;
@@ -188,12 +318,14 @@ type ImpactLevel     : String enum {
     High;
 }
 
+
 type RequestCategory : String enum {
     Mechanical;
     Electrical;
     Instrumentation;
     Other;
 }
+
 
 type RequestStatus   : String enum {
     Submitted;
@@ -202,16 +334,19 @@ type RequestStatus   : String enum {
     Rejected;
 }
 
+
 type PlanTrigger     : String enum {
     Calendar;
     Meter;
 }
+
 
 type WorkOrderType   : String enum {
     Breakdown;
     Corrective;
     Preventive;
 }
+
 
 type WorkOrderStatus : String enum {
     Created;
@@ -228,6 +363,7 @@ type OperationStatus : String enum {
     InProgress;
     Completed;
 }
+
 
 type ApprovalStatus  : String enum {
     NotRequired;
@@ -249,3 +385,6 @@ type DocumentType    : String enum {
     Manual;
     Report;
 }
+
+
+// EQUIPMENT LOCATION ENTITY
