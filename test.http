@@ -73,3 +73,31 @@ Content-Type: application/json
 {
     "WorkOrderID": "19911a65-52f5-442b-83de-c4662b71fb18"
 }
+
+
+### action for confirm Operation
+POST http://localhost:4004/odata/v4/equipment-maintenance/confirmOperation
+Content-Type: application/json
+
+{
+  "WorkOrderID": "f0301670-f5a2-471c-a74b-6b0120f5b5bf",
+  "OperationID": "0a75585a-52cd-4fc7-8571-e1d1ee2c864a",
+  "TechnicianID": "90a67ae7-a099-4e36-a7a6-1b48ff44c56d",
+  "startTime": "2026-11-11T08:00:00Z",
+  "stopTime": "2026-11-11T09:30:00Z",
+  "workDescription": "Checked hydraulic pump pressure and inspected connections",
+  "findings": "Pump pressure is normal. No leakage found.",
+  "meterReading": 4567,
+  "markCompleted": true
+}
+
+
+### action for complete order
+POST http://localhost:4004/odata/v4/equipment-maintenance/completeOrder
+Content-Type: application/json
+
+{
+    "WorkOrderID": "f0301670-f5a2-471c-a74b-6b0120f5b5bf",
+    "closureCode": "COMPLETED",
+    "completionRemarks": "All maintenance operations completed successfully"
+}

@@ -182,8 +182,8 @@ module.exports = cds.service.impl(async function () {
         if (!workOrder)
             return req.reject("Work Order not found");
 
-        if (["Completed", "Closed"].includes(workOrder.status))
-            return req.reject(400, "Cannot assign technician to a completed or closed work order");
+        if (!["Created", "Planned", "Assigned"].includes(workOrder.status))
+            return req.reject(409, `Cannot assign technician when order is ${workOrder.status}`);;
 
         const technician = await SELECT.one.from(Technicians).where({ ID: TechnicianID })
         if (!technician)
@@ -250,10 +250,269 @@ module.exports = cds.service.impl(async function () {
 
         return await SELECT.one.from(WorkOrders).where({ ID: WorkOrderID });
 
-
-
     })
 
+
+    // action for confirm operation
+    this.on("confirmOperation", async (req) => {
+        const { WorkOrderID, OperationID, TechnicianID, startTime, stopTime, workDescription, findings, meterReading, markCompleted } = req.data;
+
+        if (!WorkOrderID || !OperationID || !TechnicianID || !startTime || !stopTime)
+            return req.reject(400, "Work Order, Operation, Technician, start time and stop time are required");
+
+        if (markCompleted !== undefined && typeof markCompleted !== "boolean")
+            return req.reject(400, "markCompleted must be true or false");
+
+        const start = new Date(startTime);
+        const stop = new Date(stopTime);
+
+        if (isNaN(start.getTime()) || isNaN(stop.getTime()))
+            return req.reject(400, "Invalid start time or stop time");
+
+        if (stop <= start)
+            return req.reject(400, "Stop time must be after start time");
+
+        if (stop > new Date())
+            return req.reject(400, "Stop time cannot be in the future");
+
+        const hours = Number(((stop.getTime() - start.getTime()) / 3600000).toFixed(2));
+
+        const workOrder = await SELECT.one.from(WorkOrders).where({ ID: WorkOrderID });
+
+        if (!workOrder)
+            return req.reject(404, "Work Order not found");
+
+        if (!["Released", "InProgress"].includes(workOrder.status))
+            return req.reject(409, `Work Order must be Released or InProgress. Current status: ${workOrder.status}`);
+
+        const operation = await SELECT.one.from(WorkOrderOperations).where({ ID: OperationID, workOrder_ID: WorkOrderID });
+
+        if (!operation)
+            return req.reject(404, "Operation not found for this work order");
+
+        if (operation.status === "Completed")
+            return req.reject(409, "This operation is already completed");
+
+        const technician = await SELECT.one.from(Technicians).where({ ID: TechnicianID });
+
+        if (!technician)
+            return req.reject(404, "Technician not found");
+
+        if (technician.isActive !== true)
+            return req.reject(400, "Technician is inactive");
+
+        const assignment = await SELECT.one.from(TechnicianAssignments)
+            .where({ workOrder_ID: WorkOrderID, technician_ID: TechnicianID });
+
+        if (!assignment)
+            return req.reject(400, "Technician is not assigned to this work order");
+
+        // Earlier mandatory operations must be completed first
+        const previousOperations = await SELECT.from(WorkOrderOperations)
+            .where({ workOrder_ID: WorkOrderID, sequenceNumber: { "<": operation.sequenceNumber }, isMandatory: true });
+
+        const incompletePrevious = previousOperations.find(op => op.status !== "Completed");
+
+        if (incompletePrevious)
+            return req.reject(400, `Complete previous mandatory operation ${incompletePrevious.sequenceNumber} first`);
+
+        // Validate equipment meter reading
+        if (meterReading !== undefined && meterReading !== null) {
+            const equipment = await SELECT.one.from(Equipment).where({ ID: workOrder.equipment_ID });
+
+            if (!equipment)
+                return req.reject(404, "Equipment not found");
+
+            if (Number(meterReading) < Number(equipment.currentReading || 0))
+                return req.reject(400, "Meter reading cannot be lower than current reading");
+        }
+
+        // Insert time confirmation
+        await INSERT.into(TimeConfirmations).entries({
+            technicianUserId: technician.userId,
+            startTime: start.toISOString(),
+            stopTime: stop.toISOString(),
+            actualHours: hours,
+            workDescription,
+            findings,
+            meterReading,
+            workOrder_ID: WorkOrderID,
+            operation_ID: OperationID,
+            technician_ID: TechnicianID
+        });
+
+        // Update equipment reading
+        if (meterReading !== undefined && meterReading !== null) {
+            await INSERT.into(EquipmentReadings).entries({
+                equipment_ID: workOrder.equipment_ID,
+                readingValue: meterReading,
+                readingDate: stop.toISOString()
+            });
+
+            await UPDATE(Equipment)
+                .set({ currentReading: meterReading })
+                .where({ ID: workOrder.equipment_ID });
+        }
+
+        // Update operation
+        await UPDATE(WorkOrderOperations)
+            .set({
+                status: markCompleted === true ? "Completed" : "InProgress",
+                actualHours: Number((Number(operation.actualHours || 0) + hours).toFixed(2))
+            })
+            .where({ ID: OperationID });
+
+        // Calculate work order actual hours
+        const confirmations = await SELECT.from(TimeConfirmations)
+            .columns("actualHours", "startTime")
+            .where({ workOrder_ID: WorkOrderID });
+
+        const totalActualHours = Number(
+            confirmations.reduce((total, item) => total + Number(item.actualHours || 0), 0).toFixed(2)
+        );
+
+        const earliestStart = confirmations
+            .map(item => new Date(item.startTime))
+            .filter(date => !isNaN(date.getTime()))
+            .sort((a, b) => a - b)[0];
+
+        // Update work order
+        await UPDATE(WorkOrders)
+            .set({
+                status: "InProgress",
+                actualStartDate: workOrder.actualStartDate || earliestStart.toISOString(),
+                actualHours: totalActualHours
+            })
+            .where({ ID: WorkOrderID });
+
+        return await SELECT.one.from(WorkOrderOperations).where({ ID: OperationID });
+    });
+
+    // action for complete order
+
+    this.on("completeOrder", async (req) => {
+        const { WorkOrderID, closureCode, completionRemarks } = req.data;
+
+        if (!WorkOrderID)
+            return req.reject(400, "Work order id is required");
+
+        if (!closureCode?.trim())
+            return req.reject(400, "Closure code is required");
+
+        if (!completionRemarks?.trim())
+            return req.reject(400, "Completion remarks are required");
+
+        // 1. Fetch Work Order
+        const workOrder = await SELECT.one.from(WorkOrders)
+            .where({ ID: WorkOrderID });
+
+        if (!workOrder)
+            return req.reject(404, "Work order not found");
+
+        if (workOrder.status !== "InProgress")
+            return req.reject(409, `Work order must be InProgress. Current status: ${workOrder.status}`);
+
+        // 2. Validate mandatory operations
+        const operations = await SELECT.from(WorkOrderOperations).where({ workOrder_ID: WorkOrderID });
+
+        if (!operations.length)
+            return req.reject(400, "Work order has no operations");
+
+        const pending = operations.filter(op => op.isMandatory && op.status !== "Completed");
+
+        if (pending.length) {
+            return req.reject(
+                409,
+                `Mandatory operations not completed: ${pending.map(op => op.sequenceNumber).sort((a, b) => a - b).join(", ")}`
+            );
+        }
+
+        // 3. Fetch Time Confirmations
+        const confirmations = await SELECT.from(TimeConfirmations).columns("actualHours", "stopTime").where({ workOrder_ID: WorkOrderID });
+
+        if (!confirmations.length)
+            return req.reject(400, "At least one time confirmation is required");
+
+        // Validate stop times
+        const validStops = confirmations.map(c => new Date(c.stopTime)).filter(d => !isNaN(d.getTime()));
+
+        if (validStops.length !== confirmations.length)
+            return req.reject(400, "All time confirmations must have valid stop times");
+
+        // 4. Calculate actual hours
+        let actualHours = 0;
+
+        for (const confirmation of confirmations) {
+            actualHours += Number(confirmation.actualHours || 0);
+        }
+
+        actualHours = Number(actualHours.toFixed(2));
+
+        // 5. Calculate actual end date
+        const latestStop = new Date(Math.max(...validStops.map(d => d.getTime())));
+
+        const actualEndDate = latestStop.toISOString();
+
+        // 6. Calculate actual cost
+        const parts = await SELECT.from(PartConsumptions).columns("totalCost").where({ workOrder_ID: WorkOrderID });
+
+        let actualCost = 0;
+
+        for (const part of parts) {
+            actualCost += Number(part.totalCost || 0);
+        }
+
+        actualCost = Number(actualCost.toFixed(2));
+
+        // 7. Check equipment approval requirement
+        const equipment = await SELECT.one.from(Equipment)
+            .where({ ID: workOrder.equipment_ID });
+
+        let approvalStatus = workOrder.approvalStatus || "NotRequired";
+
+        if (equipment?.criticality === "Critical") {
+            approvalStatus = "Pending";
+        }
+
+        // 8. Close open downtime events
+        const openDowntime = await SELECT.from(DowntimeEvents)
+            .where({
+                workOrder_ID: WorkOrderID,
+                endTime: null
+            });
+
+        for (const d of openDowntime) {
+            const durationMinutes = Math.max(
+                0,
+                Math.round(
+                    (latestStop.getTime() - new Date(d.startTime).getTime()) / 60000
+                )
+            );
+
+            await UPDATE(DowntimeEvents)
+                .set({
+                    endTime: actualEndDate,
+                    durationMinutes
+                })
+                .where({ ID: d.ID });
+        }
+
+        // 9. Update Work Order
+        await UPDATE(WorkOrders)
+            .set({
+                status: "Completed",
+                closureCode: closureCode.trim(),
+                completionRemarks: completionRemarks.trim(),
+                completedBy: req.user.id,
+                actualEndDate,
+                actualHours,
+                actualCost,
+                approvalStatus
+            }).where({ ID: WorkOrderID });
+
+        // 10. Return updated Work Order
+        return await SELECT.one.from(WorkOrders).where({ ID: WorkOrderID });
+    });
 
 });
 

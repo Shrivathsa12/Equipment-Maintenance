@@ -49,5 +49,19 @@ service EquipmentMaintenance {
 
     action assignTechnician(WorkOrderID: UUID, TechnicianID: UUID, isLead: Boolean) returns WorkOrders;
 
-    action releaseOrder(WorkOrderID: UUID)                                          returns WorkOrders
+    action releaseOrder(WorkOrderID: UUID)                                          returns WorkOrders;
+
+    action confirmOperation(WorkOrderID: UUID,
+                            OperationID: UUID,
+                            TechnicianID: UUID,
+                            startTime: Timestamp,
+                            stopTime: Timestamp,
+                            workDescription: String(1000),
+                            findings: String(1000),
+                            meterReading: Decimal(15, 3),
+                            markCompleted: Boolean)                                 returns WorkOrderOperations;
+
+    action completeOrder(WorkOrderID: UUID,
+                         completionRemarks: LargeString,
+                         closureCode: String(30))                                   returns WorkOrders;
 }
