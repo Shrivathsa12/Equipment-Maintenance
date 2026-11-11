@@ -5,7 +5,7 @@ using {
     managed
 } from '@sap/cds/common';
 
-
+// EQUIPMENT LOCATION ENTITY
 @assert.unique: {locationCode: [locationCode]}
 entity EquipmentLocations : cuid, managed {
     locationCode   : String(30) not null;
@@ -385,6 +385,3 @@ type DocumentType    : String enum {
     Manual;
     Report;
 }
-
-
-// EQUIPMENT LOCATION ENTITY

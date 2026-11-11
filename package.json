@@ -17,5 +17,12 @@
   "devDependencies": {
     "@sap/cds-dk": "^9.9.7",
     "@cap-js/sqlite": "^3"
+  },
+  "cds": {
+    "server": {
+      "body_parser": {
+        "limit": "10mb"
+      }
+    }
   }
 }

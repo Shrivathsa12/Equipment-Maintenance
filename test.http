@@ -1,0 +1,75 @@
+POST http://localhost:4004/odata/v4/equipment-maintenance/reportBreakdown
+Content-Type: application/json
+
+{
+    
+    "equipment": "78693ca5-58c6-4493-9648-1f7cd4f900a8",
+    "symptom": "Hydraulic pressure dropping",
+    "description": "Hydraulic press is experiencing pressure drops during production.",
+    "requestedPriority": "High",
+    "safetyImpact": "High",
+    "productionImpact": "High",
+    "category": "Mechanical",
+    "reportedBy": "operator@example.com",
+    "photos": [
+        {
+            "fileName": "hydraulic-leak.jpg",
+            "mimeType": "image/jpeg",
+            "content": "PASTE_FIRST_IMAGE_BASE64_HERE"
+        }
+    ]
+}
+
+### getting workorders
+GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders
+
+###
+GET http://localhost:4004/odata/v4/equipment-maintenance/MaintenanceDocuments?$select=ID,fileName,mimeType,fileSize,documentType,maintenanceRequest_ID
+
+### creative preventive due date by calender
+POST http://localhost:4004/odata/v4/equipment-maintenance/createPreventiveOrder
+Content-Type: application/json
+
+{
+       "PlanID": "9d7d0524-5aee-4fe3-ad6d-68787873e3fb"
+}
+
+
+### creative prevente order by meter
+POST http://localhost:4004/odata/v4/equipment-maintenance/createPreventiveOrder
+Content-Type: application/json
+
+{
+   "PlanID": "8339dfea-8d6e-4fc7-ba26-02f81d97a87a"
+}
+
+### assign technician
+POST http://localhost:4004/odata/v4/equipment-maintenance/assignTechnician
+Content-Type: application/json
+
+{
+    "WorkOrderID": "19911a65-52f5-442b-83de-c4662b71fb18",
+    "TechnicianID": "90a67ae7-a099-4e36-a7a6-1b48ff44c56d",
+    "isLead": false
+}
+
+### adding work order operation
+POST http://localhost:4004/odata/v4/equipment-maintenance/WorkOrderOperations
+Content-Type: application/json
+
+{
+      "sequenceNumber": 10,
+    "operationName": "Inspect air compressor pressure",
+    "plannedHours": 2,
+    "isMandatory": true,
+    "status": "Pending",
+    "workOrder_ID": "19911a65-52f5-442b-83de-c4662b71fb18"
+}
+
+### ACTION FOR release order
+POST http://localhost:4004/odata/v4/equipment-maintenance/releaseOrder
+Content-Type: application/json
+
+{
+    "WorkOrderID": "19911a65-52f5-442b-83de-c4662b71fb18"
+}

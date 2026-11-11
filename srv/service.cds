@@ -29,5 +29,25 @@ service EquipmentMaintenance {
 
     entity MaintenanceDocuments  as projection on EM.MaintenanceDocuments;
 
+    // action
+    action reportBreakdown(equipment: UUID,
+                           symptom: String(255),
+                           description: String(1000),
+                           requestedPriority: EM.Priority,
+                           safetyImpact: EM.ImpactLevel,
+                           productionImpact: EM.ImpactLevel,
+                           category: EM.RequestCategory,
+                           reportedBy: String(255),
+                           photos: many {
+        fileName : String(255);
+        mimeType : String(100);
+        content  : LargeBinary;
+    })                                                                              returns MaintenanceRequests;
 
+
+    action createPreventiveOrder(PlanID: UUID)                                      returns WorkOrders;
+
+    action assignTechnician(WorkOrderID: UUID, TechnicianID: UUID, isLead: Boolean) returns WorkOrders;
+
+    action releaseOrder(WorkOrderID: UUID)                                          returns WorkOrders
 }
