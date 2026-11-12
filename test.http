@@ -122,3 +122,39 @@ Content-Type: application/json
     "TechnicianID": "90a67ae7-a099-4e36-a7a6-1b48ff44c56d",
     "quantity": 2
 }
+
+### action for convert the work order 
+POST http://localhost:4004/odata/v4/equipment-maintenance/convertToWorkOrder
+Content-Type: application/json
+
+
+{
+    "RequestID": "8f3c291a-cd24-4cc2-b684-d0796191b7f8",
+    "orderType": "Corrective",
+    "category": "Electrical",
+    "plannedStartDate": "2026-11-15T08:00:00Z",
+    "plannedEndDate": "2026-11-15T17:00:00Z",
+    "operations": [
+        {
+            "operationName": "Inspect conveyor motor",
+            "plannedHours": 2,
+            "isMandatory": true
+        },
+        {
+            "operationName": "Check motor bearings and connections",
+            "plannedHours": 2,
+            "isMandatory": true
+        },
+        {
+            "operationName": "Perform motor noise test",
+            "plannedHours": 1,
+            "isMandatory": true
+        }
+    ]
+}
+
+###
+GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrderOperations?$filter=workOrder_ID eq 33287328-d54c-44a9-a5f1-c873d11535c1
+
+
+###

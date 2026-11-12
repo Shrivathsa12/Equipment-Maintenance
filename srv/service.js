@@ -394,110 +394,93 @@ module.exports = cds.service.impl(async function () {
         const { WorkOrderID, closureCode, completionRemarks } = req.data;
 
         if (!WorkOrderID)
-            return req.reject(400, "Work order id is required");
+            return req.reject("Work order ID is required.");
 
         if (!closureCode?.trim())
-            return req.reject(400, "Closure code is required");
+            return req.reject("Closure code is required.");
+
+
+        if (!["Repaired", "Replaced", "Adjusted", "NoFaultFound", "Other"].includes(closureCode.trim()))
+            return req.reject("Invalid closure code. Allowed: Repaired, Replaced, Adjusted, NoFaultFound, Other.");
 
         if (!completionRemarks?.trim())
-            return req.reject(400, "Completion remarks are required");
+            return req.reject("Completion remarks are required.");
 
-        // 1. Fetch Work Order
-        const workOrder = await SELECT.one.from(WorkOrders)
-            .where({ ID: WorkOrderID });
-
+        const workOrder = await SELECT.one.from(WorkOrders).where({ ID: WorkOrderID });
         if (!workOrder)
-            return req.reject(404, "Work order not found");
+            return req.reject("Work order not found.");
 
         if (workOrder.status !== "InProgress")
-            return req.reject(409, `Work order must be InProgress. Current status: ${workOrder.status}`);
+            return req.reject(`Work order must be InProgress. Current status: ${workOrder.status}`);
 
-        // 2. Validate mandatory operations
+
         const operations = await SELECT.from(WorkOrderOperations).where({ workOrder_ID: WorkOrderID });
-
         if (!operations.length)
-            return req.reject(400, "Work order has no operations");
+            return req.reject("Work order has no operations.");
 
-        const pending = operations.filter(op => op.isMandatory && op.status !== "Completed");
+        const pendingOperations = operations.filter(op => op.isMandatory && op.status !== "Completed");
+        if (pendingOperations.length)
+            return req.reject(`Mandatory operations not completed: ${pendingOperations.map(op => op.sequenceNumber).sort((a, b) => a - b).join(", ")}`);
 
-        if (pending.length) {
-            return req.reject(
-                409,
-                `Mandatory operations not completed: ${pending.map(op => op.sequenceNumber).sort((a, b) => a - b).join(", ")}`
-            );
-        }
 
-        // 3. Fetch Time Confirmations
-        const confirmations = await SELECT.from(TimeConfirmations).columns("actualHours", "stopTime").where({ workOrder_ID: WorkOrderID });
-
+        const confirmations = await SELECT.from(TimeConfirmations)
+            .columns("actualHours", "stopTime")
+            .where({ workOrder_ID: WorkOrderID });
         if (!confirmations.length)
-            return req.reject(400, "At least one time confirmation is required");
+            return req.reject("At least one time confirmation is required.");
 
-        // Validate stop times
-        const validStops = confirmations.map(c => new Date(c.stopTime)).filter(d => !isNaN(d.getTime()));
+        const validStops = confirmations.map(c => new Date(c.stopTime));
+        if (validStops.some(d => Number.isNaN(d.getTime())))
+            return req.reject("All time confirmations must have valid stop times.");
 
-        if (validStops.length !== confirmations.length)
-            return req.reject(400, "All time confirmations must have valid stop times");
 
-        // 4. Calculate actual hours
         let actualHours = 0;
-
         for (const confirmation of confirmations) {
-            actualHours += Number(confirmation.actualHours || 0);
+            const hours = Number(confirmation.actualHours || 0);
+            if (!Number.isFinite(hours) || hours < 0)
+                return req.reject("Invalid actual hours in time confirmation.");
+            actualHours += hours;
         }
-
         actualHours = Number(actualHours.toFixed(2));
 
-        // 5. Calculate actual end date
         const latestStop = new Date(Math.max(...validStops.map(d => d.getTime())));
-
         const actualEndDate = latestStop.toISOString();
 
-        // 6. Calculate actual cost
+
         const parts = await SELECT.from(PartConsumptions).columns("totalCost").where({ workOrder_ID: WorkOrderID });
 
         let actualCost = 0;
-
         for (const part of parts) {
-            actualCost += Number(part.totalCost || 0);
+            const cost = Number(part.totalCost || 0);
+            if (!Number.isFinite(cost) || cost < 0)
+                return req.reject("Invalid spare part consumption cost.");
+            actualCost += cost;
         }
-
         actualCost = Number(actualCost.toFixed(2));
 
-        // 7. Check equipment approval requirement
-        const equipment = await SELECT.one.from(Equipment)
-            .where({ ID: workOrder.equipment_ID });
+        nt
+        const estimatedCost = Number(workOrder.estimatedCost || 0);
+        if (!Number.isFinite(estimatedCost) || estimatedCost < 0)
+            return req.reject("Invalid estimated work order cost.");
 
-        let approvalStatus = workOrder.approvalStatus || "NotRequired";
+        const approvalRequired = estimatedCost > MANAGER_APPROVAL_LIMIT || actualCost > MANAGER_APPROVAL_LIMIT;
+        const approvalStatus = approvalRequired ? "Pending" : "NotRequired";
 
-        if (equipment?.criticality === "Critical") {
-            approvalStatus = "Pending";
-        }
+        const openDowntime = await SELECT.from(DowntimeEvents).where({ workOrder_ID: WorkOrderID, endTime: null });
 
-        // 8. Close open downtime events
-        const openDowntime = await SELECT.from(DowntimeEvents)
-            .where({
-                workOrder_ID: WorkOrderID,
-                endTime: null
-            });
+        for (const downtime of openDowntime) {
+            const startTime = new Date(downtime.startTime);
+            if (Number.isNaN(startTime.getTime()))
+                return req.reject("Invalid downtime start time.");
 
-        for (const d of openDowntime) {
-            const durationMinutes = Math.max(
-                0,
-                Math.round(
-                    (latestStop.getTime() - new Date(d.startTime).getTime()) / 60000
-                )
-            );
+            const durationMinutes = Math.max(0, Math.round((latestStop.getTime() - startTime.getTime()) / 60000));
 
             await UPDATE(DowntimeEvents)
-                .set({
-                    endTime: actualEndDate,
-                    durationMinutes
-                })
-                .where({ ID: d.ID });
+                .set({ endTime: actualEndDate, durationMinutes })
+                .where({ ID: downtime.ID });
         }
 
-        // 9. Update Work Order
+        // 9. Update work order
         await UPDATE(WorkOrders)
             .set({
                 status: "Completed",
@@ -508,9 +491,9 @@ module.exports = cds.service.impl(async function () {
                 actualHours,
                 actualCost,
                 approvalStatus
-            }).where({ ID: WorkOrderID });
+            })
+            .where({ ID: WorkOrderID });
 
-        // 10. Return updated Work Order
         return await SELECT.one.from(WorkOrders).where({ ID: WorkOrderID });
     });
 
@@ -520,45 +503,57 @@ module.exports = cds.service.impl(async function () {
         const { WorkOrderID } = req.data;
 
         if (!WorkOrderID)
-            return req.reject("Work order id is required");
+            return req.reject("Work order ID is required.");
+
 
         const workOrder = await SELECT.one.from(WorkOrders).where({ ID: WorkOrderID });
         if (!workOrder)
-            return req.reject("Work order not found");
+            return req.reject("Work order not found.");
 
         if (workOrder.status === "Closed")
-            return req.reject("Work order is already closed");
+            return req.reject("Work order is already closed.");
 
         if (workOrder.status !== "Completed")
             return req.reject(`Work order must be Completed before closing. Current status: ${workOrder.status}`);
 
-        // Validate mandatory operations
+
         const operations = await SELECT.from(WorkOrderOperations).where({ workOrder_ID: WorkOrderID });
         if (!operations.length)
-            return req.reject("Work order has no operations");
+            return req.reject("Work order has no operations.");
 
         const pendingOperations = operations.filter(op => op.isMandatory && op.status !== "Completed");
         if (pendingOperations.length)
-            return req.reject(`Mandatory operations not completed: ${pendingOperations.map(op => op.sequenceNumber).join(", ")}`);
+            return req.reject(`Mandatory operations not completed: ${pendingOperations.map(op => op.sequenceNumber).sort((a, b) => a - b).join(", ")}`);
 
-        // Validate time confirmations
+
         const confirmations = await SELECT.from(TimeConfirmations).where({ workOrder_ID: WorkOrderID });
         if (!confirmations.length)
-            return req.reject("At least one time confirmation is required");
+            return req.reject("At least one time confirmation is required.");
 
-        // Validate manager approval
+
+        const estimatedCost = Number(workOrder.estimatedCost || 0);
+        const actualCost = Number(workOrder.actualCost || 0);
+
+        if (!Number.isFinite(estimatedCost) || !Number.isFinite(actualCost) || estimatedCost < 0 || actualCost < 0)
+            return req.reject("Invalid work order cost.");
+
         if (workOrder.approvalStatus === "Pending")
-            return req.reject("Manager approval is pending. Work order cannot be closed");
+            return req.reject("Manager approval is pending. Work order cannot be closed.");
 
         if (workOrder.approvalStatus === "Rejected")
-            return req.reject("Work order was rejected by the manager. It cannot be closed");
+            return req.reject("Work order was rejected by the manager. Rework is required.");
+
+        const approvalRequired = estimatedCost > MANAGER_APPROVAL_LIMIT || actualCost > MANAGER_APPROVAL_LIMIT;
+
+        if (approvalRequired && workOrder.approvalStatus !== "Approved")
+            return req.reject("Manager approval is required before closing this work order.");
+
 
         const equipment = await SELECT.one.from(Equipment).where({ ID: workOrder.equipment_ID });
+        if (!equipment)
+            return req.reject("Associated equipment not found.");
 
-        if (equipment?.criticality === "Critical" && workOrder.approvalStatus !== "Approved")
-            return req.reject("Manager approval is required before closing this critical equipment work order");
 
-        // Close the work order
         await UPDATE(WorkOrders)
             .set({
                 status: "Closed",
@@ -567,7 +562,7 @@ module.exports = cds.service.impl(async function () {
             })
             .where({ ID: WorkOrderID });
 
-        // Preventive order: schedule the next maintenance on the plan
+
         if (workOrder.orderType === "Preventive" && workOrder.maintenancePlan_ID) {
             const plan = await SELECT.one.from(MaintenancePlans).where({ ID: workOrder.maintenancePlan_ID });
 
@@ -584,7 +579,7 @@ module.exports = cds.service.impl(async function () {
                     .where({ ID: plan.ID });
             }
             else if (plan && plan.triggerType === "Meter") {
-                const lastReading = Number(equipment?.currentReading || 0);
+                const lastReading = Number(equipment.currentReading || 0);
 
                 await UPDATE(MaintenancePlans)
                     .set({
@@ -595,6 +590,7 @@ module.exports = cds.service.impl(async function () {
             }
         }
 
+        // 9. Return updated work order
         return await SELECT.one.from(WorkOrders).where({ ID: WorkOrderID });
     });
 
@@ -807,6 +803,111 @@ module.exports = cds.service.impl(async function () {
         // 15. Return the new work order
         return await SELECT.one.from(WorkOrders).where({ ID: workOrderID });
     });
+
+
+    const MANAGER_APPROVAL_LIMIT = 100000;
+
+    function requiresManagerApproval(workOrder) {
+        const estimatedCost = Number(workOrder.estimatedCost || 0);
+        const actualCost = Number(workOrder.actualCost || 0);
+
+        return (
+            estimatedCost > MANAGER_APPROVAL_LIMIT ||
+            actualCost > MANAGER_APPROVAL_LIMIT
+        );
+    }
+
+
+    // APPROVE WORK ORDER
+    this.on("approveWorkOrder", async (req) => {
+        const { WorkOrderID, remarks } = req.data;
+
+        if (!WorkOrderID)
+            return req.reject("WorkOrderID is required.");
+
+        if (!remarks || !remarks.trim())
+            return req.reject("Approval remarks are required.");
+
+        if (!req.user.is("MaintenanceManager"))
+            return req.reject("Only Maintenance Managers can approve work orders.");
+
+        const workOrder = await SELECT.one
+            .from(WorkOrders)
+            .where({ ID: WorkOrderID });
+
+        if (!workOrder)
+            return req.reject("Work order not found.");
+
+        if (workOrder.status !== "Completed")
+            return req.reject("Only completed work orders can be approved.");
+
+        if (workOrder.approvalStatus !== "Pending")
+            return req.reject("Work order is not awaiting approval.");
+
+        if (!requiresManagerApproval(workOrder))
+            return req.reject("This work order does not meet the manager approval threshold.");
+
+        await UPDATE(WorkOrders)
+            .set({
+                approvalStatus: "Approved",
+                approvedBy: req.user.id,
+                approvalAt: new Date().toISOString(),
+                approvalRemarks: remarks.trim()
+            })
+            .where({ ID: WorkOrderID });
+
+        return await SELECT.one
+            .from(WorkOrders)
+            .where({ ID: WorkOrderID });
+    });
+
+
+    // REJECT WORK ORDER
+    this.on("rejectWorkOrder", async (req) => {
+        const { WorkOrderID, remarks } = req.data;
+
+        if (!WorkOrderID)
+            return req.reject("WorkOrderID is required.");
+
+        if (!remarks || !remarks.trim())
+            return req.reject("Rejection remarks are required.");
+
+        if (!req.user.is("MaintenanceManager"))
+            return req.reject("Only Maintenance Managers can reject work orders.");
+
+        const workOrder = await SELECT.one
+            .from(WorkOrders)
+            .where({ ID: WorkOrderID });
+
+        if (!workOrder)
+            return req.reject("Work order not found.");
+
+        if (workOrder.status !== "Completed")
+            return req.reject("Only completed work orders can be rejected.");
+
+        if (workOrder.approvalStatus !== "Pending")
+            return req.reject("Work order is not awaiting approval.");
+
+        if (!requiresManagerApproval(workOrder))
+            return req.reject("This work order does not meet the manager approval threshold.");
+
+        await UPDATE(WorkOrders)
+            .set({
+                status: "InProgress",
+                approvalStatus: "Rejected",
+                approvedBy: req.user.id,
+                approvalAt: new Date().toISOString(),
+                approvalRemarks: remarks.trim()
+            })
+            .where({ ID: WorkOrderID });
+
+        return await SELECT.one
+            .from(WorkOrders)
+            .where({ ID: WorkOrderID });
+    });
+
+
+
 });
 
 

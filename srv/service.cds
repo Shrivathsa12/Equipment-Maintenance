@@ -83,4 +83,10 @@ service EquipmentMaintenance {
         plannedHours  : Decimal(10, 2);
         isMandatory   : Boolean;
     })                                                                              returns WorkOrders;
+
+    action approveWorkOrder(WorkOrderID: UUID,
+                            remarks: String(500))                                   returns WorkOrders;
+
+    action rejectWorkOrder(WorkOrderID: UUID,
+                           remarks: String(500))                                    returns WorkOrders;
 }
