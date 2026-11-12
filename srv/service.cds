@@ -64,4 +64,23 @@ service EquipmentMaintenance {
     action completeOrder(WorkOrderID: UUID,
                          completionRemarks: LargeString,
                          closureCode: String(30))                                   returns WorkOrders;
+
+    action closeOrder(WorkOrderID: UUID)                                            returns WorkOrders;
+
+    action consumePart(WorkOrderID: UUID,
+                       OperationID: UUID,
+                       SparePartID: UUID,
+                       TechnicianID: UUID,
+                       quantity: Decimal(15, 3))                                    returns PartConsumptions;
+
+    action convertToWorkOrder(RequestID: UUID,
+                              orderType: EM.WorkOrderType,
+                              category: EM.RequestCategory,
+                              plannedStartDate: Timestamp,
+                              plannedEndDate: Timestamp,
+                              operations: many {
+        operationName : String(150);
+        plannedHours  : Decimal(10, 2);
+        isMandatory   : Boolean;
+    })                                                                              returns WorkOrders;
 }

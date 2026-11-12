@@ -101,3 +101,24 @@ Content-Type: application/json
     "closureCode": "COMPLETED",
     "completionRemarks": "All maintenance operations completed successfully"
 }
+
+### action for close order
+POST http://localhost:4004/odata/v4/equipment-maintenance/closeOrder
+Content-Type: application/json
+
+{
+    "WorkOrderID": "a8398ec4-d2ed-46f8-b96a-2b01d33274b0"
+}
+
+
+### action for consume Part
+POST http://localhost:4004/odata/v4/equipment-maintenance/consumePart
+Content-Type: application/json
+
+{
+      "WorkOrderID": "f0301670-f5a2-471c-a74b-6b0120f5b5bf",
+    "OperationID": "0a75585a-52cd-4fc7-8571-e1d1ee2c864a",
+    "SparePartID": "e9efff7d-e376-4682-945d-c04ff0e58197",
+    "TechnicianID": "90a67ae7-a099-4e36-a7a6-1b48ff44c56d",
+    "quantity": 2
+}

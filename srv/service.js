@@ -514,6 +514,299 @@ module.exports = cds.service.impl(async function () {
         return await SELECT.one.from(WorkOrders).where({ ID: WorkOrderID });
     });
 
+
+    // Action for closing work order
+    this.on("closeOrder", async (req) => {
+        const { WorkOrderID } = req.data;
+
+        if (!WorkOrderID)
+            return req.reject("Work order id is required");
+
+        const workOrder = await SELECT.one.from(WorkOrders).where({ ID: WorkOrderID });
+        if (!workOrder)
+            return req.reject("Work order not found");
+
+        if (workOrder.status === "Closed")
+            return req.reject("Work order is already closed");
+
+        if (workOrder.status !== "Completed")
+            return req.reject(`Work order must be Completed before closing. Current status: ${workOrder.status}`);
+
+        // Validate mandatory operations
+        const operations = await SELECT.from(WorkOrderOperations).where({ workOrder_ID: WorkOrderID });
+        if (!operations.length)
+            return req.reject("Work order has no operations");
+
+        const pendingOperations = operations.filter(op => op.isMandatory && op.status !== "Completed");
+        if (pendingOperations.length)
+            return req.reject(`Mandatory operations not completed: ${pendingOperations.map(op => op.sequenceNumber).join(", ")}`);
+
+        // Validate time confirmations
+        const confirmations = await SELECT.from(TimeConfirmations).where({ workOrder_ID: WorkOrderID });
+        if (!confirmations.length)
+            return req.reject("At least one time confirmation is required");
+
+        // Validate manager approval
+        if (workOrder.approvalStatus === "Pending")
+            return req.reject("Manager approval is pending. Work order cannot be closed");
+
+        if (workOrder.approvalStatus === "Rejected")
+            return req.reject("Work order was rejected by the manager. It cannot be closed");
+
+        const equipment = await SELECT.one.from(Equipment).where({ ID: workOrder.equipment_ID });
+
+        if (equipment?.criticality === "Critical" && workOrder.approvalStatus !== "Approved")
+            return req.reject("Manager approval is required before closing this critical equipment work order");
+
+        // Close the work order
+        await UPDATE(WorkOrders)
+            .set({
+                status: "Closed",
+                closedBy: req.user.id,
+                closedAt: new Date().toISOString()
+            })
+            .where({ ID: WorkOrderID });
+
+        // Preventive order: schedule the next maintenance on the plan
+        if (workOrder.orderType === "Preventive" && workOrder.maintenancePlan_ID) {
+            const plan = await SELECT.one.from(MaintenancePlans).where({ ID: workOrder.maintenancePlan_ID });
+
+            if (plan && plan.triggerType === "Calendar") {
+                const lastDate = new Date(workOrder.actualEndDate || new Date());
+                const nextDate = new Date(lastDate);
+                nextDate.setUTCDate(nextDate.getUTCDate() + Number(plan.intervalValue));
+
+                await UPDATE(MaintenancePlans)
+                    .set({
+                        lastMaintenanceDate: lastDate.toISOString().slice(0, 10),
+                        nextDueDate: nextDate.toISOString().slice(0, 10)
+                    })
+                    .where({ ID: plan.ID });
+            }
+            else if (plan && plan.triggerType === "Meter") {
+                const lastReading = Number(equipment?.currentReading || 0);
+
+                await UPDATE(MaintenancePlans)
+                    .set({
+                        lastMaintenanceReading: lastReading,
+                        nextDueReading: lastReading + Number(plan.intervalValue)
+                    })
+                    .where({ ID: plan.ID });
+            }
+        }
+
+        return await SELECT.one.from(WorkOrders).where({ ID: WorkOrderID });
+    });
+
+    // action for consume part
+    this.on("consumePart", async (req) => {
+        const { WorkOrderID, OperationID, SparePartID, TechnicianID, quantity } = req.data;
+
+        // 1. Required inputs
+        if (!WorkOrderID || !OperationID || !SparePartID || !TechnicianID || quantity === undefined || quantity === null)
+            return req.reject(400, "Work order, operation, spare part, technician and quantity are required");
+
+        // 2. Quantity
+        const qty = Number(quantity);
+        if (!Number.isFinite(qty) || qty <= 0)
+            return req.reject("Quantity must be a valid number greater than zero");
+        if (Number(qty.toFixed(3)) !== qty)
+            return req.reject("Quantity cannot have more than 3 decimal places");
+
+        // 3. Work order
+        const workOrder = await SELECT.one.from(WorkOrders).where({ ID: WorkOrderID });
+        if (!workOrder) return req.reject("Work order not found");
+        if (!["Released", "InProgress"].includes(workOrder.status))
+            return req.reject(`Parts can only be consumed when the work order is Released or InProgress. Current status: ${workOrder.status}`);
+
+        // 4. Operation belongs to the work order
+        const operation = await SELECT.one.from(WorkOrderOperations).where({ ID: OperationID, workOrder_ID: WorkOrderID });
+        if (!operation) return req.reject("Operation not found for this work order");
+
+        // 5. Technician
+        const technician = await SELECT.one.from(Technicians).where({ ID: TechnicianID });
+        if (!technician) return req.reject("Technician not found");
+        if (technician.isActive !== true) return req.reject("Technician is inactive");
+
+        const assignment = await SELECT.one.from(TechnicianAssignments).where({ workOrder_ID: WorkOrderID, technician_ID: TechnicianID });
+        if (!assignment) return req.reject("Technician is not assigned to this work order");
+
+        // 6. Spare part, cost and stock
+        const sparePart = await SELECT.one.from(SpareParts).where({ ID: SparePartID });
+        if (!sparePart) return req.reject("Spare part not found");
+
+        const unitCost = Number(sparePart.standardCost || 0);
+        if (!Number.isFinite(unitCost) || unitCost < 0)
+            return req.reject("Invalid spare part standard cost");
+
+        const availableStock = Number(sparePart.stockQuantity || 0);
+        if (!Number.isFinite(availableStock) || availableStock < qty)
+            return req.reject(`Insufficient stock for ${sparePart.partNumber}. Available: ${availableStock}, requested: ${qty}`);
+
+        // 7. Deduct stock only when enough is still available
+        const updated = await UPDATE(SpareParts)
+            .set({ stockQuantity: { "-=": qty } })
+            .where({ ID: SparePartID, stockQuantity: { ">=": qty } });
+        if (!updated)
+            return req.reject(`Insufficient stock for ${sparePart.partNumber}`);
+
+        // 8. Save the consumption
+        const totalCost = Number((qty * unitCost).toFixed(2));
+        const ID = cds.utils.uuid();
+
+        await INSERT.into(PartConsumptions).entries({
+            ID,
+            workOrder_ID: WorkOrderID,
+            operation_ID: OperationID,
+            sparePart_ID: SparePartID,
+            quantity: qty,
+            unitCost,
+            totalCost,
+            consumedAt: new Date().toISOString()
+        });
+
+        // 9. Update the work order's running cost
+        const consumptions = await SELECT.from(PartConsumptions).columns("totalCost").where({ workOrder_ID: WorkOrderID });
+
+        const actualCost = Number(consumptions.reduce((total, item) => total + Number(item.totalCost || 0), 0).toFixed(2));
+
+        await UPDATE(WorkOrders).set({ actualCost: Number(actualCost.toFixed(2)) }).where({ ID: WorkOrderID });
+
+        // 10. Return the new consumption
+        return await SELECT.one.from(PartConsumptions).where({ ID });
+    });
+
+
+    // action for conver to work order
+    this.on("convertToWorkOrder", async (req) => {
+        const { RequestID, orderType, category, plannedStartDate, plannedEndDate, operations } = req.data;
+
+        if (!RequestID || !orderType || !category || !plannedStartDate || !plannedEndDate)
+            return req.reject("All mandatory fields must be provided.");
+
+        if (!["Breakdown", "Corrective"].includes(orderType))
+            return req.reject("Invalid work order type.");
+
+        if (!["Mechanical", "Electrical", "Instrumentation", "Other"].includes(category))
+            return req.reject("Invalid maintenance category.");
+
+        const startDate = new Date(plannedStartDate);
+        const endDate = new Date(plannedEndDate);
+
+        if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime()))
+            return req.reject("Invalid planned start or end date.");
+
+        if (endDate <= startDate)
+            return req.reject("Planned end date must be after planned start date.");
+
+        // 5. Operations
+        if (!Array.isArray(operations) || operations.length === 0)
+            return req.reject("At least one work order operation is required.");
+
+        let plannedHours = 0;
+        const newOperations = [];
+
+        for (const [index, operation] of operations.entries()) {
+            if (typeof operation.operationName !== "string" || !operation.operationName.trim())
+                return req.reject(`Operation name is required for operation ${index + 1}.`);
+
+            const hours = Number(operation.plannedHours);
+
+            if (!Number.isFinite(hours) || hours <= 0)
+                return req.reject(`Planned hours must be greater than zero for operation ${index + 1}.`);
+
+            if (Number(hours.toFixed(2)) !== hours)
+                return req.reject(`Planned hours can have a maximum of two decimal places for operation ${index + 1}.`);
+
+            if (typeof operation.isMandatory !== "boolean")
+                return req.reject(`isMandatory must be true or false for operation ${index + 1}.`);
+
+            plannedHours += hours;
+
+            newOperations.push({
+                ID: cds.utils.uuid(),
+                sequenceNumber: (index + 1) * 10,
+                operationName: operation.operationName.trim(),
+                plannedHours: hours,
+                actualHours: 0,
+                isMandatory: operation.isMandatory,
+                status: "Pending"
+            });
+        }
+
+        // 6. Maintenance request
+        const maintenanceRequest = await SELECT.one.from(MaintenanceRequests).where({ ID: RequestID });
+        if (!maintenanceRequest)
+            return req.reject("Maintenance request not found.");
+
+        // 7. Request status
+        if (!["Submitted", "UnderReview"].includes(maintenanceRequest.status))
+            return req.reject(`Cannot convert maintenance request with status ${maintenanceRequest.status}.`);
+
+        // 8. Equipment
+        if (!maintenanceRequest.equipment_ID)
+            return req.reject("Maintenance request is not associated with equipment.");
+
+        // 9. Duplicate work order
+        const existingOrder = await SELECT.one.from(WorkOrders).where({ maintenanceRequest_ID: RequestID });
+        if (existingOrder)
+            return req.reject(`Work order ${existingOrder.orderNumber} already exists for this maintenance request.`);
+
+        // 10. Next work order number
+        const existingOrders = await SELECT.from(WorkOrders).columns("orderNumber");
+
+        let maxNumber = 0;
+        for (const order of existingOrders) {
+            const match = /^WO-(\d+)$/.exec(order.orderNumber || "");
+            if (match) maxNumber = Math.max(maxNumber, Number(match[1]));
+        }
+
+        const orderNumber = `WO-${String(maxNumber + 1).padStart(4, "0")}`;
+
+        // 11. Create work order
+        const workOrderID = cds.utils.uuid();
+
+        await INSERT.into(WorkOrders).entries({
+            ID: workOrderID,
+            orderNumber,
+            orderType,
+            title: maintenanceRequest.symptom,
+            description: maintenanceRequest.description,
+            priority: maintenanceRequest.priority,
+            priorityScore: maintenanceRequest.priorityScore,
+            status: "Planned",
+            plannedStartDate: startDate.toISOString(),
+            plannedEndDate: endDate.toISOString(),
+            plannedHours: Number(plannedHours.toFixed(2)),
+            approvalStatus: "NotRequired",
+            equipment_ID: maintenanceRequest.equipment_ID,
+            maintenanceRequest_ID: maintenanceRequest.ID
+        });
+
+        // 12. Create operations
+        const operationEntries = newOperations.map(operation => ({ ...operation, workOrder_ID: workOrderID }));
+        await INSERT.into(WorkOrderOperations).entries(operationEntries);
+
+        // 13. Downtime event for breakdown orders
+        if (orderType === "Breakdown") {
+            await INSERT.into(DowntimeEvents).entries({
+                ID: cds.utils.uuid(),
+                equipment_ID: maintenanceRequest.equipment_ID,
+                workOrder_ID: workOrderID,
+                startTime: maintenanceRequest.reportedAt || new Date().toISOString(),
+                reason: maintenanceRequest.symptom,
+                isPlanned: false
+            });
+        }
+
+        // 14. Update the maintenance request
+        await UPDATE(MaintenanceRequests)
+            .set({ status: "Converted", workOrder_ID: workOrderID, category })
+            .where({ ID: RequestID });
+
+        // 15. Return the new work order
+        return await SELECT.one.from(WorkOrders).where({ ID: workOrderID });
+    });
 });
 
 
