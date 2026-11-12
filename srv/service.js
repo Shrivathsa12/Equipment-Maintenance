@@ -64,90 +64,239 @@ module.exports = cds.service.impl(async function () {
 
 
     // action for creating PreventiveOrder
-    this.on("createPreventiveOrder", async (req) => {
-        const { PlanID } = req.data;
+    /*     this.on("createPreventiveOrder", async (req) => {
+            const { PlanID } = req.data;
+    
+            if (!PlanID) req.reject("Plan ID is Required");
+    
+            const plan = await SELECT.one.from(MaintenancePlans).where({ ID: PlanID });
+            if (!plan) req.reject("Maintance Plan not found")
+            if (plan.isActive !== true) {
+                return req.reject("Maintenance plan is not active");
+            }
+    
+            const equipment = await SELECT.one.from(Equipment).where({ ID: plan.equipment_ID });
+            if (!equipment) {
+                return req.reject("Equipment not found");
+            }
+    
+            const existingOrders = await SELECT.from(WorkOrders).where({ maintenancePlan_ID: PlanID, orderType: "Preventive" });
+    
+            const openOrder = existingOrders.find(order => order.status !== "Closed");
+    
+            if (openOrder) {
+                return req.reject(
+                    `Preventive order already exists: ${openOrder.orderNumber}`
+                );
+            }
+    
+            const now = new Date();
+            const today = new Date(now);
+            today.setUTCHours(0, 0, 0, 0);
+    
+            let nextDueDate = plan.nextDueDate;
+            let nextDueReading = plan.nextDueReading;
+            let plannedStartDate;
+    
+            if (plan.triggerType === "Calendar") {
+                if (!nextDueDate) {
+                    if (!plan.lastMaintenanceDate)
+                        return req.reject(400, "Next due date is required for calendar plans");
+    
+                    const calc = new Date(`${plan.lastMaintenanceDate}T00:00:00.000Z`);
+                    calc.setUTCDate(calc.getUTCDate() + Number(plan.intervalValue));
+                    nextDueDate = calc.toISOString().slice(0, 10);
+    
+                    await UPDATE(MaintenancePlans).set({ nextDueDate }).where({ ID: PlanID });
+                }
+    
+                const dueDate = new Date(`${nextDueDate}T00:00:00.000Z`);
+                const triggerDate = new Date(dueDate);
+                triggerDate.setUTCDate(triggerDate.getUTCDate() - Number(plan.leadDays || 0));
+    
+                if (today < triggerDate)
+                    return req.reject(400, `Preventive maintenance is not yet due. Order generation starts on ${triggerDate.toISOString().slice(0, 10)}`);
+    
+                // Overdue plans start now, not in the past
+                plannedStartDate = (dueDate > now ? dueDate : now).toISOString();
+            }
+            else if (plan.triggerType === "Meter") {
+                const readings = await SELECT.from(EquipmentReadings).where({ equipment_ID: equipment.ID }).orderBy({ readingDate: "desc" }).limit(1);
+    
+                const currentReading = readings.length ? Number(readings[0].readingValue) : Number(equipment.currentReading || 0);
+    
+                const baseline = Number(plan.lastMaintenanceReading ?? equipment.currentReading ?? 0);
+    
+                if (!nextDueReading) {
+                    nextDueReading = baseline + Number(plan.intervalValue);
+                    await UPDATE(MaintenancePlans).set({ nextDueReading }).where({ ID: PlanID });
+                }
+    
+                if (currentReading < Number(nextDueReading))
+                    return req.reject(400, `Preventive maintenance is not yet due. Current reading: ${currentReading}, required reading: ${nextDueReading}`);
+    
+                plannedStartDate = now.toISOString();
+            }
+            else {
+                return req.reject(400, "Unsupported maintenance trigger type");
+            }
+    
+            const count = await SELECT.one.from(WorkOrders).columns("count(*) as total");
+            const orderNumber = `WO-${String(Number(count.total || 0) + 1).padStart(4, "0")}`;
+    
+            const ID = cds.utils.uuid();
+    
+            await INSERT.into(WorkOrders).entries({
+                ID,
+                orderNumber,
+                orderType: "Preventive",
+                equipment_ID: equipment.ID,
+                maintenancePlan_ID: PlanID,
+                title: `Preventive Maintenance - ${plan.planName}`,
+                description: `Preventive maintenance generated from plan ${plan.planCode}`,
+                priority: equipment.criticality,
+                status: "Created",
+                approvalStatus: "NotRequired",
+                plannedStartDate,
+                // default mandatory operation so the order can be confirmed and completed later
+                operations: [{
+                    sequenceNumber: 10,
+                    operationName: plan.planName,
+                    isMandatory: true
+                }]
+            });
+    
+            return await SELECT.one.from(WorkOrders).where({ ID });
+        }) */
 
-        if (!PlanID) req.reject("Plan ID is Required");
 
+    async function createPreventiveOrderForPlan(PlanID) {
         const plan = await SELECT.one.from(MaintenancePlans).where({ ID: PlanID });
-        if (!plan) req.reject("Maintance Plan not found")
-        if (plan.isActive !== true) {
-            return req.reject("Maintenance plan is not active");
-        }
 
-        const equipment = await SELECT.one.from(Equipment).where({ ID: plan.equipment_ID });
-        if (!equipment) {
-            return req.reject("Equipment not found");
-        }
+        if (!plan)
+            throw new Error("Maintenance plan not found");
 
-        const existingOrders = await SELECT.from(WorkOrders).where({ maintenancePlan_ID: PlanID, orderType: "Preventive" });
+        if (plan.isActive !== true)
+            throw new Error("Maintenance plan is not active");
+
+        const equipment = await SELECT.one.from(Equipment)
+            .where({ ID: plan.equipment_ID });
+
+        if (!equipment)
+            throw new Error("Equipment not found");
+
+        const existingOrders = await SELECT.from(WorkOrders)
+            .where({
+                maintenancePlan_ID: PlanID,
+                orderType: "Preventive"
+            });
 
         const openOrder = existingOrders.find(order => order.status !== "Closed");
 
-        if (openOrder) {
-            return req.reject(
-                `Preventive order already exists: ${openOrder.orderNumber}`
-            );
-        }
+        if (openOrder)
+            return {
+                created: false,
+                reason: `Preventive order already exists: ${openOrder.orderNumber}`
+            };
 
         const now = new Date();
         const today = new Date(now);
         today.setUTCHours(0, 0, 0, 0);
 
-        let nextDueDate = plan.nextDueDate;
-        let nextDueReading = plan.nextDueReading;
         let plannedStartDate;
 
         if (plan.triggerType === "Calendar") {
+            const intervalDays = Number(plan.intervalValue);
+            const leadDays = Number(plan.leadDays || 0);
+
+            if (!Number.isInteger(intervalDays) || intervalDays <= 0)
+                throw new Error("Calendar intervalValue must be a positive whole number of days");
+
+            if (!Number.isInteger(leadDays) || leadDays < 0)
+                throw new Error("leadDays must be zero or a positive whole number");
+
+            let nextDueDate = plan.nextDueDate;
+
             if (!nextDueDate) {
                 if (!plan.lastMaintenanceDate)
-                    return req.reject(400, "Next due date is required for calendar plans");
+                    throw new Error("Next due date or last maintenance date is required");
 
-                const calc = new Date(`${plan.lastMaintenanceDate}T00:00:00.000Z`);
-                calc.setUTCDate(calc.getUTCDate() + Number(plan.intervalValue));
-                nextDueDate = calc.toISOString().slice(0, 10);
+                const calculatedDate = new Date(`${plan.lastMaintenanceDate}T00:00:00.000Z`);
+                calculatedDate.setUTCDate(calculatedDate.getUTCDate() + intervalDays);
+
+                nextDueDate = calculatedDate.toISOString().slice(0, 10);
 
                 await UPDATE(MaintenancePlans).set({ nextDueDate }).where({ ID: PlanID });
             }
 
             const dueDate = new Date(`${nextDueDate}T00:00:00.000Z`);
+
+            if (Number.isNaN(dueDate.getTime()))
+                throw new Error("Invalid nextDueDate in maintenance plan");
+
             const triggerDate = new Date(dueDate);
-            triggerDate.setUTCDate(triggerDate.getUTCDate() - Number(plan.leadDays || 0));
+            triggerDate.setUTCDate(triggerDate.getUTCDate() - leadDays);
 
             if (today < triggerDate)
-                return req.reject(400, `Preventive maintenance is not yet due. Order generation starts on ${triggerDate.toISOString().slice(0, 10)}`);
+                return {
+                    created: false,
+                    reason: `Not due until ${triggerDate.toISOString().slice(0, 10)}`
+                };
 
-            // Overdue plans start now, not in the past
-            plannedStartDate = (dueDate > now ? dueDate : now).toISOString();
+            plannedStartDate = dueDate > now
+                ? dueDate.toISOString()
+                : now.toISOString();
         }
         else if (plan.triggerType === "Meter") {
+            const interval = Number(plan.intervalValue);
+
+            if (!Number.isFinite(interval) || interval <= 0)
+                throw new Error("Meter intervalValue must be greater than zero");
+
             const readings = await SELECT.from(EquipmentReadings).where({ equipment_ID: equipment.ID }).orderBy({ readingDate: "desc" }).limit(1);
 
-            const currentReading = readings.length ? Number(readings[0].readingValue) : Number(equipment.currentReading || 0);
+            const currentReading = readings.length? Number(readings[0].readingValue): Number(equipment.currentReading || 0);
 
-            const baseline = Number(plan.lastMaintenanceReading ?? equipment.currentReading ?? 0);
+            let nextDueReading = plan.nextDueReading;
 
-            if (!nextDueReading) {
-                nextDueReading = baseline + Number(plan.intervalValue);
+            if (nextDueReading === null || nextDueReading === undefined) {
+                const baseline = Number(
+                    plan.lastMaintenanceReading ?? equipment.currentReading ?? 0
+                );
+
+                nextDueReading = baseline + interval;
+
                 await UPDATE(MaintenancePlans).set({ nextDueReading }).where({ ID: PlanID });
             }
 
             if (currentReading < Number(nextDueReading))
-                return req.reject(400, `Preventive maintenance is not yet due. Current reading: ${currentReading}, required reading: ${nextDueReading}`);
+                return {
+                    created: false,
+                    reason: `Current reading ${currentReading}; required reading ${nextDueReading}`
+                };
 
             plannedStartDate = now.toISOString();
         }
         else {
-            return req.reject(400, "Unsupported maintenance trigger type");
+            throw new Error("Unsupported maintenance trigger type");
         }
 
-        const count = await SELECT.one.from(WorkOrders).columns("count(*) as total");
-        const orderNumber = `WO-${String(Number(count.total || 0) + 1).padStart(4, "0")}`;
+        const existingNumbers = await SELECT.from(WorkOrders).columns("orderNumber");
 
-        const ID = cds.utils.uuid();
+        let maxNumber = 0;
+
+        for (const order of existingNumbers) {
+            const match = /^WO-(\d+)$/.exec(order.orderNumber || "");
+
+            if (match)
+                maxNumber = Math.max(maxNumber, Number(match[1]));
+        }
+
+        const orderNumber = `WO-${String(maxNumber + 1).padStart(4, "0")}`;
+        const workOrderID = cds.utils.uuid();
 
         await INSERT.into(WorkOrders).entries({
-            ID,
+            ID: workOrderID,
             orderNumber,
             orderType: "Preventive",
             equipment_ID: equipment.ID,
@@ -158,17 +307,69 @@ module.exports = cds.service.impl(async function () {
             status: "Created",
             approvalStatus: "NotRequired",
             plannedStartDate,
-            // default mandatory operation so the order can be confirmed and completed later
             operations: [{
+                ID: cds.utils.uuid(),
                 sequenceNumber: 10,
                 operationName: plan.planName,
-                isMandatory: true
+                plannedHours: 1,
+                isMandatory: true,
+                status: "Pending"
             }]
         });
 
-        return await SELECT.one.from(WorkOrders).where({ ID });
-    })
+        const workOrder = await SELECT.one.from(WorkOrders).where({ ID: workOrderID });
 
+        return {
+            created: true,
+            workOrder
+        };
+    }
+
+
+    // Manual generation for one plan
+    this.on("createPreventiveOrder", async (req) => {
+        const { PlanID } = req.data;
+
+        if (!PlanID)
+            return req.reject(400, "Plan ID is required");
+
+        let result;
+        try {
+            result = await createPreventiveOrderForPlan(PlanID);
+        } catch (error) {
+            return req.reject(400, error.message);
+        }
+
+        if (!result.created)
+            return req.reject(409, result.reason);
+
+        return result.workOrder;
+    });
+
+
+    // Automatic generation for all active plans
+    this.on("generateDuePreventiveOrders", async (req) => {
+        const plans = await SELECT.from(MaintenancePlans)
+            .where({ isActive: true });
+
+        const createdOrders = [];
+
+        for (const plan of plans) {
+            try {
+                const result = await createPreventiveOrderForPlan(plan.ID);
+
+                if (result.created)
+                    createdOrders.push(result.workOrder);
+            }
+            catch (error) {
+                console.error(
+                    `[PM Scheduler] Plan ${plan.planCode}: ${error.message}`
+                );
+            }
+        }
+
+        return createdOrders;
+    });
 
     // action for Assign Technicians
     this.on("assignTechnician", async (req) => {
