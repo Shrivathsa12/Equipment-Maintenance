@@ -254,7 +254,7 @@ module.exports = cds.service.impl(async function () {
 
             const readings = await SELECT.from(EquipmentReadings).where({ equipment_ID: equipment.ID }).orderBy({ readingDate: "desc" }).limit(1);
 
-            const currentReading = readings.length? Number(readings[0].readingValue): Number(equipment.currentReading || 0);
+            const currentReading = readings.length ? Number(readings[0].readingValue) : Number(equipment.currentReading || 0);
 
             let nextDueReading = plan.nextDueReading;
 
@@ -1104,6 +1104,904 @@ module.exports = cds.service.impl(async function () {
             .where({ ID: WorkOrderID });
     });
 
+    // before validation
+
+    const isValidDate = value =>
+        value !== null &&
+        value !== undefined &&
+        !Number.isNaN(new Date(value).getTime());
+
+    const isPositiveNumber = value =>
+        Number.isFinite(Number(value)) && Number(value) > 0;
+
+    const isNonNegativeNumber = value =>
+        Number.isFinite(Number(value)) && Number(value) >= 0;
+
+    const hasField = (data, field) =>
+        Object.prototype.hasOwnProperty.call(data, field);
+
+    const getRecordID = req =>
+        req.data.ID || req.params?.[0]?.ID;
+
+    async function getExistingRecord(entity, req) {
+        const ID = getRecordID(req);
+
+        if (!ID) {
+            return req.reject("Record ID is required for update.");
+        }
+
+        const record = await SELECT.one.from(entity).where({ ID });
+
+        if (!record) {
+            return req.reject("Record not found.");
+        }
+
+        return record;
+    }
+
+    async function getMergedData(entity, req) {
+        if (req.event === "CREATE") {
+            return req.data;
+        }
+
+        const existing = await getExistingRecord(entity, req);
+        return { ...existing, ...req.data };
+    }
+
+    async function validateEquipment(equipmentID, req) {
+        if (!equipmentID) {
+            return req.reject("Equipment is required.");
+        }
+
+        const equipment = await SELECT.one.from(Equipment)
+            .where({ ID: equipmentID });
+
+        if (!equipment) {
+            return req.reject("Equipment not found.");
+        }
+
+        return equipment;
+    }
+
+    function requireRole(req, role) {
+        if (!req.user?.is?.(role)) {
+            return req.reject(`Only users with the ${role} role can perform this operation.`);
+        }
+    }
+
+
+    // 1. EQUIPMENT
+
+    this.before(["CREATE", "UPDATE"], "Equipment", async req => {
+        const data = await getMergedData(Equipment, req);
+
+        if (!data.equipmentCode?.trim()) {
+            return req.reject("Equipment code is required.");
+        }
+
+        if (!data.equipmentName?.trim()) {
+            return req.reject("Equipment name is required.");
+        }
+
+        if (
+            data.criticality !== undefined &&
+            !["Low", "Medium", "High", "Critical"].includes(data.criticality)
+        ) {
+            return req.reject("Invalid equipment criticality.");
+        }
+
+        if (
+            data.currentReading !== null &&
+            data.currentReading !== undefined &&
+            !isNonNegativeNumber(data.currentReading)
+        ) {
+            return req.reject("Equipment current reading cannot be negative.");
+        }
+
+        if (data.location_ID) {
+            const location = await SELECT.one.from(EquipmentLocations)
+                .where({ ID: data.location_ID });
+
+            if (!location) {
+                return req.reject("Equipment location not found.");
+            }
+        }
+
+        if (req.event === "UPDATE" && hasField(req.data, "currentReading")) {
+            const existing = await getExistingRecord(Equipment, req);
+
+            if (
+                Number(data.currentReading) <
+                Number(existing.currentReading || 0)
+            ) {
+                return req.reject(
+                    "Equipment current reading cannot be lower than its existing reading."
+                );
+            }
+
+            const latestReading = await SELECT.one.from(EquipmentReadings)
+                .where({ equipment_ID: getRecordID(req) })
+                .orderBy({ readingDate: "desc" });
+
+            if (
+                latestReading &&
+                Number(data.currentReading) < Number(latestReading.readingValue)
+            ) {
+                return req.reject(
+                    "Equipment current reading cannot be lower than its latest recorded reading."
+                );
+            }
+
+            return req.reject(
+                "Equipment current reading must be updated through confirmOperation."
+            );
+        }
+    });
+
+
+    // 2. MAINTENANCE PLANS
+
+    this.before(["CREATE", "UPDATE"], "MaintenancePlans", async req => {
+        const data = await getMergedData(MaintenancePlans, req);
+
+        if (!data.planCode?.trim()) {
+            return req.reject("Maintenance plan code is required.");
+        }
+
+        if (!data.planName?.trim()) {
+            return req.reject("Maintenance plan name is required.");
+        }
+
+        if (!data.equipment_ID) {
+            return req.reject("Equipment is required for a maintenance plan.");
+        }
+
+        await validateEquipment(data.equipment_ID, req);
+
+        if (!["Calendar", "Meter"].includes(data.triggerType)) {
+            return req.reject("Trigger type must be Calendar or Meter.");
+        }
+
+        if (!isPositiveNumber(data.intervalValue)) {
+            return req.reject("Maintenance interval must be greater than zero.");
+        }
+
+        if (
+            data.triggerType === "Calendar" &&
+            !Number.isInteger(Number(data.intervalValue))
+        ) {
+            return req.reject("Calendar interval must be a whole number of days.");
+        }
+
+        if (
+            data.leadDays !== null &&
+            data.leadDays !== undefined &&
+            (!Number.isInteger(Number(data.leadDays)) || Number(data.leadDays) < 0)
+        ) {
+            return req.reject("Lead days must be a non-negative whole number.");
+        }
+
+        if (
+            data.isActive !== null &&
+            data.isActive !== undefined &&
+            typeof data.isActive !== "boolean"
+        ) {
+            return req.reject("isActive must be true or false.");
+        }
+
+        if (data.lastMaintenanceDate && !isValidDate(data.lastMaintenanceDate)) {
+            return req.reject("Invalid last maintenance date.");
+        }
+
+        if (data.nextDueDate && !isValidDate(data.nextDueDate)) {
+            return req.reject("Invalid next due date.");
+        }
+
+        if (
+            data.lastMaintenanceReading !== null &&
+            data.lastMaintenanceReading !== undefined &&
+            !isNonNegativeNumber(data.lastMaintenanceReading)
+        ) {
+            return req.reject("Last maintenance reading cannot be negative.");
+        }
+
+        if (
+            data.nextDueReading !== null &&
+            data.nextDueReading !== undefined &&
+            !isNonNegativeNumber(data.nextDueReading)
+        ) {
+            return req.reject("Next due reading cannot be negative.");
+        }
+
+        if (
+            data.triggerType === "Calendar" &&
+            data.nextDueDate &&
+            data.lastMaintenanceDate &&
+            new Date(data.nextDueDate) < new Date(data.lastMaintenanceDate)
+        ) {
+            return req.reject("Next due date cannot be before last maintenance date.");
+        }
+
+        if (
+            data.triggerType === "Meter" &&
+            data.nextDueReading !== null &&
+            data.nextDueReading !== undefined &&
+            data.lastMaintenanceReading !== null &&
+            data.lastMaintenanceReading !== undefined &&
+            Number(data.nextDueReading) <= Number(data.lastMaintenanceReading)
+        ) {
+            return req.reject(
+                "Next due reading must be greater than last maintenance reading."
+            );
+        }
+    });
+
+
+    // 3. MAINTENANCE REQUESTS
+
+    this.before(["CREATE", "UPDATE"], "MaintenanceRequests", async req => {
+        const data = await getMergedData(MaintenanceRequests, req);
+
+        if (!data.symptom?.trim()) {
+            return req.reject("Breakdown symptom is required.");
+        }
+
+        if (!data.description?.trim()) {
+            return req.reject("Breakdown description is required.");
+        }
+
+        if (!data.reportedBy?.trim()) {
+            return req.reject("Reported by is required.");
+        }
+
+        if (!data.equipment_ID) {
+            return req.reject("Equipment is required for a maintenance request.");
+        }
+
+        await validateEquipment(data.equipment_ID, req);
+
+        if (
+            !["Low", "Medium", "High", "Critical"].includes(data.requestedPriority)
+        ) {
+            return req.reject("Invalid requested priority.");
+        }
+
+        if (!["None", "Low", "Medium", "High"].includes(data.safetyImpact)) {
+            return req.reject("Invalid safety impact.");
+        }
+
+        if (!["None", "Low", "Medium", "High"].includes(data.productionImpact)) {
+            return req.reject("Invalid production impact.");
+        }
+
+        if (
+            !["Mechanical", "Electrical", "Instrumentation", "Other"].includes(data.category)
+        ) {
+            return req.reject("Invalid maintenance request category.");
+        }
+
+        if (req.event === "CREATE") {
+            if (data.status && data.status !== "Submitted") {
+                return req.reject(
+                    "New maintenance requests must have Submitted status."
+                );
+            }
+        }
+
+        if (req.event === "UPDATE" && hasField(req.data, "status")) {
+            const existing = await getExistingRecord(MaintenanceRequests, req);
+
+            if (["Converted", "Rejected"].includes(existing.status)) {
+                return req.reject(
+                    "Converted or rejected requests cannot be modified."
+                );
+            }
+
+            if (data.status !== "UnderReview") {
+                return req.reject(
+                    "Request status can only be changed to UnderReview directly. Use the appropriate workflow for other status changes."
+                );
+            }
+
+            if (existing.status !== "Submitted") {
+                return req.reject(
+                    "Only Submitted requests can be moved to UnderReview."
+                );
+            }
+
+            requireRole(req, "MaintenancePlanner");
+        }
+    });
+
+
+    // 4. WORK ORDERS
+
+    this.before(["CREATE", "UPDATE"], "WorkOrders", async req => {
+        const data = await getMergedData(WorkOrders, req);
+
+        if (!["Breakdown", "Corrective", "Preventive"].includes(data.orderType)) {
+            return req.reject("Invalid work order type.");
+        }
+
+        if (!data.title?.trim()) {
+            return req.reject("Work order title is required.");
+        }
+
+        if (!data.equipment_ID) {
+            return req.reject("Equipment is required for a work order.");
+        }
+
+        await validateEquipment(data.equipment_ID, req);
+
+        if (!["Low", "Medium", "High", "Critical"].includes(data.priority)) {
+            return req.reject("Invalid work order priority.");
+        }
+
+        if (
+            data.priorityScore !== null &&
+            data.priorityScore !== undefined &&
+            !isNonNegativeNumber(data.priorityScore)
+        ) {
+            return req.reject("Priority score cannot be negative.");
+        }
+
+        if (data.plannedStartDate && !isValidDate(data.plannedStartDate)) {
+            return req.reject("Invalid planned start date.");
+        }
+
+        if (data.plannedEndDate && !isValidDate(data.plannedEndDate)) {
+            return req.reject("Invalid planned end date.");
+        }
+
+        if (
+            data.plannedStartDate &&
+            data.plannedEndDate &&
+            new Date(data.plannedEndDate) <= new Date(data.plannedStartDate)
+        ) {
+            return req.reject("Planned end date must be after planned start date.");
+        }
+
+        for (const field of [
+            "plannedHours",
+            "actualHours",
+            "estimatedCost",
+            "actualCost"
+        ]) {
+            if (
+                data[field] !== null &&
+                data[field] !== undefined &&
+                !isNonNegativeNumber(data[field])
+            ) {
+                return req.reject(`${field} cannot be negative.`);
+            }
+        }
+
+        if (
+            data.approvalStatus &&
+            !["NotRequired", "Pending", "Approved", "Rejected"].includes(data.approvalStatus)
+        ) {
+            return req.reject("Invalid work order approval status.");
+        }
+
+        if (req.event === "CREATE") {
+            if (data.status && data.status !== "Created") {
+                return req.reject(
+                    "Work orders must be created with Created status."
+                );
+            }
+
+            if (data.approvalStatus && data.approvalStatus !== "NotRequired") {
+                return req.reject(
+                    "Approval status cannot be set during direct work order creation."
+                );
+            }
+
+            const protectedCreateFields = [
+                "approvedBy",
+                "approvalAt",
+                "approvalRemarks",
+                "actualStartDate",
+                "actualEndDate",
+                "closedBy",
+                "closedAt",
+                "completedBy",
+                "completionRemarks",
+                "closureCode"
+            ];
+
+            const suppliedField = protectedCreateFields.find(field =>
+                hasField(req.data, field)
+            );
+
+            if (suppliedField) {
+                return req.reject(
+                    `Cannot set ${suppliedField} during work order creation.`
+                );
+            }
+
+            for (const field of ["actualHours", "actualCost"]) {
+                if (Number(data[field] || 0) !== 0) {
+                    return req.reject(
+                        `${field} must be zero during work order creation.`
+                    );
+                }
+            }
+        }
+
+        if (req.event === "UPDATE") {
+            const protectedFields = [
+                "status",
+                "approvalStatus",
+                "approvedBy",
+                "approvalAt",
+                "approvalRemarks",
+                "actualStartDate",
+                "actualEndDate",
+                "actualHours",
+                "actualCost",
+                "closureCode",
+                "completionRemarks",
+                "completedBy",
+                "closedBy",
+                "closedAt"
+            ];
+
+            const changedProtectedField = protectedFields.find(field =>
+                hasField(req.data, field)
+            );
+
+            if (changedProtectedField) {
+                return req.reject(
+                    `Direct modification of ${changedProtectedField} is not allowed. Use the corresponding work order action.`
+                );
+            }
+
+            if (
+                hasField(req.data, "plannedStartDate") ||
+                hasField(req.data, "plannedEndDate")
+            ) {
+                requireRole(req, "MaintenancePlanner");
+            }
+
+            const existing = await getExistingRecord(WorkOrders, req);
+
+            if (["Completed", "Closed"].includes(existing.status)) {
+                return req.reject(
+                    "Completed or closed work orders cannot be modified."
+                );
+            }
+        }
+    });
+
+
+    // 5. WORK ORDER OPERATIONS
+
+    this.before(["CREATE", "UPDATE"], "WorkOrderOperations", async req => {
+        const data = await getMergedData(WorkOrderOperations, req);
+
+        if (!data.workOrder_ID) {
+            return req.reject("Work order is required for an operation.");
+        }
+
+        const workOrder = await SELECT.one.from(WorkOrders)
+            .where({ ID: data.workOrder_ID });
+
+        if (!workOrder) {
+            return req.reject("Work order not found.");
+        }
+
+        if (!data.operationName?.trim()) {
+            return req.reject("Operation name is required.");
+        }
+
+        if (
+            !Number.isInteger(Number(data.sequenceNumber)) ||
+            Number(data.sequenceNumber) <= 0
+        ) {
+            return req.reject(
+                "Operation sequence number must be a positive whole number."
+            );
+        }
+
+        if (!isPositiveNumber(data.plannedHours)) {
+            return req.reject("Planned operation hours must be greater than zero.");
+        }
+
+        if (
+            data.actualHours !== null &&
+            data.actualHours !== undefined &&
+            !isNonNegativeNumber(data.actualHours)
+        ) {
+            return req.reject("Actual operation hours cannot be negative.");
+        }
+
+        if (
+            data.isMandatory !== null &&
+            data.isMandatory !== undefined &&
+            typeof data.isMandatory !== "boolean"
+        ) {
+            return req.reject("isMandatory must be true or false.");
+        }
+
+        if (
+            data.status &&
+            !["Pending", "InProgress", "Completed"].includes(data.status)
+        ) {
+            return req.reject("Invalid operation status.");
+        }
+
+        const duplicateOperations = await SELECT.from(WorkOrderOperations)
+            .where({
+                workOrder_ID: data.workOrder_ID,
+                sequenceNumber: data.sequenceNumber
+            });
+
+        if (duplicateOperations.some(operation =>
+            operation.ID !== getRecordID(req)
+        )) {
+            return req.reject(
+                "Operation sequence number already exists for this work order."
+            );
+        }
+
+        if (req.event === "CREATE") {
+            if (data.status && data.status !== "Pending") {
+                return req.reject(
+                    "New operations must have Pending status."
+                );
+            }
+
+            if (Number(data.actualHours || 0) !== 0) {
+                return req.reject(
+                    "Actual operation hours must be zero during creation."
+                );
+            }
+        }
+
+        if (req.event === "UPDATE") {
+            if (
+                hasField(req.data, "status") ||
+                hasField(req.data, "actualHours")
+            ) {
+                return req.reject(
+                    "Operation status and actual hours must be updated through confirmOperation."
+                );
+            }
+
+            const existing = await getExistingRecord(WorkOrderOperations, req);
+
+            if (existing.status === "Completed") {
+                return req.reject("Completed operations cannot be modified.");
+            }
+        }
+
+        if (!["Created", "Planned", "Assigned"].includes(workOrder.status)) {
+            return req.reject(
+                "Operations cannot be added or modified after work order release."
+            );
+        }
+    });
+
+
+    // 6. TECHNICIAN ASSIGNMENTS
+
+    this.before(["CREATE", "UPDATE"], "TechnicianAssignments", async req => {
+        requireRole(req, "MaintenancePlanner");
+
+        const data = await getMergedData(TechnicianAssignments, req);
+
+        if (!data.workOrder_ID || !data.technician_ID) {
+            return req.reject("Work order and technician are required.");
+        }
+
+        const workOrder = await SELECT.one.from(WorkOrders)
+            .where({ ID: data.workOrder_ID });
+
+        if (!workOrder) {
+            return req.reject("Work order not found.");
+        }
+
+        if (!["Created", "Planned", "Assigned"].includes(workOrder.status)) {
+            return req.reject(
+                "Technicians can only be assigned before work order release."
+            );
+        }
+
+        const technician = await SELECT.one.from(Technicians)
+            .where({ ID: data.technician_ID });
+
+        if (!technician) {
+            return req.reject("Technician not found.");
+        }
+
+        if (technician.isActive !== true) {
+            return req.reject("Inactive technicians cannot be assigned.");
+        }
+
+        if (typeof data.isLead !== "boolean") {
+            return req.reject("isLead must be true or false.");
+        }
+
+        if (
+            data.technicianUserId &&
+            data.technicianUserId !== technician.userId
+        ) {
+            return req.reject(
+                "Technician user ID must match the selected technician."
+            );
+        }
+
+        const existingAssignments = await SELECT.from(TechnicianAssignments)
+            .where({ workOrder_ID: data.workOrder_ID });
+
+        if (existingAssignments.some(assignment =>
+            assignment.technician_ID === data.technician_ID &&
+            assignment.ID !== getRecordID(req)
+        )) {
+            return req.reject(
+                "Technician is already assigned to this work order."
+            );
+        }
+
+        if (
+            data.isLead &&
+            existingAssignments.some(assignment =>
+                assignment.isLead === true &&
+                assignment.ID !== getRecordID(req)
+            )
+        ) {
+            return req.reject(
+                "A lead technician is already assigned to this work order."
+            );
+        }
+    });
+
+
+    // 7. TIME CONFIRMATIONS
+
+    this.before(["CREATE", "UPDATE"], "TimeConfirmations", req => {
+        return req.reject(
+            "Time confirmations must be recorded through the confirmOperation action."
+        );
+    });
+
+
+    // 8. SPARE PARTS
+
+    this.before(["CREATE", "UPDATE"], "SpareParts", async req => {
+        const data = await getMergedData(SpareParts, req);
+
+        if (!data.partNumber?.trim()) {
+            return req.reject("Spare part number is required.");
+        }
+
+        if (!data.partName?.trim()) {
+            return req.reject("Spare part name is required.");
+        }
+
+        if (!isNonNegativeNumber(data.standardCost)) {
+            return req.reject("Spare part standard cost cannot be negative.");
+        }
+
+        if (!isNonNegativeNumber(data.stockQuantity)) {
+            return req.reject("Spare part stock quantity cannot be negative.");
+        }
+
+        if (req.event === "UPDATE" && hasField(req.data, "stockQuantity")) {
+            return req.reject(
+                "Stock quantity must be changed through an authorized stock adjustment process."
+            );
+        }
+    });
+
+
+    // 9. PART CONSUMPTIONS
+
+    this.before(["CREATE", "UPDATE"], "PartConsumptions", req => {
+        return req.reject(
+            "Part consumption records must be created through the consumePart action and cannot be modified directly."
+        );
+    });
+
+
+    // 10. EQUIPMENT READINGS
+
+    this.before(["CREATE", "UPDATE"], "EquipmentReadings", req => {
+        return req.reject(
+            "Equipment readings must be recorded through the confirmOperation action and cannot be modified directly."
+        );
+    });
+
+
+    // 11. MAINTENANCE DOCUMENTS
+
+    this.before(["CREATE", "UPDATE"], "MaintenanceDocuments", async req => {
+        const data = await getMergedData(MaintenanceDocuments, req);
+
+        if (!data.fileName?.trim()) {
+            return req.reject("Document file name is required.");
+        }
+
+        if (!data.mimeType?.trim()) {
+            return req.reject("Document MIME type is required.");
+        }
+
+        const mimeType = data.mimeType.toLowerCase();
+
+        const allowedMimeTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/webp",
+            "application/pdf"
+        ];
+
+        if (!allowedMimeTypes.includes(mimeType)) {
+            return req.reject("Unsupported document format.");
+        }
+
+        if (!["Photo", "Manual", "Report"].includes(data.documentType)) {
+            return req.reject("Invalid document type.");
+        }
+
+        if (
+            data.documentType === "Photo" &&
+            !["image/jpeg", "image/png", "image/webp"].includes(mimeType)
+        ) {
+            return req.reject(
+                "Photo documents must be JPEG, PNG or WEBP."
+            );
+        }
+
+        if (
+            data.documentType !== "Photo" &&
+            mimeType.startsWith("image/")
+        ) {
+            return req.reject(
+                "Image files must use the Photo document type."
+            );
+        }
+
+        if (!data.content) {
+            return req.reject("Document content is required.");
+        }
+
+        let contentSize;
+
+        if (Buffer.isBuffer(data.content)) {
+            contentSize = data.content.length;
+        } else if (typeof data.content === "string") {
+            try {
+                contentSize = Buffer.from(data.content, "base64").length;
+            } catch {
+                return req.reject("Invalid document content encoding.");
+            }
+        } else {
+            return req.reject("Invalid document content.");
+        }
+
+        if (!Number.isInteger(Number(data.fileSize)) || Number(data.fileSize) <= 0) {
+            return req.reject("Document file size must be a positive whole number.");
+        }
+
+        if (contentSize !== Number(data.fileSize)) {
+            return req.reject(
+                "Document file size does not match the uploaded content."
+            );
+        }
+
+        if (contentSize > 5 * 1024 * 1024) {
+            return req.reject("Document size cannot exceed 5 MB.");
+        }
+
+        if (data.equipment_ID) {
+            await validateEquipment(data.equipment_ID, req);
+        }
+
+        if (data.maintenanceRequest_ID) {
+            const request = await SELECT.one.from(MaintenanceRequests)
+                .where({ ID: data.maintenanceRequest_ID });
+
+            if (!request) {
+                return req.reject("Maintenance request for document not found.");
+            }
+        }
+
+        if (data.workOrder_ID) {
+            const workOrder = await SELECT.one.from(WorkOrders)
+                .where({ ID: data.workOrder_ID });
+
+            if (!workOrder) {
+                return req.reject("Work order for document not found.");
+            }
+        }
+
+        if (
+            !data.equipment_ID &&
+            !data.maintenanceRequest_ID &&
+            !data.workOrder_ID
+        ) {
+            return req.reject(
+                "Document must be linked to equipment, maintenance request or work order."
+            );
+        }
+
+        if (req.event === "UPDATE") {
+            return req.reject(
+                "Uploaded maintenance documents cannot be modified. Upload a new document instead."
+            );
+        }
+    });
+
+
+    // 12. DOWNTIME EVENTS
+
+    this.before(["CREATE", "UPDATE"], "DowntimeEvents", async req => {
+        const data = await getMergedData(DowntimeEvents, req);
+
+        if (!data.equipment_ID) {
+            return req.reject("Equipment is required for a downtime event.");
+        }
+
+        await validateEquipment(data.equipment_ID, req);
+
+        if (!data.reason?.trim()) {
+            return req.reject("Downtime reason is required.");
+        }
+
+        if (!isValidDate(data.startTime)) {
+            return req.reject("Valid downtime start time is required.");
+        }
+
+        if (data.endTime) {
+            if (!isValidDate(data.endTime)) {
+                return req.reject("Invalid downtime end time.");
+            }
+
+            if (new Date(data.endTime) < new Date(data.startTime)) {
+                return req.reject(
+                    "Downtime end time cannot be before start time."
+                );
+            }
+        }
+
+        if (
+            data.durationMinutes !== null &&
+            data.durationMinutes !== undefined &&
+            (
+                !Number.isInteger(Number(data.durationMinutes)) ||
+                Number(data.durationMinutes) < 0
+            )
+        ) {
+            return req.reject(
+                "Downtime duration must be a non-negative whole number."
+            );
+        }
+
+        if (typeof data.isPlanned !== "boolean") {
+            return req.reject("isPlanned must be true or false.");
+        }
+
+        if (data.workOrder_ID) {
+            const workOrder = await SELECT.one.from(WorkOrders)
+                .where({ ID: data.workOrder_ID });
+
+            if (!workOrder) {
+                return req.reject("Downtime work order not found.");
+            }
+
+            if (workOrder.equipment_ID !== data.equipment_ID) {
+                return req.reject(
+                    "Downtime equipment must match the work order equipment."
+                );
+            }
+        }
+
+        if (req.event === "UPDATE") {
+            return req.reject(
+                "Downtime records cannot be modified directly. Downtime closure is managed through the work order workflow."
+            );
+        }
+    });
 
 
 });
