@@ -1,0 +1,2603 @@
+#2026 11 12 07:45:29.991#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#http-nio-0.0.0.0-8080-exec-10#
+[XS2StartProcessListener] Operation ID: 08756a50-de6d-11f1-81e1-eeee0a95bb81#
+#2026 11 12 07:45:30.009#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#http-nio-0.0.0.0-8080-exec-10#
+[XS2StartProcessListener] Process environment: {
+  "SKIP_SSL_VALIDATION" : "false",
+  "FLOWABLE_JOB_EXECUTOR_MAX_THREADS" : "32",
+  "VERSION" : "2.58.0",
+  "BASIC_AUTH_ENABLED" : "true",
+  "FLOWABLE_JOB_EXECUTOR_QUEUE_CAPACITY" : "16",
+  "FLOWABLE_JOB_EXECUTOR_CORE_THREADS" : "8"
+}#
+#2026 11 12 07:45:30.009#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#http-nio-0.0.0.0-8080-exec-10#
+[XS2StartProcessListener] Current user: shrivathsa.m@laderatechnology.com#
+#2026 11 12 07:45:30.009#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#http-nio-0.0.0.0-8080-exec-10#
+[XS2StartProcessListener] Client space: dev#
+#2026 11 12 07:45:30.009#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#http-nio-0.0.0.0-8080-exec-10#
+[XS2StartProcessListener] Client organization: f3b9ba19trial#
+#2026 11 12 07:45:30.010#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#http-nio-0.0.0.0-8080-exec-10#
+[XS2StartProcessListener] Process variables: {
+  "keepFiles" : false,
+  "skipAppDigestCalculation" : false,
+  "abortOnError" : false,
+  "mtaId" : "equipmentmaintenance",
+  "noFailOnMissingPermissions" : false,
+  "isSecurityEnabled" : false,
+  "apiRequestPath" : "https://deploy-service.cf.us10-001.hana.ondemand.com/api/v1/spaces/89d49d55-614e-42c1-8891-41d023466d28/operations",
+  "deleteServiceBrokers" : false,
+  "appArchiveId" : "76cb1934-42f5-4ce9-b925-5e199cf4cf58",
+  "isDisposableUserProvidedServiceEnabled" : false,
+  "deleteServiceKeys" : false,
+  "noRestartSubscribedApps" : false,
+  "noStart" : false,
+  "deleteServices" : false
+}#
+#2026 11 12 07:45:30.348#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11561#
+[ValidateDeployParametersStep] Executing task "validateParametersTask" of process "08756a76-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:30.348#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11561#
+[ValidateDeployParametersStep] Validating parameters...#
+#2026 11 12 07:45:30.351#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11561#
+[ValidateDeployParametersStep] Size of mtars is 5,733,219 and size of extension descriptors is 0#
+#2026 11 12 07:45:30.376#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11561#
+[ValidateDeployParametersStep] Archive was not split! Total size in bytes: 5,733,219#
+#2026 11 12 07:45:30.376#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11561#
+[ValidateDeployParametersStep] Deploying in org "f3b9ba19trial" and space "dev"#
+#2026 11 12 07:45:30.380#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11561#
+[ValidateDeployParametersStep] Parameters validated#
+#2026 11 12 07:45:30.380#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11561#
+Step "Validate Parameters" finished#
+#2026 11 12 07:45:30.411#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[DeleteRemainingFileParts] Executing task "deleteRemainingFileParts" of process "08756a76-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:30.412#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+Step "Delete Remaining File Parts" finished#
+#2026 11 12 07:45:30.439#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+[XS2ProcessMtaArchiveStep] Executing task "processArchiveTask" of process "08756a76-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:30.440#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+[XS2ProcessMtaArchiveStep] Processing MTA archive...#
+#2026 11 12 07:45:30.440#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+[XS2ProcessMtaArchiveStep] MTA Archive ID: 76cb1934-42f5-4ce9-b925-5e199cf4cf58#
+#2026 11 12 07:45:30.604#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+[XS2ProcessMtaArchiveStep] MTA Descriptor length: 889#
+#2026 11 12 07:45:30.604#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+[XS2ProcessMtaArchiveStep] MTA Archive Modules: [equipmentmaintenance-srv, equipmentmaintenance-db-deployer]#
+#2026 11 12 07:45:30.604#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+[XS2ProcessMtaArchiveStep] MTA Archive Requires: []#
+#2026 11 12 07:45:30.604#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+[XS2ProcessMtaArchiveStep] MTA Archive Resources: []#
+#2026 11 12 07:45:30.614#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+[XS2ProcessMtaArchiveStep] MTA archive processed#
+#2026 11 12 07:45:30.614#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+Step "Process Archive" finished#
+#2026 11 12 07:45:30.663#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[ProcessMtaExtensionDescriptorsStep] Executing task "processExtensionDescriptorsTask" of process "08756a76-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:30.664#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[ProcessMtaExtensionDescriptorsStep] Processing MTA extension descriptors...#
+#2026 11 12 07:45:30.664#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[ProcessMtaExtensionDescriptorsStep] Provided extension descriptors: [ ]#
+#2026 11 12 07:45:30.664#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[ProcessMtaExtensionDescriptorsStep] No extension descriptors in use#
+#2026 11 12 07:45:30.664#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[ProcessMtaExtensionDescriptorsStep] MTA extension descriptors processed#
+#2026 11 12 07:45:30.664#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+Step "Process Extension Descriptors" finished#
+#2026 11 12 07:45:30.705#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11565#
+[XS2DetectMtaSchemaVersionStep] Executing task "detectSchemaVersionTask" of process "08756a76-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:30.706#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11565#
+[XS2DetectMtaSchemaVersionStep] Detecting MTA major schema version...#
+#2026 11 12 07:45:30.708#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11565#
+[XS2DetectMtaSchemaVersionStep] Detected MTA schema version: "3"#
+#2026 11 12 07:45:30.713#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11565#
+Step "Detect Schema Version" finished#
+#2026 11 12 07:45:30.748#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11566#
+[MergeDescriptorsStep] Executing task "mergeDescriptorsTask" of process "08756a76-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:30.749#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11566#
+[MergeDescriptorsStep] Validating and merging descriptors...#
+#2026 11 12 07:45:30.751#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11566#
+[MergeDescriptorsStep] Merged deployment descriptor: {
+  "majorSchemaVersion" : 3,
+  "schemaVersion" : "3.3.0",
+  "id" : "equipmentmaintenance",
+  "version" : "1.0.0",
+  "modules" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-srv",
+    "type" : "javascript.nodejs",
+    "path" : "equipmentmaintenance-srv",
+    "properties" : { },
+    "parameters" : {
+      "buildpack" : "nodejs_buildpack",
+      "instances" : 1
+    },
+    "requiredDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-db",
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "srv-api",
+      "isPublic" : false,
+      "properties" : {
+        "srv-url" : "${default-url}"
+      },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    }, {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-srv",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  }, {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db-deployer",
+    "type" : "com.sap.xs.hdi",
+    "path" : "equipmentmaintenance-db-deployer",
+    "properties" : {
+      "EXIT" : 1
+    },
+    "parameters" : {
+      "memory" : "256M",
+      "buildpack" : "nodejs_buildpack",
+      "no-route" : true,
+      "dependency-type" : "hard",
+      "tasks" : [ {
+        "name" : "deploy",
+        "memory" : "256M",
+        "command" : "npm start"
+      } ],
+      "no-start" : true
+    },
+    "requiredDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-db",
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-db-deployer",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  } ],
+  "resources" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db",
+    "type" : "com.sap.xs.hdi-container",
+    "properties" : { },
+    "parameters" : {
+      "type" : "managed-service",
+      "service" : "hana",
+      "service-plan" : "hdi-shared"
+    },
+    "isActive" : true,
+    "isOptional" : false,
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "requiredDependencies" : [ ],
+    "processedAfter" : [ ]
+  } ],
+  "parameters" : {
+    "enable-parallel-deployments" : true
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  }
+}#
+#2026 11 12 07:45:30.752#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11566#
+[MergeDescriptorsStep] Descriptors validated and merged#
+#2026 11 12 07:45:30.752#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11566#
+Step "Merge Descriptors" finished#
+#2026 11 12 07:45:30.784#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11567#
+[CollectCloudLoggingServiceParametersStep] Executing task "sid-9C5714DF-CEC8-4019-8873-CBBA99AC459A" of process "08756a76-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:30.786#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11567#
+Step "Collect Cloud Logging Service Parameters" finished#
+#2026 11 12 07:45:30.812#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[DetectDeployedMtaStep] Executing task "detectDeployedMtaTask" of process "08756a76-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:30.813#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[DetectDeployedMtaStep] Detecting deployed MTA...#
+#2026 11 12 07:45:30.814#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[DetectDeployedMtaStep] Detecting MTA by id equipmentmaintenance and namespace null#
+#2026 11 12 07:45:30.814#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[DetectDeployedMtaStep] Getting applications by metadata label selector "mta_id=190203bb463f3b566c2298e321c4d129,!mta_namespace"...#
+#2026 11 12 07:45:30.852#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[DetectDeployedMtaStep] Getting service instances by metadata label selector "mta_id=190203bb463f3b566c2298e321c4d129,!mta_namespace"...#
+#2026 11 12 07:45:31.012#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[DetectDeployedMtaStep] Deployed MTA: {
+  "metadata" : {
+    "id" : "equipmentmaintenance",
+    "version" : "1.0.0"
+  },
+  "applications" : [ {
+    "name" : "equipmentmaintenance-db-deployer",
+    "metadata" : {
+      "guid" : "0ca80ac5-3e7d-4840-958c-8f682432a840",
+      "createdAt" : [ 2026, 11, 12, 7, 22, 11 ],
+      "updatedAt" : [ 2026, 11, 12, 7, 41, 52 ]
+    },
+    "v3Metadata" : {
+      "annotations" : {
+        "mta_id" : "equipmentmaintenance",
+        "mta_version" : "1.0.0",
+        "mta_module" : "{\"name\":\"equipmentmaintenance-db-deployer\"}",
+        "mta_module_provided_dependencies" : "[]",
+        "mta_bound_services" : "[\"equipmentmaintenance-db\"]"
+      },
+      "labels" : {
+        "mta_id" : "190203bb463f3b566c2298e321c4d129"
+      }
+    },
+    "state" : "STOPPED",
+    "lifecycle" : {
+      "type" : "BUILDPACK",
+      "data" : {
+        "buildpacks" : [ "nodejs_buildpack" ],
+        "stack" : "cflinuxfs4"
+      }
+    },
+    "space" : {
+      "name" : "dev",
+      "metadata" : {
+        "guid" : "89d49d55-614e-42c1-8891-41d023466d28",
+        "createdAt" : [ 2026, 9, 15, 7, 16, 10 ],
+        "updatedAt" : [ 2026, 9, 15, 7, 16, 10 ]
+      },
+      "organization" : {
+        "name" : "f3b9ba19trial",
+        "metadata" : {
+          "guid" : "12e4faf9-6f00-4cc8-8877-c3df52f3d5e2",
+          "createdAt" : [ 2026, 9, 15, 7, 16, 8 ],
+          "updatedAt" : [ 2026, 9, 15, 7, 16, 10 ]
+        }
+      }
+    },
+    "moduleName" : "equipmentmaintenance-db-deployer",
+    "boundMtaServices" : [ "equipmentmaintenance-db" ],
+    "providedDependencyNames" : [ ],
+    "productizationState" : "LIVE"
+  }, {
+    "name" : "equipmentmaintenance-srv",
+    "metadata" : {
+      "guid" : "9bb0a506-7896-4dfb-8480-169e80a2569a",
+      "createdAt" : [ 2026, 11, 12, 7, 40, 51 ],
+      "updatedAt" : [ 2026, 11, 12, 7, 42, 2 ]
+    },
+    "v3Metadata" : {
+      "annotations" : {
+        "mta_id" : "equipmentmaintenance",
+        "mta_version" : "1.0.0",
+        "mta_module" : "{\"name\":\"equipmentmaintenance-srv\"}",
+        "mta_module_provided_dependencies" : "[]",
+        "mta_bound_services" : "[\"equipmentmaintenance-db\"]"
+      },
+      "labels" : {
+        "mta_id" : "190203bb463f3b566c2298e321c4d129"
+      }
+    },
+    "state" : "STARTED",
+    "lifecycle" : {
+      "type" : "BUILDPACK",
+      "data" : {
+        "buildpacks" : [ "nodejs_buildpack" ],
+        "stack" : "cflinuxfs4"
+      }
+    },
+    "space" : {
+      "name" : "dev",
+      "metadata" : {
+        "guid" : "89d49d55-614e-42c1-8891-41d023466d28",
+        "createdAt" : [ 2026, 9, 15, 7, 16, 10 ],
+        "updatedAt" : [ 2026, 9, 15, 7, 16, 10 ]
+      },
+      "organization" : {
+        "name" : "f3b9ba19trial",
+        "metadata" : {
+          "guid" : "12e4faf9-6f00-4cc8-8877-c3df52f3d5e2",
+          "createdAt" : [ 2026, 9, 15, 7, 16, 8 ],
+          "updatedAt" : [ 2026, 9, 15, 7, 16, 10 ]
+        }
+      }
+    },
+    "moduleName" : "equipmentmaintenance-srv",
+    "boundMtaServices" : [ "equipmentmaintenance-db" ],
+    "providedDependencyNames" : [ ],
+    "productizationState" : "LIVE"
+  } ],
+  "services" : [ {
+    "name" : "equipmentmaintenance-db",
+    "metadata" : {
+      "guid" : "82727908-bd75-428e-8af9-24497f202ff5",
+      "createdAt" : [ 2026, 11, 6, 9, 37, 21 ],
+      "updatedAt" : [ 2026, 11, 12, 7, 15, 57 ]
+    },
+    "v3Metadata" : {
+      "annotations" : {
+        "mta_id" : "equipmentmaintenance",
+        "mta_version" : "1.0.0",
+        "mta_resource" : "{\"name\":\"equipmentmaintenance-db\"}"
+      },
+      "labels" : {
+        "mta_id" : "190203bb463f3b566c2298e321c4d129"
+      }
+    },
+    "label" : "hana",
+    "plan" : "hdi-shared",
+    "credentials" : "********",
+    "tags" : [ ],
+    "type" : "managed",
+    "lastOperation" : {
+      "type" : "UPDATE",
+      "state" : "SUCCEEDED"
+    },
+    "resourceName" : "equipmentmaintenance-db"
+  } ]
+}#
+#2026 11 12 07:45:31.012#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[DetectDeployedMtaStep] Detected deployed MTA with ID "equipmentmaintenance" and version "1.0.0"#
+#2026 11 12 07:45:31.017#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[DetectDeployedMtaStep] Detecting backup mta by id "equipmentmaintenance" and namespace "null"#
+#2026 11 12 07:45:31.017#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[DetectDeployedMtaStep] Getting applications by metadata label selector "mta_id=190203bb463f3b566c2298e321c4d129,mta_namespace=b698114a0995e936895b9598a6c19a2c"...#
+#2026 11 12 07:45:31.053#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[DetectDeployedMtaStep] Getting service instances by metadata label selector "mta_id=190203bb463f3b566c2298e321c4d129,mta_namespace=b698114a0995e936895b9598a6c19a2c"...#
+#2026 11 12 07:45:31.106#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[DetectDeployedMtaStep] Deployed MTA service keys: [ ]#
+#2026 11 12 07:45:31.106#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+Step "Detect Deployed MTA" finished#
+#2026 11 12 07:45:31.145#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2CollectSystemParametersStep] Executing task "collectSystemParametersTask" of process "08756a76-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:31.146#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2CollectSystemParametersStep] Collecting system parameters...#
+#2026 11 12 07:45:31.147#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2CollectSystemParametersStep] Getting default domain...#
+#2026 11 12 07:45:31.187#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2CollectSystemParametersStep] Default domain: cfapps.us10-001.hana.ondemand.com#
+#2026 11 12 07:45:31.187#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2CollectSystemParametersStep] Checking for overwriting read-only parameters for mta with id: "equipmentmaintenance"#
+#2026 11 12 07:45:31.187#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2CollectSystemParametersStep] No read-only parameters are overwritten#
+#2026 11 12 07:45:31.203#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2CollectSystemParametersStep] Descriptor with system parameters: {
+  "majorSchemaVersion" : 3,
+  "schemaVersion" : "3.3.0",
+  "id" : "equipmentmaintenance",
+  "version" : "1.0.0",
+  "modules" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-srv",
+    "type" : "javascript.nodejs",
+    "path" : "equipmentmaintenance-srv",
+    "properties" : { },
+    "parameters" : {
+      "default-url" : "${protocol}://${default-uri}",
+      "default-app-name" : "equipmentmaintenance-srv",
+      "generated-password" : "********",
+      "default-live-url" : "${protocol}://${default-live-uri}",
+      "default-uri" : "${host}.${domain}",
+      "default-instances" : 1,
+      "default-live-host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+      "instances" : 1,
+      "buildpack" : "nodejs_buildpack",
+      "default-host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+      "app-name" : "${default-app-name}",
+      "default-live-uri" : "f3b9ba19trial-dev-equipmentmaintenance-srv.${domain}",
+      "protocol" : "https",
+      "default-live-app-name" : "equipmentmaintenance-srv",
+      "default-live-domain" : "cfapps.us10-001.hana.ondemand.com",
+      "domain" : "${default-domain}",
+      "host" : "${default-host}",
+      "generated-user" : "********"
+    },
+    "requiredDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-db",
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "srv-api",
+      "isPublic" : false,
+      "properties" : {
+        "srv-url" : "${default-url}"
+      },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    }, {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-srv",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  }, {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db-deployer",
+    "type" : "com.sap.xs.hdi",
+    "path" : "equipmentmaintenance-db-deployer",
+    "properties" : {
+      "EXIT" : 1
+    },
+    "parameters" : {
+      "default-url" : "${protocol}://${default-uri}",
+      "default-app-name" : "equipmentmaintenance-db-deployer",
+      "generated-password" : "********",
+      "default-live-url" : "${protocol}://${default-live-uri}",
+      "default-uri" : "${host}.${domain}",
+      "memory" : "256M",
+      "default-instances" : 1,
+      "no-route" : true,
+      "default-live-host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+      "instances" : "${default-instances}",
+      "buildpack" : "nodejs_buildpack",
+      "default-host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+      "app-name" : "${default-app-name}",
+      "default-live-uri" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer.${domain}",
+      "protocol" : "https",
+      "default-live-app-name" : "equipmentmaintenance-db-deployer",
+      "default-live-domain" : "cfapps.us10-001.hana.ondemand.com",
+      "dependency-type" : "hard",
+      "domain" : "${default-domain}",
+      "host" : "${default-host}",
+      "generated-user" : "********",
+      "tasks" : [ {
+        "name" : "deploy",
+        "memory" : "256M",
+        "command" : "npm start"
+      } ],
+      "no-start" : true
+    },
+    "requiredDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-db",
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-db-deployer",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  } ],
+  "resources" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db",
+    "type" : "com.sap.xs.hdi-container",
+    "properties" : { },
+    "parameters" : {
+      "generated-password" : "********",
+      "service-name" : "${default-service-name}",
+      "service-plan" : "hdi-shared",
+      "service" : "hana",
+      "generated-user" : "********",
+      "default-xsappname" : "equipmentmaintenance-db",
+      "type" : "managed-service",
+      "default-service-name" : "equipmentmaintenance-db",
+      "default-container-name" : "F3B9BA19TRIAL_DEV_EQUIPMENTMAINTENANCE_DB"
+    },
+    "isActive" : true,
+    "isOptional" : false,
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "requiredDependencies" : [ ],
+    "processedAfter" : [ ]
+  } ],
+  "parameters" : {
+    "mta-id" : "equipmentmaintenance",
+    "authorization-url" : "********",
+    "org-guid" : "12e4faf9-6f00-4cc8-8877-c3df52f3d5e2",
+    "org" : "f3b9ba19trial",
+    "deploy-target" : "f3b9ba19trial dev",
+    "enable-parallel-deployments" : true,
+    "space" : "dev",
+    "xs-api-url" : "https://api.cf.us10-001.hana.ondemand.com",
+    "deploy-url" : "deploy-service.cfapps.us10-001.hana.ondemand.com",
+    "xs-type" : "CF",
+    "default-domain" : "cfapps.us10-001.hana.ondemand.com",
+    "mta-version" : "1.0.0",
+    "xs-auth-url" : "********",
+    "space-guid" : "89d49d55-614e-42c1-8891-41d023466d28",
+    "user" : "********",
+    "controller-url" : "https://api.cf.us10-001.hana.ondemand.com",
+    "timestamp" : "20261112074529"
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  }
+}#
+#2026 11 12 07:45:31.205#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2CollectSystemParametersStep] Version rule: SAME_HIGHER#
+#2026 11 12 07:45:31.205#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2CollectSystemParametersStep] Detected new MTA version: "1.0.0"#
+#2026 11 12 07:45:31.209#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2CollectSystemParametersStep] Deployed MTA version: "1.0.0"#
+#2026 11 12 07:45:31.215#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2CollectSystemParametersStep] MTA accepted for deployment#
+#2026 11 12 07:45:31.215#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2CollectSystemParametersStep] System parameters collected#
+#2026 11 12 07:45:31.215#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+Step "Collect System Parameters" finished#
+#2026 11 12 07:45:31.247#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[ProcessDescriptorStep] Executing task "processDescriptorTask" of process "08756a76-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:31.248#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[ProcessDescriptorStep] Resolving properties and parameters in merged descriptor...#
+#2026 11 12 07:45:31.251#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[ProcessDescriptorStep] Subscriptions: [ ]#
+#2026 11 12 07:45:31.251#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[ProcessDescriptorStep] MTA modules: [equipmentmaintenance-srv, equipmentmaintenance-db-deployer]#
+#2026 11 12 07:45:31.251#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[ProcessDescriptorStep] Resolved deployment descriptor: {
+  "majorSchemaVersion" : 3,
+  "schemaVersion" : "3.3.0",
+  "id" : "equipmentmaintenance",
+  "version" : "1.0.0",
+  "modules" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-srv",
+    "type" : "javascript.nodejs",
+    "path" : "equipmentmaintenance-srv",
+    "properties" : { },
+    "parameters" : {
+      "default-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+      "default-app-name" : "equipmentmaintenance-srv",
+      "generated-password" : "********",
+      "default-live-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+      "default-uri" : "f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+      "default-instances" : 1,
+      "default-live-host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+      "instances" : 1,
+      "buildpack" : "nodejs_buildpack",
+      "default-host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+      "app-name" : "equipmentmaintenance-srv",
+      "default-live-uri" : "f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+      "protocol" : "https",
+      "default-live-app-name" : "equipmentmaintenance-srv",
+      "default-live-domain" : "cfapps.us10-001.hana.ondemand.com",
+      "domain" : "cfapps.us10-001.hana.ondemand.com",
+      "host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+      "generated-user" : "********"
+    },
+    "requiredDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-db",
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "srv-api",
+      "isPublic" : false,
+      "properties" : {
+        "srv-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com"
+      },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    }, {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-srv",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  }, {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db-deployer",
+    "type" : "com.sap.xs.hdi",
+    "path" : "equipmentmaintenance-db-deployer",
+    "properties" : {
+      "EXIT" : 1
+    },
+    "parameters" : {
+      "default-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+      "default-app-name" : "equipmentmaintenance-db-deployer",
+      "generated-password" : "********",
+      "default-live-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+      "default-uri" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+      "memory" : "256M",
+      "default-instances" : 1,
+      "no-route" : true,
+      "default-live-host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+      "instances" : 1,
+      "buildpack" : "nodejs_buildpack",
+      "default-host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+      "app-name" : "equipmentmaintenance-db-deployer",
+      "default-live-uri" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+      "protocol" : "https",
+      "default-live-app-name" : "equipmentmaintenance-db-deployer",
+      "default-live-domain" : "cfapps.us10-001.hana.ondemand.com",
+      "dependency-type" : "hard",
+      "domain" : "cfapps.us10-001.hana.ondemand.com",
+      "host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+      "generated-user" : "********",
+      "tasks" : [ {
+        "command" : "npm start",
+        "memory" : "256M",
+        "name" : "deploy"
+      } ],
+      "no-start" : true
+    },
+    "requiredDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-db",
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-db-deployer",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  } ],
+  "resources" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db",
+    "type" : "com.sap.xs.hdi-container",
+    "properties" : { },
+    "parameters" : {
+      "generated-password" : "********",
+      "service-name" : "equipmentmaintenance-db",
+      "service-plan" : "hdi-shared",
+      "service" : "hana",
+      "generated-user" : "********",
+      "default-xsappname" : "equipmentmaintenance-db",
+      "type" : "managed-service",
+      "default-service-name" : "equipmentmaintenance-db",
+      "default-container-name" : "F3B9BA19TRIAL_DEV_EQUIPMENTMAINTENANCE_DB"
+    },
+    "isActive" : true,
+    "isOptional" : false,
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "requiredDependencies" : [ ],
+    "processedAfter" : [ ]
+  } ],
+  "parameters" : {
+    "mta-id" : "equipmentmaintenance",
+    "authorization-url" : "********",
+    "org-guid" : "12e4faf9-6f00-4cc8-8877-c3df52f3d5e2",
+    "org" : "f3b9ba19trial",
+    "deploy-target" : "f3b9ba19trial dev",
+    "enable-parallel-deployments" : true,
+    "region-primary-domain" : "us10.hana.ondemand.com",
+    "space" : "dev",
+    "region-domain" : "us10-001.hana.ondemand.com",
+    "xs-api-url" : "https://api.cf.us10-001.hana.ondemand.com",
+    "deploy-url" : "deploy-service.cfapps.us10-001.hana.ondemand.com",
+    "xs-type" : "CF",
+    "default-domain" : "cfapps.us10-001.hana.ondemand.com",
+    "mta-version" : "1.0.0",
+    "xs-auth-url" : "********",
+    "space-guid" : "89d49d55-614e-42c1-8891-41d023466d28",
+    "user" : "********",
+    "controller-url" : "https://api.cf.us10-001.hana.ondemand.com",
+    "timestamp" : "20261112074529"
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  }
+}#
+#2026 11 12 07:45:31.251#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[ProcessDescriptorStep] Merged descriptor properties and parameters resolved#
+#2026 11 12 07:45:31.251#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+Step "Process Descriptor Step" finished#
+#2026 11 12 07:45:31.283#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2BuildCloudDeployModelStep] Executing task "buildDeployModelTask" of process "08756a76-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:31.287#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2BuildCloudDeployModelStep] Service keys defined for content deployment grouped by service name: { }#
+#2026 11 12 07:45:31.287#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2BuildCloudDeployModelStep] Building cloud deployment model...#
+#2026 11 12 07:45:31.288#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2BuildCloudDeployModelStep] MTA archive modules: [equipmentmaintenance-srv, equipmentmaintenance-db-deployer]#
+#2026 11 12 07:45:31.288#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2BuildCloudDeployModelStep] Deployed modules: [equipmentmaintenance-db-deployer, equipmentmaintenance-srv]#
+#2026 11 12 07:45:31.289#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2BuildCloudDeployModelStep] MTA modules: [equipmentmaintenance-srv, equipmentmaintenance-db-deployer]#
+#2026 11 12 07:45:31.289#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2BuildCloudDeployModelStep] Service keys to create: {
+  "equipmentmaintenance-db" : [ ]
+}#
+#2026 11 12 07:45:31.290#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2BuildCloudDeployModelStep] Modules to deploy: [{
+  "majorSchemaVersion" : 3,
+  "name" : "equipmentmaintenance-srv",
+  "type" : "javascript.nodejs",
+  "path" : "equipmentmaintenance-srv",
+  "properties" : { },
+  "parameters" : {
+    "default-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+    "default-app-name" : "equipmentmaintenance-srv",
+    "generated-password" : "********",
+    "default-live-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+    "default-uri" : "f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+    "default-instances" : 1,
+    "default-live-host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+    "instances" : 1,
+    "buildpack" : "nodejs_buildpack",
+    "default-host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+    "app-name" : "equipmentmaintenance-srv",
+    "default-live-uri" : "f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+    "protocol" : "https",
+    "default-live-app-name" : "equipmentmaintenance-srv",
+    "default-live-domain" : "cfapps.us10-001.hana.ondemand.com",
+    "dependency-type" : "soft",
+    "domain" : "cfapps.us10-001.hana.ondemand.com",
+    "host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+    "generated-user" : "********"
+  },
+  "requiredDependencies" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db",
+    "properties" : { },
+    "parameters" : { },
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    }
+  } ],
+  "providedDependencies" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "srv-api",
+    "isPublic" : false,
+    "properties" : {
+      "srv-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com"
+    },
+    "parameters" : { },
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    }
+  }, {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-srv",
+    "isPublic" : false,
+    "properties" : { },
+    "parameters" : { },
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    }
+  } ],
+  "propertiesMetadata" : {
+    "metadata" : { }
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  },
+  "deployedAfter" : [ ],
+  "hooks" : [ ]
+}, {
+  "majorSchemaVersion" : 3,
+  "name" : "equipmentmaintenance-db-deployer",
+  "type" : "com.sap.xs.hdi",
+  "path" : "equipmentmaintenance-db-deployer",
+  "properties" : {
+    "EXIT" : 1
+  },
+  "parameters" : {
+    "default-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+    "default-app-name" : "equipmentmaintenance-db-deployer",
+    "generated-password" : "********",
+    "default-live-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+    "default-uri" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+    "memory" : "256M",
+    "default-instances" : 1,
+    "no-route" : true,
+    "default-live-host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+    "instances" : 1,
+    "buildpack" : "nodejs_buildpack",
+    "default-host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+    "app-name" : "equipmentmaintenance-db-deployer",
+    "default-live-uri" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+    "protocol" : "https",
+    "default-live-app-name" : "equipmentmaintenance-db-deployer",
+    "default-live-domain" : "cfapps.us10-001.hana.ondemand.com",
+    "dependency-type" : "hard",
+    "domain" : "cfapps.us10-001.hana.ondemand.com",
+    "host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+    "generated-user" : "********",
+    "tasks" : [ {
+      "command" : "npm start",
+      "memory" : "256M",
+      "name" : "deploy"
+    } ],
+    "no-start" : true
+  },
+  "requiredDependencies" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db",
+    "properties" : { },
+    "parameters" : { },
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    }
+  } ],
+  "providedDependencies" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db-deployer",
+    "isPublic" : false,
+    "properties" : { },
+    "parameters" : { },
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    }
+  } ],
+  "propertiesMetadata" : {
+    "metadata" : { }
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  },
+  "deployedAfter" : [ ],
+  "hooks" : [ ]
+}]#
+#2026 11 12 07:45:31.290#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2BuildCloudDeployModelStep] Custom domains: []#
+#2026 11 12 07:45:31.292#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2BuildCloudDeployModelStep] Calculating resource batches...#
+#2026 11 12 07:45:31.292#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2BuildCloudDeployModelStep] Calculating resource batches completed.#
+#2026 11 12 07:45:31.292#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+[XS2BuildCloudDeployModelStep] Cloud deployment model built#
+#2026 11 12 07:45:31.292#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11568#
+Step "Build Deploy Model" finished#
+#2026 11 12 07:45:31.326#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[BuildCloudUndeployModelStep] Executing task "buildUndeployModelTask" of process "08756a76-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:31.326#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[BuildCloudUndeployModelStep] Building cloud undeployment model...#
+#2026 11 12 07:45:31.328#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[BuildCloudUndeployModelStep] Detecting service keys to delete.#
+#2026 11 12 07:45:31.329#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[BuildCloudUndeployModelStep] No deployed service keys detected!#
+#2026 11 12 07:45:31.329#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[BuildCloudUndeployModelStep] Detected service keys to delete "[]"#
+#2026 11 12 07:45:31.334#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[BuildCloudUndeployModelStep] MTA modules: [equipmentmaintenance-srv, equipmentmaintenance-db-deployer]#
+#2026 11 12 07:45:31.334#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[BuildCloudUndeployModelStep] Modules to undeploy: [ ]#
+#2026 11 12 07:45:31.334#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[BuildCloudUndeployModelStep] Modules that won't be changed: [ ]#
+#2026 11 12 07:45:31.335#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[BuildCloudUndeployModelStep] Subscriptions to delete: [ ]#
+#2026 11 12 07:45:31.337#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[BuildCloudUndeployModelStep] Cloud services to delete: []#
+#2026 11 12 07:45:31.337#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[BuildCloudUndeployModelStep] Cloud applications to undeploy: [ ]#
+#2026 11 12 07:45:31.339#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+[BuildCloudUndeployModelStep] Cloud undeployment model built#
+#2026 11 12 07:45:31.339#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11564#
+Step "Build Undeploy Model" finished#
+#2026 11 12 07:45:31.373#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11565#
+[AddDomainsStep] Executing task "addDomainsTask" of process "08756a76-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:31.374#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11565#
+[AddDomainsStep] Custom domains: []#
+#2026 11 12 07:45:31.374#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11565#
+Step "Add Domains" finished#
+#2026 11 12 07:45:31.735#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11565#
+[ExtractBatchedServicesWithResolvedDynamicParametersStep] Executing task "prepareModulesDeploymentTask" of process "094e8c1c-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:31.736#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11565#
+[ExtractBatchedServicesWithResolvedDynamicParametersStep] Extracting services and resolving dynamic parameters from batch#
+#2026 11 12 07:45:31.737#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11565#
+[ExtractBatchedServicesWithResolvedDynamicParametersStep] Services to create: [ {
+  "isOptional" : false,
+  "isManaged" : true,
+  "name" : "equipmentmaintenance-db",
+  "v3Metadata" : {
+    "annotations" : {
+      "mta_id" : "equipmentmaintenance",
+      "mta_version" : "1.0.0",
+      "mta_resource" : "{\"name\":\"equipmentmaintenance-db\"}"
+    },
+    "labels" : {
+      "mta_id" : "190203bb463f3b566c2298e321c4d129"
+    }
+  },
+  "label" : "hana",
+  "plan" : "hdi-shared",
+  "credentials" : "********",
+  "tags" : [ ],
+  "type" : "managed",
+  "resourceName" : "equipmentmaintenance-db",
+  "shouldSkipParametersUpdate" : false,
+  "shouldSkipPlanUpdate" : false,
+  "shouldSkipTagsUpdate" : false,
+  "shouldSkipSyslogUrlUpdate" : false
+} ]#
+#2026 11 12 07:45:31.738#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11565#
+Step "Extract Services with Resolved Dynamic parameters from batch" finished#
+#2026 11 12 07:45:31.817#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11565#
+[CheckServiceOperationStateStep] Executing task "CheckServiceOperationStateTask" of process "09863e28-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:31.818#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11565#
+[CheckServiceOperationStateStep] Getting service instance "equipmentmaintenance-db"...#
+#2026 11 12 07:45:31.935#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11565#
+Step "Check for service operations in Progress" finished#
+#2026 11 12 07:45:31.964#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+[DetermineServiceCreateUpdateServiceActionsStep] Executing task "DetermineServiceCreateUpdateActionsTask" of process "09863e28-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:31.966#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+[DetermineServiceCreateUpdateServiceActionsStep] Processing service "equipmentmaintenance-db"...#
+#2026 11 12 07:45:31.971#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+[DetermineServiceCreateUpdateServiceActionsStep] Getting service instance "equipmentmaintenance-db"...#
+#2026 11 12 07:45:32.096#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+[DetermineServiceCreateUpdateServiceActionsStep] Existing service: {
+  "name" : "equipmentmaintenance-db",
+  "metadata" : {
+    "guid" : "82727908-bd75-428e-8af9-24497f202ff5",
+    "createdAt" : [ 2026, 11, 6, 9, 37, 21 ],
+    "updatedAt" : [ 2026, 11, 12, 7, 15, 57 ]
+  },
+  "v3Metadata" : {
+    "annotations" : {
+      "mta_id" : "equipmentmaintenance",
+      "mta_version" : "1.0.0",
+      "mta_resource" : "{\"name\":\"equipmentmaintenance-db\"}"
+    },
+    "labels" : {
+      "mta_id" : "190203bb463f3b566c2298e321c4d129"
+    }
+  },
+  "label" : "hana",
+  "plan" : "hdi-shared",
+  "credentials" : "********",
+  "tags" : [ ],
+  "type" : "managed",
+  "lastOperation" : {
+    "type" : "UPDATE",
+    "state" : "SUCCEEDED"
+  }
+}#
+#2026 11 12 07:45:32.096#Z#WARN#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+[DetermineServiceCreateUpdateServiceActionsStep] Service parameters for service "equipmentmaintenance-db" will not be updated, as the parameters are not defined or empty.#
+#2026 11 12 07:45:32.096#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+Step "Determine update actions" finished#
+#2026 11 12 07:45:32.141#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+[CheckForServiceBindingOrKeyOperationStep] Executing task "CheckForServiceBindingOrKeyCreation" of process "09863e28-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:32.143#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11563#
+Step "Check for service binding or key creation" finished#
+#2026 11 12 07:45:32.340#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11566#
+[PrepareModulesDeploymentStep] Executing task "prepareModulesDeploymentTask" of process "09d547c4-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:32.341#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11566#
+[PrepareModulesDeploymentStep] Preparing modules deployment...#
+#2026 11 12 07:45:32.345#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11566#
+Step "Prepare Modules Deployment" finished#
+#2026 11 12 07:45:32.379#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11566#
+[ComputeNextModulesStep] Executing task "computeNextModulesToDeployInParallel" of process "09d547c4-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:32.380#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11566#
+[ComputeNextModulesStep] Computing modules for next parallel iteration...#
+#2026 11 12 07:45:32.382#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11566#
+[ComputeNextModulesStep] Completed modules detected: []#
+#2026 11 12 07:45:32.382#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11566#
+[ComputeNextModulesStep] All modules for deploy detected: [equipmentmaintenance-srv, equipmentmaintenance-db-deployer]#
+#2026 11 12 07:45:32.382#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11566#
+[ComputeNextModulesStep] Modules not for deploy detected: []#
+#2026 11 12 07:45:32.383#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11566#
+[ComputeNextModulesStep] Computed modules for next parallel iteration: [ {
+  "majorSchemaVersion" : 3,
+  "name" : "equipmentmaintenance-srv",
+  "type" : "javascript.nodejs",
+  "path" : "equipmentmaintenance-srv",
+  "properties" : { },
+  "parameters" : {
+    "app-name" : "equipmentmaintenance-srv",
+    "buildpack" : "nodejs_buildpack",
+    "default-app-name" : "equipmentmaintenance-srv",
+    "default-host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+    "default-instances" : 1,
+    "default-live-app-name" : "equipmentmaintenance-srv",
+    "default-live-domain" : "cfapps.us10-001.hana.ondemand.com",
+    "default-live-host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+    "default-live-uri" : "f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+    "default-live-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+    "default-uri" : "f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+    "default-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+    "dependency-type" : "soft",
+    "domain" : "cfapps.us10-001.hana.ondemand.com",
+    "generated-password" : "********",
+    "generated-user" : "********",
+    "host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+    "instances" : 1,
+    "protocol" : "https"
+  },
+  "requiredDependencies" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db",
+    "properties" : { },
+    "parameters" : { },
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    }
+  } ],
+  "providedDependencies" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "srv-api",
+    "isPublic" : false,
+    "properties" : {
+      "srv-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com"
+    },
+    "parameters" : { },
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    }
+  }, {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-srv",
+    "isPublic" : false,
+    "properties" : { },
+    "parameters" : { },
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    }
+  } ],
+  "propertiesMetadata" : {
+    "metadata" : { }
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  },
+  "deployedAfter" : [ ],
+  "hooks" : [ ]
+}, {
+  "majorSchemaVersion" : 3,
+  "name" : "equipmentmaintenance-db-deployer",
+  "type" : "com.sap.xs.hdi",
+  "path" : "equipmentmaintenance-db-deployer",
+  "properties" : {
+    "EXIT" : 1
+  },
+  "parameters" : {
+    "app-name" : "equipmentmaintenance-db-deployer",
+    "buildpack" : "nodejs_buildpack",
+    "default-app-name" : "equipmentmaintenance-db-deployer",
+    "default-host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+    "default-instances" : 1,
+    "default-live-app-name" : "equipmentmaintenance-db-deployer",
+    "default-live-domain" : "cfapps.us10-001.hana.ondemand.com",
+    "default-live-host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+    "default-live-uri" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+    "default-live-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+    "default-uri" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+    "default-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+    "dependency-type" : "hard",
+    "domain" : "cfapps.us10-001.hana.ondemand.com",
+    "generated-password" : "********",
+    "generated-user" : "********",
+    "host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+    "instances" : 1,
+    "memory" : "256M",
+    "no-route" : true,
+    "no-start" : true,
+    "protocol" : "https",
+    "tasks" : [ {
+      "command" : "npm start",
+      "memory" : "256M",
+      "name" : "deploy"
+    } ]
+  },
+  "requiredDependencies" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db",
+    "properties" : { },
+    "parameters" : { },
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    }
+  } ],
+  "providedDependencies" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db-deployer",
+    "isPublic" : false,
+    "properties" : { },
+    "parameters" : { },
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    }
+  } ],
+  "propertiesMetadata" : {
+    "metadata" : { }
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  },
+  "deployedAfter" : [ ],
+  "hooks" : [ ]
+} ]#
+#2026 11 12 07:45:32.383#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11566#
+Step "Compute Next Modules To Deploy" finished#
+#2026 11 12 07:45:32.510#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[ProcessDescriptorStep] Executing task "reprocessDescriptorTask" of process "09ec52f3-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:32.511#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[ProcessDescriptorStep] Resolving properties and parameters in merged descriptor...#
+#2026 11 12 07:45:32.514#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[ProcessDescriptorStep] Subscriptions: [ ]#
+#2026 11 12 07:45:32.520#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[ProcessDescriptorStep] MTA modules: [equipmentmaintenance-srv, equipmentmaintenance-db-deployer]#
+#2026 11 12 07:45:32.522#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[ProcessDescriptorStep] Resolved deployment descriptor: {
+  "majorSchemaVersion" : 3,
+  "schemaVersion" : "3.3.0",
+  "id" : "equipmentmaintenance",
+  "version" : "1.0.0",
+  "modules" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-srv",
+    "type" : "javascript.nodejs",
+    "path" : "equipmentmaintenance-srv",
+    "properties" : { },
+    "parameters" : {
+      "default-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+      "default-app-name" : "equipmentmaintenance-srv",
+      "generated-password" : "********",
+      "default-live-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+      "default-uri" : "f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+      "default-instances" : 1,
+      "default-live-host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+      "instances" : 1,
+      "buildpack" : "nodejs_buildpack",
+      "default-host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+      "app-name" : "equipmentmaintenance-srv",
+      "default-live-uri" : "f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+      "protocol" : "https",
+      "default-live-app-name" : "equipmentmaintenance-srv",
+      "default-live-domain" : "cfapps.us10-001.hana.ondemand.com",
+      "domain" : "cfapps.us10-001.hana.ondemand.com",
+      "host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+      "generated-user" : "********"
+    },
+    "requiredDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-db",
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "srv-api",
+      "isPublic" : false,
+      "properties" : {
+        "srv-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com"
+      },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    }, {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-srv",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  }, {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db-deployer",
+    "type" : "com.sap.xs.hdi",
+    "path" : "equipmentmaintenance-db-deployer",
+    "properties" : {
+      "EXIT" : 1
+    },
+    "parameters" : {
+      "default-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+      "default-app-name" : "equipmentmaintenance-db-deployer",
+      "generated-password" : "********",
+      "default-live-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+      "default-uri" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+      "memory" : "256M",
+      "default-instances" : 1,
+      "no-route" : true,
+      "default-live-host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+      "instances" : 1,
+      "buildpack" : "nodejs_buildpack",
+      "default-host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+      "app-name" : "equipmentmaintenance-db-deployer",
+      "default-live-uri" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+      "protocol" : "https",
+      "default-live-app-name" : "equipmentmaintenance-db-deployer",
+      "default-live-domain" : "cfapps.us10-001.hana.ondemand.com",
+      "dependency-type" : "hard",
+      "domain" : "cfapps.us10-001.hana.ondemand.com",
+      "host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+      "generated-user" : "********",
+      "tasks" : [ {
+        "command" : "npm start",
+        "memory" : "256M",
+        "name" : "deploy"
+      } ],
+      "no-start" : true
+    },
+    "requiredDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-db",
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-db-deployer",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  } ],
+  "resources" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db",
+    "type" : "com.sap.xs.hdi-container",
+    "properties" : { },
+    "parameters" : {
+      "generated-password" : "********",
+      "service-name" : "equipmentmaintenance-db",
+      "service-plan" : "hdi-shared",
+      "service" : "hana",
+      "generated-user" : "********",
+      "default-xsappname" : "equipmentmaintenance-db",
+      "type" : "managed-service",
+      "default-service-name" : "equipmentmaintenance-db",
+      "default-container-name" : "F3B9BA19TRIAL_DEV_EQUIPMENTMAINTENANCE_DB"
+    },
+    "isActive" : true,
+    "isOptional" : false,
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "requiredDependencies" : [ ],
+    "processedAfter" : [ ]
+  } ],
+  "parameters" : {
+    "mta-id" : "equipmentmaintenance",
+    "authorization-url" : "********",
+    "org-guid" : "12e4faf9-6f00-4cc8-8877-c3df52f3d5e2",
+    "org" : "f3b9ba19trial",
+    "deploy-target" : "f3b9ba19trial dev",
+    "enable-parallel-deployments" : true,
+    "region-primary-domain" : "us10.hana.ondemand.com",
+    "space" : "dev",
+    "region-domain" : "us10-001.hana.ondemand.com",
+    "xs-api-url" : "https://api.cf.us10-001.hana.ondemand.com",
+    "deploy-url" : "deploy-service.cfapps.us10-001.hana.ondemand.com",
+    "xs-type" : "CF",
+    "default-domain" : "cfapps.us10-001.hana.ondemand.com",
+    "mta-version" : "1.0.0",
+    "xs-auth-url" : "********",
+    "space-guid" : "89d49d55-614e-42c1-8891-41d023466d28",
+    "user" : "********",
+    "controller-url" : "https://api.cf.us10-001.hana.ondemand.com",
+    "timestamp" : "20261112074529"
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  }
+}#
+#2026 11 12 07:45:32.522#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[ProcessDescriptorStep] Merged descriptor properties and parameters resolved#
+#2026 11 12 07:45:32.522#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+Step "Re-Process Descriptor Step" finished#
+#2026 11 12 07:45:32.555#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[BuildApplicationDeployModelStep] Executing task "buildApplicationDeployModelTask" of process "09ec52f3-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:32.558#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[BuildApplicationDeployModelStep] Building cloud deployment model for application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:45:32.564#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[BuildApplicationDeployModelStep] No health-check-type is specified. Setting default type: port#
+#2026 11 12 07:45:32.564#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[BuildApplicationDeployModelStep] Building configuration entries for org f3b9ba19trial, space dev, spaceId 89d49d55-614e-42c1-8891-41d023466d28 and namespace null!#
+#2026 11 12 07:45:32.566#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[BuildApplicationDeployModelStep] Configuration entries to publish: [ ]#
+#2026 11 12 07:45:32.566#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[BuildApplicationDeployModelStep] Cloud deployment model for application built#
+#2026 11 12 07:45:32.566#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+Step "Build Application Deploy Model" finished#
+#2026 11 12 07:45:32.603#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CreateOrUpdateAppStep] Executing task "createAppTask" of process "09ec52f3-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:32.604#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CreateOrUpdateAppStep] Getting application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:45:32.641#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CreateOrUpdateAppStep] Updating application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:45:32.647#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CreateOrUpdateAppStep] Getting process for application "0ca80ac5-3e7d-4840-958c-8f682432a840"...#
+#2026 11 12 07:45:32.683#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CreateOrUpdateAppStep] Getting routes for application "0ca80ac5-3e7d-4840-958c-8f682432a840"...#
+#2026 11 12 07:45:32.718#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CreateOrUpdateAppStep] Getting features for application "0ca80ac5-3e7d-4840-958c-8f682432a840"#
+#2026 11 12 07:45:32.741#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CreateOrUpdateAppStep] Updating staging of application "equipmentmaintenance-db-deployer" to: {
+  "buildpacks" : [ "nodejs_buildpack" ],
+  "healthCheckType" : "port",
+  "appFeatures" : { }
+}#
+#2026 11 12 07:45:32.937#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CreateOrUpdateAppStep] Application "equipmentmaintenance-db-deployer" updated#
+#2026 11 12 07:45:32.937#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CreateOrUpdateAppStep] Getting environment of application "0ca80ac5-3e7d-4840-958c-8f682432a840"...#
+#2026 11 12 07:45:33.007#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CreateOrUpdateAppStep] Application "equipmentmaintenance-db-deployer" updated#
+#2026 11 12 07:45:33.007#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+Step "Create App" finished#
+#2026 11 12 07:45:33.177#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29233#
+[ProcessDescriptorStep] Executing task "reprocessDescriptorTask" of process "0a53a06b-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:45:33.177#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29233#
+[ProcessDescriptorStep] Resolving properties and parameters in merged descriptor...#
+#2026 11 12 07:45:33.179#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29233#
+[ProcessDescriptorStep] Subscriptions: [ ]#
+#2026 11 12 07:45:33.182#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29233#
+[ProcessDescriptorStep] MTA modules: [equipmentmaintenance-srv, equipmentmaintenance-db-deployer]#
+#2026 11 12 07:45:33.184#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29233#
+[ProcessDescriptorStep] Resolved deployment descriptor: {
+  "majorSchemaVersion" : 3,
+  "schemaVersion" : "3.3.0",
+  "id" : "equipmentmaintenance",
+  "version" : "1.0.0",
+  "modules" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-srv",
+    "type" : "javascript.nodejs",
+    "path" : "equipmentmaintenance-srv",
+    "properties" : { },
+    "parameters" : {
+      "default-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+      "default-app-name" : "equipmentmaintenance-srv",
+      "generated-password" : "********",
+      "default-live-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+      "default-uri" : "f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+      "default-instances" : 1,
+      "default-live-host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+      "instances" : 1,
+      "buildpack" : "nodejs_buildpack",
+      "default-host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+      "app-name" : "equipmentmaintenance-srv",
+      "default-live-uri" : "f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com",
+      "protocol" : "https",
+      "default-live-app-name" : "equipmentmaintenance-srv",
+      "default-live-domain" : "cfapps.us10-001.hana.ondemand.com",
+      "domain" : "cfapps.us10-001.hana.ondemand.com",
+      "host" : "f3b9ba19trial-dev-equipmentmaintenance-srv",
+      "generated-user" : "********"
+    },
+    "requiredDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-db",
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "srv-api",
+      "isPublic" : false,
+      "properties" : {
+        "srv-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-srv.cfapps.us10-001.hana.ondemand.com"
+      },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    }, {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-srv",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  }, {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db-deployer",
+    "type" : "com.sap.xs.hdi",
+    "path" : "equipmentmaintenance-db-deployer",
+    "properties" : {
+      "EXIT" : 1
+    },
+    "parameters" : {
+      "default-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+      "default-app-name" : "equipmentmaintenance-db-deployer",
+      "generated-password" : "********",
+      "default-live-url" : "https://f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+      "default-uri" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+      "memory" : "256M",
+      "default-instances" : 1,
+      "no-route" : true,
+      "default-live-host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+      "instances" : 1,
+      "buildpack" : "nodejs_buildpack",
+      "default-host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+      "app-name" : "equipmentmaintenance-db-deployer",
+      "default-live-uri" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer.cfapps.us10-001.hana.ondemand.com",
+      "protocol" : "https",
+      "default-live-app-name" : "equipmentmaintenance-db-deployer",
+      "default-live-domain" : "cfapps.us10-001.hana.ondemand.com",
+      "dependency-type" : "hard",
+      "domain" : "cfapps.us10-001.hana.ondemand.com",
+      "host" : "f3b9ba19trial-dev-equipmentmaintenance-db-deployer",
+      "generated-user" : "********",
+      "tasks" : [ {
+        "command" : "npm start",
+        "memory" : "256M",
+        "name" : "deploy"
+      } ],
+      "no-start" : true
+    },
+    "requiredDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-db",
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "providedDependencies" : [ {
+      "majorSchemaVersion" : 3,
+      "name" : "equipmentmaintenance-db-deployer",
+      "isPublic" : false,
+      "properties" : { },
+      "parameters" : { },
+      "propertiesMetadata" : {
+        "metadata" : { }
+      },
+      "parametersMetadata" : {
+        "metadata" : { }
+      }
+    } ],
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "hooks" : [ ]
+  } ],
+  "resources" : [ {
+    "majorSchemaVersion" : 3,
+    "name" : "equipmentmaintenance-db",
+    "type" : "com.sap.xs.hdi-container",
+    "properties" : { },
+    "parameters" : {
+      "generated-password" : "********",
+      "service-name" : "equipmentmaintenance-db",
+      "service-plan" : "hdi-shared",
+      "service" : "hana",
+      "generated-user" : "********",
+      "default-xsappname" : "equipmentmaintenance-db",
+      "type" : "managed-service",
+      "default-service-name" : "equipmentmaintenance-db",
+      "default-container-name" : "F3B9BA19TRIAL_DEV_EQUIPMENTMAINTENANCE_DB"
+    },
+    "isActive" : true,
+    "isOptional" : false,
+    "propertiesMetadata" : {
+      "metadata" : { }
+    },
+    "parametersMetadata" : {
+      "metadata" : { }
+    },
+    "requiredDependencies" : [ ],
+    "processedAfter" : [ ]
+  } ],
+  "parameters" : {
+    "mta-id" : "equipmentmaintenance",
+    "authorization-url" : "********",
+    "org-guid" : "12e4faf9-6f00-4cc8-8877-c3df52f3d5e2",
+    "org" : "f3b9ba19trial",
+    "deploy-target" : "f3b9ba19trial dev",
+    "enable-parallel-deployments" : true,
+    "region-primary-domain" : "us10.hana.ondemand.com",
+    "space" : "dev",
+    "region-domain" : "us10-001.hana.ondemand.com",
+    "xs-api-url" : "https://api.cf.us10-001.hana.ondemand.com",
+    "deploy-url" : "deploy-service.cfapps.us10-001.hana.ondemand.com",
+    "xs-type" : "CF",
+    "default-domain" : "cfapps.us10-001.hana.ondemand.com",
+    "mta-version" : "1.0.0",
+    "xs-auth-url" : "********",
+    "space-guid" : "89d49d55-614e-42c1-8891-41d023466d28",
+    "user" : "********",
+    "controller-url" : "https://api.cf.us10-001.hana.ondemand.com",
+    "timestamp" : "20261112074529"
+  },
+  "parametersMetadata" : {
+    "metadata" : { }
+  }
+}#
+#2026 11 12 07:45:33.184#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29233#
+[ProcessDescriptorStep] Merged descriptor properties and parameters resolved#
+#2026 11 12 07:45:33.184#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29233#
+Step "Re-Process Descriptor Step" finished#
+#2026 11 12 07:45:33.125#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CheckServiceBindingOperationStep] Executing task "checkForServiceBindingOperationInProgress" of process "0a4aed13-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:33.126#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CheckServiceBindingOperationStep] Checking for service binding operation in progress between app "equipmentmaintenance-db-deployer" and service instance "equipmentmaintenance-db"#
+#2026 11 12 07:45:33.126#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CheckServiceBindingOperationStep] Getting application guid "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:45:33.161#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CheckServiceBindingOperationStep] Getting GUID of required service instance "equipmentmaintenance-db"...#
+#2026 11 12 07:45:33.193#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CheckServiceBindingOperationStep] Getting binding of service instance "82727908-bd75-428e-8af9-24497f202ff5" with application "0ca80ac5-3e7d-4840-958c-8f682432a840"...#
+#2026 11 12 07:45:33.229#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[CheckServiceBindingOperationStep] Service binding operation "166e98df-1a56-4c65-a46f-177bca7fefe0" with type "create" is in state "succeeded"#
+#2026 11 12 07:45:33.229#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+Step "Check For Service Binding Operation In Progress" finished#
+#2026 11 12 07:45:33.203#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[BuildApplicationDeployModelStep] Executing task "buildApplicationDeployModelTask" of process "0a53a06b-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:45:33.205#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[BuildApplicationDeployModelStep] Building cloud deployment model for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:33.262#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[BuildApplicationDeployModelStep] No health-check-type is specified. Setting default type: port#
+#2026 11 12 07:45:33.263#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[BuildApplicationDeployModelStep] Building configuration entries for org f3b9ba19trial, space dev, spaceId 89d49d55-614e-42c1-8891-41d023466d28 and namespace null!#
+#2026 11 12 07:45:33.264#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[BuildApplicationDeployModelStep] Configuration entries to publish: [ ]#
+#2026 11 12 07:45:33.264#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[BuildApplicationDeployModelStep] Cloud deployment model for application built#
+#2026 11 12 07:45:33.264#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+Step "Build Application Deploy Model" finished#
+#2026 11 12 07:45:33.257#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[DetermineApplicationServiceBindingActionsStep] Executing task "determineApplicationServiceBindingActionsTask" of process "0a4aed13-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:33.258#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[DetermineApplicationServiceBindingActionsStep] Determine bind/unbind operations of application "equipmentmaintenance-db-deployer" to service instance "equipmentmaintenance-db"#
+#2026 11 12 07:45:33.258#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[DetermineApplicationServiceBindingActionsStep] Getting application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:45:33.294#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[DetermineApplicationServiceBindingActionsStep] Binding parameters for application "equipmentmaintenance-db-deployer": { }#
+#2026 11 12 07:45:33.334#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[DetermineApplicationServiceBindingActionsStep] Check should rebind application "equipmentmaintenance-db-deployer" and service instance "equipmentmaintenance-db"#
+#2026 11 12 07:45:33.334#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[DetermineApplicationServiceBindingActionsStep] Getting GUID of required service instance "equipmentmaintenance-db"...#
+#2026 11 12 07:45:33.364#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[DetermineApplicationServiceBindingActionsStep] Getting binding of service instance "82727908-bd75-428e-8af9-24497f202ff5" with application "0ca80ac5-3e7d-4840-958c-8f682432a840"...#
+#2026 11 12 07:45:33.392#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[DetermineApplicationServiceBindingActionsStep] Getting parameters of service binding "166e98df-1a56-4c65-a46f-177bca7fefe0"...#
+#2026 11 12 07:45:33.597#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[DetermineApplicationServiceBindingActionsStep] Service instance "equipmentmaintenance-db" will not be rebound to application "equipmentmaintenance-db-deployer" because the binding parameters are not modified#
+#2026 11 12 07:45:33.602#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[DetermineApplicationServiceBindingActionsStep] Calculated binding operations between application "equipmentmaintenance-db-deployer" and service instance "equipmentmaintenance-db": unbind - false bind - false#
+#2026 11 12 07:45:33.602#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+Step "Determine Application Service Binding Actions" finished#
+#2026 11 12 07:45:33.285#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CreateOrUpdateAppStep] Executing task "createAppTask" of process "0a53a06b-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:45:33.286#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CreateOrUpdateAppStep] Getting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:33.326#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CreateOrUpdateAppStep] Updating application "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:33.330#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CreateOrUpdateAppStep] Getting process for application "9bb0a506-7896-4dfb-8480-169e80a2569a"...#
+#2026 11 12 07:45:33.368#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CreateOrUpdateAppStep] Getting routes for application "9bb0a506-7896-4dfb-8480-169e80a2569a"...#
+#2026 11 12 07:45:33.405#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CreateOrUpdateAppStep] Getting features for application "9bb0a506-7896-4dfb-8480-169e80a2569a"#
+#2026 11 12 07:45:33.425#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CreateOrUpdateAppStep] Updating staging of application "equipmentmaintenance-srv" to: {
+  "buildpacks" : [ "nodejs_buildpack" ],
+  "healthCheckType" : "port",
+  "appFeatures" : { }
+}#
+#2026 11 12 07:45:33.610#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CreateOrUpdateAppStep] Application "equipmentmaintenance-srv" updated#
+#2026 11 12 07:45:33.610#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CreateOrUpdateAppStep] Getting environment of application "9bb0a506-7896-4dfb-8480-169e80a2569a"...#
+#2026 11 12 07:45:33.668#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CreateOrUpdateAppStep] Application "equipmentmaintenance-srv" updated#
+#2026 11 12 07:45:33.668#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+Step "Create App" finished#
+#2026 11 12 07:45:33.717#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[DetermineVcapServicesPropertiesChangedStep] Executing task "determineVcapServicesPropertiesChangedTask" of process "0aa6058e-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:33.719#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[DetermineVcapServicesPropertiesChangedStep] VCAP_SERVICES properties for application "equipmentmaintenance-db-deployer" changed: false#
+#2026 11 12 07:45:33.719#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+Step "Determine vcap services properties changed" finished#
+#2026 11 12 07:45:33.728#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CheckServiceBindingOperationStep] Executing task "checkForServiceBindingOperationInProgress" of process "0aab359f-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:45:33.728#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CheckServiceBindingOperationStep] Checking for service binding operation in progress between app "equipmentmaintenance-srv" and service instance "equipmentmaintenance-db"#
+#2026 11 12 07:45:33.729#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CheckServiceBindingOperationStep] Getting application guid "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:33.753#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CheckServiceBindingOperationStep] Getting GUID of required service instance "equipmentmaintenance-db"...#
+#2026 11 12 07:45:33.784#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CheckServiceBindingOperationStep] Getting binding of service instance "82727908-bd75-428e-8af9-24497f202ff5" with application "9bb0a506-7896-4dfb-8480-169e80a2569a"...#
+#2026 11 12 07:45:33.809#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[CheckServiceBindingOperationStep] Service binding operation "b3ae141f-06ba-4096-b23e-818b297e21e9" with type "create" is in state "succeeded"#
+#2026 11 12 07:45:33.809#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+Step "Check For Service Binding Operation In Progress" finished#
+#2026 11 12 07:45:33.748#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[UploadAppStep] Executing task "uploadAppTask" of process "0aa6058e-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:33.749#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[UploadAppStep] Application upload timeout is default one: 3,600 seconds#
+#2026 11 12 07:45:33.749#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[UploadAppStep] Uploading application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:45:33.754#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[UploadAppStep] Getting application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:45:33.784#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[UploadAppStep] Getting environment of application "0ca80ac5-3e7d-4840-958c-8f682432a840"...#
+#2026 11 12 07:45:33.813#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+[UploadAppStep] Calculating application digest: "equipmentmaintenance-db-deployer"#
+#2026 11 12 07:45:33.866#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11562#
+Step "Upload App" finished#
+#2026 11 12 07:45:33.828#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[DetermineApplicationServiceBindingActionsStep] Executing task "determineApplicationServiceBindingActionsTask" of process "0aab359f-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:45:33.829#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[DetermineApplicationServiceBindingActionsStep] Determine bind/unbind operations of application "equipmentmaintenance-srv" to service instance "equipmentmaintenance-db"#
+#2026 11 12 07:45:33.829#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[DetermineApplicationServiceBindingActionsStep] Getting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:33.863#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[DetermineApplicationServiceBindingActionsStep] Binding parameters for application "equipmentmaintenance-srv": { }#
+#2026 11 12 07:45:33.895#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[DetermineApplicationServiceBindingActionsStep] Check should rebind application "equipmentmaintenance-srv" and service instance "equipmentmaintenance-db"#
+#2026 11 12 07:45:33.895#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[DetermineApplicationServiceBindingActionsStep] Getting GUID of required service instance "equipmentmaintenance-db"...#
+#2026 11 12 07:45:33.925#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[DetermineApplicationServiceBindingActionsStep] Getting binding of service instance "82727908-bd75-428e-8af9-24497f202ff5" with application "9bb0a506-7896-4dfb-8480-169e80a2569a"...#
+#2026 11 12 07:45:33.952#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[DetermineApplicationServiceBindingActionsStep] Getting parameters of service binding "b3ae141f-06ba-4096-b23e-818b297e21e9"...#
+#2026 11 12 07:45:34.137#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[DetermineApplicationServiceBindingActionsStep] Service instance "equipmentmaintenance-db" will not be rebound to application "equipmentmaintenance-srv" because the binding parameters are not modified#
+#2026 11 12 07:45:34.140#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[DetermineApplicationServiceBindingActionsStep] Calculated binding operations between application "equipmentmaintenance-srv" and service instance "equipmentmaintenance-db": unbind - false bind - false#
+#2026 11 12 07:45:34.140#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+Step "Determine Application Service Binding Actions" finished#
+#2026 11 12 07:45:34.212#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[DetermineVcapServicesPropertiesChangedStep] Executing task "determineVcapServicesPropertiesChangedTask" of process "0af473b9-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:45:34.213#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[DetermineVcapServicesPropertiesChangedStep] VCAP_SERVICES properties for application "equipmentmaintenance-srv" changed: false#
+#2026 11 12 07:45:34.213#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+Step "Determine vcap services properties changed" finished#
+#2026 11 12 07:45:34.233#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[UploadAppStep] Executing task "uploadAppTask" of process "0af473b9-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:45:34.233#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[UploadAppStep] Application upload timeout is default one: 3,600 seconds#
+#2026 11 12 07:45:34.233#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[UploadAppStep] Uploading application "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:34.237#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[UploadAppStep] Getting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:34.270#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[UploadAppStep] Getting environment of application "9bb0a506-7896-4dfb-8480-169e80a2569a"...#
+#2026 11 12 07:45:34.301#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+[UploadAppStep] Calculating application digest: "equipmentmaintenance-srv"#
+#2026 11 12 07:45:34.423#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29234#
+Step "Upload App" finished#
+#2026 11 12 07:45:42.807#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29231#
+[UploadAppStep] Executing task "uploadAppTask" of process "0af473b9-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:45:42.807#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29231#
+[UploadAppStep] Application upload timeout is default one: 3,600 seconds#
+#2026 11 12 07:45:42.809#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#pool-14-thread-2#
+[UploadAppStep] Upload of application: equipmentmaintenance-srv started on instance: 0#
+#2026 11 12 07:45:42.809#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#pool-14-thread-2#
+[UploadAppStep] Uploading file "equipmentmaintenance-srv/data.zip" for application "equipmentmaintenance-srv"#
+#2026 11 12 07:45:42.864#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29227#
+[UploadAppStep] Executing task "uploadAppTask" of process "0aa6058e-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:42.865#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29227#
+[UploadAppStep] Application upload timeout is default one: 3,600 seconds#
+#2026 11 12 07:45:42.867#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#pool-14-thread-6#
+[UploadAppStep] Upload of application: equipmentmaintenance-db-deployer started on instance: 0#
+#2026 11 12 07:45:42.867#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#pool-14-thread-6#
+[UploadAppStep] Uploading file "equipmentmaintenance-db-deployer/data.zip" for application "equipmentmaintenance-db-deployer"#
+#2026 11 12 07:45:42.892#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#pool-14-thread-2#
+[UploadAppStep] Time elapsed for app binary download: 82 in millis#
+#2026 11 12 07:45:42.892#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#pool-14-thread-2#
+[UploadAppStep] Size of app equipmentmaintenance-srv is 3,677,699 bytes#
+#2026 11 12 07:45:42.892#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#pool-14-thread-2#
+[UploadAppStep] Asynchronously uploading binaries for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:42.944#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#pool-14-thread-6#
+[UploadAppStep] Time elapsed for app binary download: 76 in millis#
+#2026 11 12 07:45:42.944#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#pool-14-thread-6#
+[UploadAppStep] Size of app equipmentmaintenance-db-deployer is 2,538,831 bytes#
+#2026 11 12 07:45:42.944#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#pool-14-thread-6#
+[UploadAppStep] Asynchronously uploading binaries for application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:45:43.103#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#pool-14-thread-2#
+[UploadAppStep] Started async upload of application "equipmentmaintenance-srv"#
+#2026 11 12 07:45:43.106#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29231#
+[UploadAppStep] Time elapsed for upload: 298 in millis#
+#2026 11 12 07:45:43.106#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29231#
+[UploadAppStep] Getting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:43.134#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#App upload monitor: 55fd3622-e689-45f4-9a95-e9b031cd283f#
+[UploadAppStep] Upload status: PROCESSING_UPLOAD#
+#2026 11 12 07:45:43.136#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29231#
+[UploadAppStep] Getting environment of application "9bb0a506-7896-4dfb-8480-169e80a2569a"...#
+#2026 11 12 07:45:43.163#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#pool-14-thread-6#
+[UploadAppStep] Started async upload of application "equipmentmaintenance-db-deployer"#
+#2026 11 12 07:45:43.166#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29227#
+[UploadAppStep] Time elapsed for upload: 301 in millis#
+#2026 11 12 07:45:43.167#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29227#
+[UploadAppStep] Getting application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:45:43.173#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29231#
+[UploadAppStep] Updating environment of application "equipmentmaintenance-srv"#
+#2026 11 12 07:45:43.182#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#App upload monitor: 7c055029-65f7-4763-b8bb-34eb679d266d#
+[UploadAppStep] Upload status: PROCESSING_UPLOAD#
+#2026 11 12 07:45:43.201#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29227#
+[UploadAppStep] Getting environment of application "0ca80ac5-3e7d-4840-958c-8f682432a840"...#
+#2026 11 12 07:45:43.236#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29227#
+[UploadAppStep] Updating environment of application "equipmentmaintenance-db-deployer"#
+#2026 11 12 07:45:43.238#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29231#
+Step "Upload App" finished#
+#2026 11 12 07:45:43.307#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29227#
+Step "Upload App" finished#
+#2026 11 12 07:45:53.320#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[UploadAppStep] Executing task "uploadAppTask" of process "0aa6058e-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:53.321#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[UploadAppStep] Application upload timeout is default one: 3,600 seconds#
+#2026 11 12 07:45:53.321#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[UploadAppStep] Checking upload status of application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:45:53.321#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[UploadAppStep] Getting package "7c055029-65f7-4763-b8bb-34eb679d266d"...#
+#2026 11 12 07:45:53.338#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29241#
+[UploadAppStep] Executing task "uploadAppTask" of process "0af473b9-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:45:53.339#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29241#
+[UploadAppStep] Application upload timeout is default one: 3,600 seconds#
+#2026 11 12 07:45:53.339#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29241#
+[UploadAppStep] Checking upload status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:53.340#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29241#
+[UploadAppStep] Getting package "55fd3622-e689-45f4-9a95-e9b031cd283f"...#
+#2026 11 12 07:45:53.344#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[UploadAppStep] Application "equipmentmaintenance-db-deployer" uploaded#
+#2026 11 12 07:45:53.345#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+Step "Upload App" finished#
+#2026 11 12 07:45:53.370#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29241#
+[UploadAppStep] Application "equipmentmaintenance-srv" uploaded#
+#2026 11 12 07:45:53.370#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29241#
+Step "Upload App" finished#
+#2026 11 12 07:45:53.408#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[ScaleAppStep] Executing task "scaleAppTask" of process "0aa6058e-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:53.410#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[ScaleAppStep] Scaling application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:45:53.410#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[ScaleAppStep] Getting application guid "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:45:53.439#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[ScaleAppStep] Executing task "scaleAppTask" of process "0af473b9-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:45:53.442#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[ScaleAppStep] Scaling application "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:53.442#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[ScaleAppStep] Getting application guid "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:53.442#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[ScaleAppStep] Getting process for application "0ca80ac5-3e7d-4840-958c-8f682432a840"...#
+#2026 11 12 07:45:53.470#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[ScaleAppStep] Getting process for application "9bb0a506-7896-4dfb-8480-169e80a2569a"...#
+#2026 11 12 07:45:53.473#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[ScaleAppStep] Application "equipmentmaintenance-db-deployer" scaled#
+#2026 11 12 07:45:53.473#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+Step "Scale App" finished#
+#2026 11 12 07:45:53.501#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[ScaleAppStep] Application "equipmentmaintenance-srv" scaled#
+#2026 11 12 07:45:53.501#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+Step "Scale App" finished#
+#2026 11 12 07:45:53.490#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[DetermineDesiredStateAchievingActionsStep] Executing task "determineDesiredStateAchievingActionsTask" of process "0aa6058e-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:53.491#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[DetermineDesiredStateAchievingActionsStep] Getting application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:45:53.518#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[DetermineDesiredStateAchievingActionsStep] Executing task "determineDesiredStateAchievingActionsTask" of process "0af473b9-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:45:53.518#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[DetermineDesiredStateAchievingActionsStep] Getting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:53.523#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[DetermineDesiredStateAchievingActionsStep] Getting instances for application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:45:53.523#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[DetermineDesiredStateAchievingActionsStep] Getting environment of application "0ca80ac5-3e7d-4840-958c-8f682432a840"...#
+#2026 11 12 07:45:53.545#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[DetermineDesiredStateAchievingActionsStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:53.548#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[DetermineDesiredStateAchievingActionsStep] Current state of application equipmentmaintenance-db-deployer: STOPPED#
+#2026 11 12 07:45:53.548#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[DetermineDesiredStateAchievingActionsStep] Desired state of application equipmentmaintenance-db-deployer: STOPPED#
+#2026 11 12 07:45:53.548#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[DetermineDesiredStateAchievingActionsStep] Actions that should be executed on application equipmentmaintenance-db-deployer: [STAGE]#
+#2026 11 12 07:45:53.548#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+Step "Determine Desired State Achieving Actions" finished#
+#2026 11 12 07:45:53.584#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[DetermineDesiredStateAchievingActionsStep] Getting environment of application "9bb0a506-7896-4dfb-8480-169e80a2569a"...#
+#2026 11 12 07:45:53.613#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[DetermineDesiredStateAchievingActionsStep] Current state of application equipmentmaintenance-srv: INCONSISTENT#
+#2026 11 12 07:45:53.613#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[DetermineDesiredStateAchievingActionsStep] Desired state of application equipmentmaintenance-srv: STARTED#
+#2026 11 12 07:45:53.613#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[DetermineDesiredStateAchievingActionsStep] Actions that should be executed on application equipmentmaintenance-srv: [STOP, STAGE, START]#
+#2026 11 12 07:45:53.613#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+Step "Determine Desired State Achieving Actions" finished#
+#2026 11 12 07:45:53.633#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[StopAppStep] Executing task "stopAppTask" of process "0af473b9-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:45:53.634#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[StopAppStep] Stopping application "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:53.637#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[StopAppStep] Stopping application "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:53.786#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[StopAppStep] Application "equipmentmaintenance-srv" stopped#
+#2026 11 12 07:45:53.786#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[StopAppStep] Getting environment of application "9bb0a506-7896-4dfb-8480-169e80a2569a"...#
+#2026 11 12 07:45:53.818#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+Step "Stop App" finished#
+#2026 11 12 07:45:53.570#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[StageAppStep] Executing task "stageAppTask" of process "0aa6058e-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:45:53.571#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[StageAppStep] Application stage timeout is default one: 3,600 seconds#
+#2026 11 12 07:45:53.572#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[StageAppStep] Staging application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:45:53.576#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+[StageAppStep] Creating build for package "7c055029-65f7-4763-b8bb-34eb679d266d"...#
+#2026 11 12 07:45:53.843#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[StageAppStep] Executing task "stageAppTask" of process "16a96de0-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:45:53.844#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[StageAppStep] Application stage timeout is default one: 3,600 seconds#
+#2026 11 12 07:45:53.846#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[StageAppStep] Staging application "equipmentmaintenance-srv"...#
+#2026 11 12 07:45:53.849#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+[StageAppStep] Creating build for package "55fd3622-e689-45f4-9a95-e9b031cd283f"...#
+#2026 11 12 07:45:54.009#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29240#
+Step "Stage App" finished#
+#2026 11 12 07:45:54.227#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29239#
+Step "Stage App" finished#
+#2026 11 12 07:46:03.123#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12867#
+[StageAppStep] Executing task "stageAppTask" of process "0aa6058e-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:46:03.123#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12867#
+[StageAppStep] Application stage timeout is default one: 3,600 seconds#
+#2026 11 12 07:46:03.126#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12867#
+[StageAppStep] Checking status of application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:46:03.126#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12867#
+[StageAppStep] Getting build "2eda481d-42a7-43b1-8503-ebc4d8aec250"...#
+#2026 11 12 07:46:03.129#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12868#
+[StageAppStep] Executing task "stageAppTask" of process "16a96de0-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:46:03.130#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12868#
+[StageAppStep] Application stage timeout is default one: 3,600 seconds#
+#2026 11 12 07:46:03.130#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12868#
+[StageAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:03.130#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12868#
+[StageAppStep] Getting build "e2996ad8-38f8-4cc0-998f-c9a47e30d62a"...#
+#2026 11 12 07:46:03.154#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12868#
+[StageAppStep] Staging status of application "equipmentmaintenance-srv": PENDING#
+#2026 11 12 07:46:03.155#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12868#
+[StageAppStep] Getting application guid "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:03.160#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12867#
+[StageAppStep] Staging status of application "equipmentmaintenance-db-deployer": PENDING#
+#2026 11 12 07:46:03.162#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12867#
+[StageAppStep] Getting application guid "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:46:03.264#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12867#
+Step "Stage App" finished#
+#2026 11 12 07:46:03.269#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12868#
+Step "Stage App" finished#
+#2026 11 12 07:46:13.295#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29253#
+Step "Stage App" finished#
+#2026 11 12 07:46:13.164#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29253#
+[StageAppStep] Executing task "stageAppTask" of process "16a96de0-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:46:13.165#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29253#
+[StageAppStep] Application stage timeout is default one: 3,600 seconds#
+#2026 11 12 07:46:13.165#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29253#
+[StageAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:13.165#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29253#
+[StageAppStep] Getting build "e2996ad8-38f8-4cc0-998f-c9a47e30d62a"...#
+#2026 11 12 07:46:13.173#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29260#
+[StageAppStep] Executing task "stageAppTask" of process "0aa6058e-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:46:13.174#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29260#
+[StageAppStep] Application stage timeout is default one: 3,600 seconds#
+#2026 11 12 07:46:13.174#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29260#
+[StageAppStep] Checking status of application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:46:13.174#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29260#
+[StageAppStep] Getting build "2eda481d-42a7-43b1-8503-ebc4d8aec250"...#
+#2026 11 12 07:46:13.198#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29253#
+[StageAppStep] Staging status of application "equipmentmaintenance-srv": PENDING#
+#2026 11 12 07:46:13.199#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29253#
+[StageAppStep] Getting application guid "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:13.204#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29260#
+[StageAppStep] Staging status of application "equipmentmaintenance-db-deployer": PENDING#
+#2026 11 12 07:46:13.205#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29260#
+[StageAppStep] Getting application guid "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:46:13.294#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29260#
+Step "Stage App" finished#
+#2026 11 12 07:46:23.289#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29263#
+[StageAppStep] Executing task "stageAppTask" of process "16a96de0-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:46:23.290#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29263#
+[StageAppStep] Application stage timeout is default one: 3,600 seconds#
+#2026 11 12 07:46:23.290#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29263#
+[StageAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:23.290#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29263#
+[StageAppStep] Getting build "e2996ad8-38f8-4cc0-998f-c9a47e30d62a"...#
+#2026 11 12 07:46:23.321#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29263#
+[StageAppStep] Staging status of application "equipmentmaintenance-srv": PENDING#
+#2026 11 12 07:46:23.322#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29263#
+[StageAppStep] Getting application guid "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:23.324#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29267#
+[StageAppStep] Executing task "stageAppTask" of process "0aa6058e-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:46:23.325#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29267#
+[StageAppStep] Application stage timeout is default one: 3,600 seconds#
+#2026 11 12 07:46:23.325#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29267#
+[StageAppStep] Checking status of application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:46:23.325#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29267#
+[StageAppStep] Getting build "2eda481d-42a7-43b1-8503-ebc4d8aec250"...#
+#2026 11 12 07:46:23.353#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29267#
+[StageAppStep] Staging status of application "equipmentmaintenance-db-deployer": PENDING#
+#2026 11 12 07:46:23.353#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29267#
+[StageAppStep] Getting application guid "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:46:23.394#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29263#
+Step "Stage App" finished#
+#2026 11 12 07:46:23.428#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29267#
+Step "Stage App" finished#
+#2026 11 12 07:46:33.237#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29275#
+[StageAppStep] Executing task "stageAppTask" of process "16a96de0-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:46:33.238#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29275#
+[StageAppStep] Application stage timeout is default one: 3,600 seconds#
+#2026 11 12 07:46:33.238#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29275#
+[StageAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:33.238#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29275#
+[StageAppStep] Getting build "e2996ad8-38f8-4cc0-998f-c9a47e30d62a"...#
+#2026 11 12 07:46:33.254#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29276#
+[StageAppStep] Executing task "stageAppTask" of process "0aa6058e-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:46:33.254#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29276#
+[StageAppStep] Application stage timeout is default one: 3,600 seconds#
+#2026 11 12 07:46:33.255#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29276#
+[StageAppStep] Checking status of application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:46:33.255#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29276#
+[StageAppStep] Getting build "2eda481d-42a7-43b1-8503-ebc4d8aec250"...#
+#2026 11 12 07:46:33.268#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29275#
+[StageAppStep] Staging status of application "equipmentmaintenance-srv": STAGED#
+#2026 11 12 07:46:33.269#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29275#
+[StageAppStep] Getting application guid "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:33.288#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29276#
+[StageAppStep] Staging status of application "equipmentmaintenance-db-deployer": STAGED#
+#2026 11 12 07:46:33.288#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29276#
+[StageAppStep] Getting application guid "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:46:33.341#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29275#
+[StageAppStep] Getting build "e2996ad8-38f8-4cc0-998f-c9a47e30d62a"...#
+#2026 11 12 07:46:33.362#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29276#
+[StageAppStep] Getting build "2eda481d-42a7-43b1-8503-ebc4d8aec250"...#
+#2026 11 12 07:46:33.376#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29275#
+[StageAppStep] Binding droplet "ba5016e1-aad4-47c4-adbe-bcb17af3735a" to application "9bb0a506-7896-4dfb-8480-169e80a2569a"...#
+#2026 11 12 07:46:33.417#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29276#
+[StageAppStep] Binding droplet "5a043de7-b0f2-4c6b-87eb-afa0c69ba7d2" to application "0ca80ac5-3e7d-4840-958c-8f682432a840"...#
+#2026 11 12 07:46:33.423#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29275#
+[StageAppStep] Application "equipmentmaintenance-srv" staged#
+#2026 11 12 07:46:33.427#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29275#
+Step "Stage App" finished#
+#2026 11 12 07:46:33.465#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29276#
+[StageAppStep] Application "equipmentmaintenance-db-deployer" staged#
+#2026 11 12 07:46:33.470#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29276#
+Step "Stage App" finished#
+#2026 11 12 07:46:33.528#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29271#
+[PrepareToExecuteTasksStep] Executing task "prepareToExecuteTasksTask" of process "2e4f8204-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:46:33.529#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29271#
+Step "Prepare To Execute Tasks" finished#
+#2026 11 12 07:46:33.462#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29269#
+[RestartAppStep] Executing task "startAppTask" of process "16a96de0-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:46:33.464#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29269#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:46:33.468#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29269#
+[RestartAppStep] Getting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:33.492#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29269#
+[RestartAppStep] Starting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:33.495#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29269#
+[RestartAppStep] Starting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:33.719#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29269#
+Step "Start App" finished#
+#2026 11 12 07:46:33.568#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29270#
+[ExecuteTaskStep] Executing task "executeTaskTask" of process "2e4f8204-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:46:33.568#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29270#
+[ExecuteTaskStep] Application task execution timeout is default one: 43,200 seconds#
+#2026 11 12 07:46:33.569#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29270#
+[ExecuteTaskStep] Executing task "deploy" on application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:46:33.573#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29270#
+[ExecuteTaskStep] Running task on application "equipmentmaintenance-db-deployer": {
+  "name" : "deploy",
+  "command" : "npm start",
+  "limits" : {
+    "memory" : 256
+  }
+}#
+#2026 11 12 07:46:33.899#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29270#
+Step "Execute Task" finished#
+#2026 11 12 07:46:43.318#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29284#
+[RestartAppStep] Executing task "startAppTask" of process "2e71d6dd-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:46:43.320#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29284#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:46:43.320#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29284#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:43.320#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29284#
+[RestartAppStep] Getting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:43.360#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29284#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:43.388#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29284#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:46:43.416#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29284#
+Step "Start App" finished#
+#2026 11 12 07:46:43.497#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29278#
+[ExecuteTaskStep] Executing task "executeTaskTask" of process "2e4f8204-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:46:43.498#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29278#
+[ExecuteTaskStep] Application task execution timeout is default one: 43,200 seconds#
+#2026 11 12 07:46:43.499#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29278#
+[ExecuteTaskStep] Getting task "d41a4c10-e0f3-40af-87e9-cb4d96aa62e2"...#
+#2026 11 12 07:46:44.473#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29278#
+[ExecuteTaskStep] Task execution status: succeeded#
+#2026 11 12 07:46:44.475#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29278#
+[ExecuteTaskStep] Getting application guid "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:46:44.572#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29278#
+Step "Execute Task" finished#
+#2026 11 12 07:46:44.591#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29278#
+[IncrementIndexStep] Executing task "incrementTaskIndexTask" of process "2e4f8204-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:46:44.592#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29278#
+Step "Increment Task Index" finished#
+#2026 11 12 07:46:44.631#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29278#
+[PublishConfigurationEntriesStep] Executing task "publishProvidedDependenciesTask" of process "0aa6058e-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:46:44.632#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29278#
+[PublishConfigurationEntriesStep] Publishing public provided dependencies for application "equipmentmaintenance-db-deployer"...#
+#2026 11 12 07:46:44.632#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29278#
+[PublishConfigurationEntriesStep] No public provided dependencies for publishing#
+#2026 11 12 07:46:44.632#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29278#
+Step "Publish Provided Dependencies" finished#
+#2026 11 12 07:46:44.652#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29278#
+[CreateOrUpdateServiceBrokerStep] Executing task "createOrUpdateServiceBrokerTask" of process "0aa6058e-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:46:44.653#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29278#
+[CreateOrUpdateServiceBrokerStep] Creating service brokers...#
+#2026 11 12 07:46:44.654#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29278#
+Step "Create Or Update Service Broker " finished#
+#2026 11 12 07:46:53.395#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29289#
+[RestartAppStep] Executing task "startAppTask" of process "34397c00-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:46:53.396#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29289#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:46:53.397#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29289#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:53.397#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29289#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:46:53.467#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29289#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:46:53.501#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29289#
+Step "Start App" finished#
+#2026 11 12 07:47:03.456#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29288#
+[RestartAppStep] Executing task "startAppTask" of process "3a3c5573-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:47:03.457#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29288#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:47:03.458#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29288#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:03.458#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29288#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:03.591#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29288#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:47:03.674#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29288#
+Step "Start App" finished#
+#2026 11 12 07:47:13.510#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11608#
+[RestartAppStep] Executing task "startAppTask" of process "404cc2d6-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:47:13.512#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11608#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:47:13.514#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11608#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:13.517#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11608#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:13.560#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11608#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:47:13.633#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11608#
+Step "Start App" finished#
+#2026 11 12 07:47:23.507#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29307#
+[RestartAppStep] Executing task "startAppTask" of process "463cb094-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:47:23.508#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29307#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:47:23.509#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29307#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:23.509#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29307#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:23.564#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29307#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:47:23.594#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29307#
+Step "Start App" finished#
+#2026 11 12 07:47:33.546#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29319#
+[RestartAppStep] Executing task "startAppTask" of process "4c2c5038-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:47:33.547#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29319#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:47:33.548#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29319#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:33.549#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29319#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:33.587#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29319#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 crashed)#
+#2026 11 12 07:47:33.613#Z#ERROR#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29319#
+[RestartAppStep] Error starting application "equipmentmaintenance-srv": Some instances have crashed. Check the application logs of your application for details.#
+#2026 11 12 07:47:33.617#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29319#
+[RestartAppStep] Download the MTA operation logs for more details.#
+#2026 11 12 07:47:33.620#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29319#
+Step "Start App" finished#
+#2026 11 12 07:47:34.785#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29312#
+[RestartAppStep] Executing task "startAppTask" of process "4c2c5038-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:47:34.788#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29312#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:47:34.849#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29312#
+[RestartAppStep] Getting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:34.883#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29312#
+[RestartAppStep] Stopping application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:34.887#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29312#
+[RestartAppStep] Stopping application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:35.012#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29312#
+[RestartAppStep] Starting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:35.015#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29312#
+[RestartAppStep] Starting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:35.312#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29312#
+Step "Start App" finished#
+#2026 11 12 07:47:43.569#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29325#
+[RestartAppStep] Executing task "startAppTask" of process "532856dd-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:47:43.571#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29325#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:47:43.571#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29325#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:43.572#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29325#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:43.631#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29325#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:47:43.688#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29325#
+Step "Start App" finished#
+#2026 11 12 07:47:54.034#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29332#
+[RestartAppStep] Executing task "startAppTask" of process "58269103-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:47:54.035#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29332#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:47:54.035#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29332#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:54.036#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29332#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:47:54.093#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29332#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:47:54.146#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29332#
+Step "Start App" finished#
+#2026 11 12 07:48:03.950#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29338#
+[RestartAppStep] Executing task "startAppTask" of process "5e620641-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:48:03.951#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29338#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:48:03.952#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29338#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:03.952#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29338#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:04.003#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29338#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:48:04.042#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29338#
+Step "Start App" finished#
+#2026 11 12 07:48:14.071#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29351#
+[RestartAppStep] Executing task "startAppTask" of process "64483078-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:48:14.072#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29351#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:48:14.073#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29351#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:14.073#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29351#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:14.139#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29351#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:48:14.218#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29351#
+Step "Start App" finished#
+#2026 11 12 07:48:23.922#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29355#
+[RestartAppStep] Executing task "startAppTask" of process "6a58ec39-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:48:23.925#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29355#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:48:23.926#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29355#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:23.927#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29355#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:23.986#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29355#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:48:24.017#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29355#
+Step "Start App" finished#
+#2026 11 12 07:48:33.982#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+[RestartAppStep] Executing task "startAppTask" of process "70306ffb-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:48:33.985#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:48:33.985#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:33.986#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:34.039#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 crashed)#
+#2026 11 12 07:48:34.088#Z#ERROR#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+[RestartAppStep] Error starting application "equipmentmaintenance-srv": Some instances have crashed. Check the application logs of your application for details.#
+#2026 11 12 07:48:34.094#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+[RestartAppStep] Download the MTA operation logs for more details.#
+#2026 11 12 07:48:34.096#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+Step "Start App" finished#
+#2026 11 12 07:48:35.547#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+[RestartAppStep] Executing task "startAppTask" of process "70306ffb-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:48:35.550#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:48:35.611#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+[RestartAppStep] Getting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:35.650#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+[RestartAppStep] Stopping application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:35.653#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+[RestartAppStep] Stopping application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:35.794#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+[RestartAppStep] Starting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:35.797#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+[RestartAppStep] Starting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:36.000#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29365#
+Step "Start App" finished#
+#2026 11 12 07:48:44.063#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29373#
+[RestartAppStep] Executing task "startAppTask" of process "775497ca-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:48:44.065#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29373#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:48:44.066#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29373#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:44.067#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29373#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:44.112#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29373#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:48:44.150#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29373#
+Step "Start App" finished#
+#2026 11 12 07:48:54.133#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29379#
+[RestartAppStep] Executing task "startAppTask" of process "7c30084d-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:48:54.134#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29379#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:48:54.135#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29379#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:54.135#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29379#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:48:54.195#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29379#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:48:54.225#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29379#
+Step "Start App" finished#
+#2026 11 12 07:49:04.161#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29388#
+[RestartAppStep] Executing task "startAppTask" of process "8231815d-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:49:04.162#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29388#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:49:04.163#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29388#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:04.163#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29388#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:04.218#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29388#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:49:04.279#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29388#
+Step "Start App" finished#
+#2026 11 12 07:49:14.236#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12976#
+[RestartAppStep] Executing task "startAppTask" of process "882f794b-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:49:14.239#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12976#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:49:14.239#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12976#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:14.242#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12976#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:14.316#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12976#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:49:14.341#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12976#
+Step "Start App" finished#
+#2026 11 12 07:49:24.268#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29394#
+[RestartAppStep] Executing task "startAppTask" of process "8e2f6c12-de6d-11f1-add6-eeee0a9e510d"...#
+#2026 11 12 07:49:24.269#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29394#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:49:24.270#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29394#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:24.270#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29394#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:24.304#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29394#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:49:24.340#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29394#
+Step "Start App" finished#
+#2026 11 12 07:49:34.319#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12984#
+[RestartAppStep] Executing task "startAppTask" of process "94248a0e-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:49:34.320#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12984#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:49:34.321#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12984#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:34.322#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12984#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:34.354#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12984#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 crashed)#
+#2026 11 12 07:49:34.379#Z#ERROR#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12984#
+[RestartAppStep] Error starting application "equipmentmaintenance-srv": Some instances have crashed. Check the application logs of your application for details.#
+#2026 11 12 07:49:34.382#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12984#
+[RestartAppStep] Download the MTA operation logs for more details.#
+#2026 11 12 07:49:34.386#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-12984#
+Step "Start App" finished#
+#2026 11 12 07:49:36.382#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11674#
+[RestartAppStep] Executing task "startAppTask" of process "94248a0e-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:49:36.385#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11674#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:49:36.393#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11674#
+[RestartAppStep] Getting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:36.422#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11674#
+[RestartAppStep] Stopping application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:36.427#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11674#
+[RestartAppStep] Stopping application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:36.587#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11674#
+[RestartAppStep] Starting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:36.593#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11674#
+[RestartAppStep] Starting application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:36.809#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11674#
+Step "Start App" finished#
+#2026 11 12 07:49:44.315#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29413#
+[RestartAppStep] Executing task "startAppTask" of process "9b934ec8-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:49:44.316#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29413#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:49:44.316#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29413#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:44.317#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29413#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:44.353#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29413#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:49:44.378#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29413#
+Step "Start App" finished#
+#2026 11 12 07:49:54.346#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29419#
+[RestartAppStep] Executing task "startAppTask" of process "a016665e-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:49:54.347#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29419#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:49:54.347#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29419#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:54.348#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29419#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:49:54.392#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29419#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:49:54.424#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29419#
+Step "Start App" finished#
+#2026 11 12 07:50:04.348#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29425#
+[RestartAppStep] Executing task "startAppTask" of process "a6134cb1-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:50:04.349#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29425#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:50:04.350#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29425#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:50:04.350#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29425#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:50:04.414#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29425#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:50:04.470#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29425#
+Step "Start App" finished#
+#2026 11 12 07:50:14.374#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11678#
+[RestartAppStep] Executing task "startAppTask" of process "ac100ae0-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:50:14.376#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11678#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:50:14.377#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11678#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:50:14.378#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11678#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:50:14.417#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11678#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:50:14.473#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-11678#
+Step "Start App" finished#
+#2026 11 12 07:50:24.359#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29432#
+[RestartAppStep] Executing task "startAppTask" of process "b20687f2-de6d-11f1-81e1-eeee0a95bb81"...#
+#2026 11 12 07:50:24.361#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29432#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:50:24.361#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29432#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:50:24.361#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29432#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:50:24.394#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29432#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 starting)#
+#2026 11 12 07:50:24.457#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29432#
+Step "Start App" finished#
+#2026 11 12 07:50:34.373#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29438#
+[RestartAppStep] Executing task "startAppTask" of process "b7f98321-de6d-11f1-bdce-eeee0a80fcd6"...#
+#2026 11 12 07:50:34.375#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29438#
+[RestartAppStep] Application start timeout is default one: 3,600 seconds#
+#2026 11 12 07:50:34.375#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29438#
+[RestartAppStep] Checking status of application "equipmentmaintenance-srv"...#
+#2026 11 12 07:50:34.376#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29438#
+[RestartAppStep] Getting instances for application "equipmentmaintenance-srv"...#
+#2026 11 12 07:50:34.415#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29438#
+[RestartAppStep] Application "equipmentmaintenance-srv": 0 of 1 instances running (1 crashed)#
+#2026 11 12 07:50:34.476#Z#ERROR#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29438#
+[RestartAppStep] Error starting application "equipmentmaintenance-srv": Some instances have crashed. Check the application logs of your application for details.#
+#2026 11 12 07:50:34.479#Z#INFO#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29438#
+[RestartAppStep] Download the MTA operation logs for more details.#
+#2026 11 12 07:50:34.482#Z#DEBUG#08756a50-de6d-11f1-81e1-eeee0a95bb81.OPERATION#flowable-async-job-executor-thread-29438#
+Step "Start App" finished#

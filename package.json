@@ -1,9 +1,10 @@
 {
   "name": "equipmentmaintenance",
   "version": "1.0.0",
-  "description": "Welcome to your new CAP project.",
+  "description": "Equipment Maintenance CAP project",
   "main": "index.js",
   "scripts": {
+    "start": "cds-serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,17 +13,24 @@
   "type": "commonjs",
   "dependencies": {
     "@cap-js/hana": "^3",
-    "@sap/cds": "^10.2.2"
+    "@sap/cds": "^10.2.2",
+    "@sap/xssec": "^4.16.0"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^3",
     "@sap/cds-dk": "^9.9.7"
   },
   "cds": {
+    "requires": {
+      "[production]": {
+        "auth": "dummy"
+      }
+    },
     "server": {
       "body_parser": {
         "limit": "10mb"
-      }
+      },
+      "index": true
     }
   }
 }

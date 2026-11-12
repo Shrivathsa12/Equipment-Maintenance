@@ -1,5 +1,4 @@
 const cds = require('@sap/cds');
-const { SELECT, orders } = require('@sap/cds/lib/ql/cds-ql');
 
 module.exports = cds.service.impl(async function () {
 
@@ -658,8 +657,6 @@ module.exports = cds.service.impl(async function () {
             actualCost += cost;
         }
         actualCost = Number(actualCost.toFixed(2));
-
-        nt
         const estimatedCost = Number(workOrder.estimatedCost || 0);
         if (!Number.isFinite(estimatedCost) || estimatedCost < 0)
             return req.reject("Invalid estimated work order cost.");
