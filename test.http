@@ -156,5 +156,115 @@ Content-Type: application/json
 ###
 GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrderOperations?$filter=workOrder_ID eq 33287328-d54c-44a9-a5f1-c873d11535c1
 
+### creating equipment
+POST http://localhost:4004/odata/v4/equipment-maintenance/Equipment
+Content-Type: application/json
 
-###
+{
+  "equipmentCode": "EQ-08",
+  "equipmentName": "Test Hydraulic Unit",
+  "description": "Hydraulic unit created to test entity validations",
+  "manufacturer": "Bosch Rexroth",
+  "serialNumber": "TEST-HYD-001",
+  "criticality": "High",
+  "warrantyEndDate": "2027-12-31",
+  "meterUnit": "Hours",
+  "currentReading": 1200,
+  "location_ID": "d9388f43-1c13-415c-9d2a-fad20f6fbe9a"
+}
+
+
+### creating maintance plan
+POST http://localhost:4004/odata/v4/equipment-maintenance/MaintenancePlans
+Content-Type: application/json
+
+{
+  "planCode": "MP-TEST-01",
+  "planName": "Test Hydraulic Unit Monthly Service",
+  "triggerType": "Calendar",
+  "intervalValue": 30,
+  "leadDays": 5,
+  "lastMaintenanceDate": "2026-10-15",
+  "nextDueDate": "2026-11-14",
+  "isActive": true,
+  "equipment_ID": "78693ca5-58c6-4493-9648-1f7cd4f900a8"
+}
+
+### creating maintance request
+POST http://localhost:4004/odata/v4/equipment-maintenance/MaintenanceRequests
+Content-Type: application/json
+
+{
+  "requestNumber": "MR-TEST-01",
+  "reportedBy": "test.operator@example.com",
+  "reportedAt": "2026-11-13T04:00:00Z",
+  "symptom": "Unusual hydraulic pressure fluctuation",
+  "description": "Pressure fluctuates during normal production operation",
+  "requestedPriority": "High",
+  "priority": "High",
+  "priorityScore": 75,
+  "safetyImpact": "Medium",
+  "productionImpact": "High",
+  "category": "Mechanical",
+  "status": "Submitted",
+  "equipment_ID": "78693ca5-58c6-4493-9648-1f7cd4f900a8",
+  "location_ID": "d9388f43-1c13-415c-9d2a-fad20f6fbe9a"
+}
+
+### creating work order
+POST http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders
+Content-Type: application/json
+
+{
+  "orderNumber": "WO-09",
+  "orderType": "Corrective",
+  "title": "Inspect test hydraulic unit",
+  "description": "Test work order for validating generic entity CREATE",
+  "priority": "High",
+  "priorityScore": 75,
+  "status": "Created",
+  "plannedStartDate": "2026-11-15T08:00:00Z",
+  "plannedEndDate": "2026-11-15T12:00:00Z",
+  "plannedHours": 4,
+  "estimatedCost": 5000,
+  "approvalStatus": "NotRequired",
+  "equipment_ID": "78693ca5-58c6-4493-9648-1f7cd4f900a8"
+}
+
+
+### creating a work order operation
+POST http://localhost:4004/odata/v4/equipment-maintenance/WorkOrderOperations
+Content-Type: application/json
+
+{
+  "sequenceNumber": 10,
+  "operationName": "Inspect hydraulic pressure",
+  "plannedHours": 2,
+  "isMandatory": true,
+  "status": "Pending",
+  "workOrder_ID": "6440526e-d6ac-4362-a1d9-584cc69f968a"
+}
+
+### creating technician
+POST http://localhost:4004/odata/v4/equipment-maintenance/Technicians
+Content-Type: application/json
+
+{
+  "userId": "TECH-08",
+  "name": "Test Technician",
+  "email": "test.technician@example.com",
+  "skill": "Mechanical",
+  "isActive": true
+}
+
+### assign technician
+POST http://localhost:4004/odata/v4/equipment-maintenance/TechnicianAssignments
+Content-Type: application/json
+
+{
+  "technicianUserId": "TECH001",
+  "isLead": true,
+  "assignedAt": "2026-11-13T04:30:00Z",
+  "workOrder_ID": "b0c564ae-4b39-448b-a19a-990ae2ade50c",
+  "technician_ID": "90a67ae7-a099-4e36-a7a6-1b48ff44c56d"
+}
