@@ -1,0 +1,2016 @@
+# =====================================================================
+# Equipment Maintenance and Work Order Management - business flow tests
+#
+# HOW TO RUN
+# 1. Start the server with an empty database (restart cds watch).
+# 2. Click "Send Request" on every request from top to bottom, in order.
+#    Records created by one request are used by the next one automatically.
+# 3. "Expected" is the correct result:
+#      200 / 201  success
+#      401        not logged in
+#      403        role not allowed
+#      reject     a business rule rejects it (HTTP 400, 404, 409 or 500, with a message)
+#
+# AUTHENTICATION (mocked users from package.json)
+#   Production User        productionUser@company.com   abc
+#   Maintenance Planner    planner@company.com          lmn
+#   Technician             technician@company.com       pqr
+#   Maintenance Manager    manager@company.com          xyz
+# Each request sends:  Authorization: Basic <email>:<password>
+# =====================================================================
+
+
+
+###
+# =====================================================================
+# 0. AUTHENTICATION
+# Every request sends HTTP Basic authentication. No login = 401, wrong password = 401, wrong role = 403.
+# =====================================================================
+
+
+### 0.1 No login
+# Expected: 401
+# Check: With the dev user switcher (server.js) loaded this returns 200 because the request runs as the production user.
+GET http://localhost:4004/odata/v4/equipment-maintenance/Equipment
+
+
+### 0.2 Wrong password
+# Expected: 401
+# Role: Wrong password
+# Login: planner@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/Equipment
+Authorization: Basic planner@company.com:wrong
+
+
+### 0.3 Logged-in users can read equipment
+# Expected: 200
+# Role: Production User (ProductionUser)
+# Login: productionUser@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/Equipment
+Authorization: Basic productionUser@company.com:abc
+
+
+
+###
+# =====================================================================
+# 1. MASTER DATA (planner)
+# Step 1 of the business process: register equipment with location, hierarchy and criticality; set up technicians, spare parts and maintenance plans.
+# =====================================================================
+
+
+### 1.1 Production user cannot create master data
+# Expected: 403
+# Role: Production User (ProductionUser)
+# Login: productionUser@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/EquipmentLocations
+Authorization: Basic productionUser@company.com:abc
+Content-Type: application/json
+
+{
+  "locationCode": "LOC-01",
+  "locationName": "Main Plant"
+}
+
+
+### 1.2 Create location
+# @name loc
+# Expected: 201
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/EquipmentLocations
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "locationCode": "LOC-01",
+  "locationName": "Main Plant"
+}
+
+
+### 1.3 Create sub-location (location hierarchy)
+# @name loc2
+# Expected: 201
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/EquipmentLocations
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "locationCode": "LOC-01-A",
+  "locationName": "Press Hall",
+  "parentLocation_ID": "{{loc.response.body.$.ID}}"
+}
+
+
+### 1.4 Create parent equipment (production line)
+# @name line
+# Expected: 201
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/Equipment
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "equipmentCode": "LINE-01",
+  "equipmentName": "Production Line 1",
+  "criticality": "Medium",
+  "meterUnit": "Hours",
+  "currentReading": 500,
+  "location_ID": "{{loc.response.body.$.ID}}"
+}
+
+
+### 1.5 Create critical equipment under the line (equipment hierarchy, warranty)
+# @name press
+# Expected: 201
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/Equipment
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "equipmentCode": "EQ-PRESS",
+  "equipmentName": "Hydraulic Press",
+  "description": "Main hydraulic press",
+  "manufacturer": "Bosch Rexroth",
+  "serialNumber": "HYD-001",
+  "criticality": "Critical",
+  "warrantyEndDate": "2027-12-31",
+  "meterUnit": "Hours",
+  "currentReading": 1600,
+  "location_ID": "{{loc2.response.body.$.ID}}",
+  "parentEquipment_ID": "{{line.response.body.$.ID}}"
+}
+
+
+### 1.6 Create low-criticality equipment
+# @name conv
+# Expected: 201
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/Equipment
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "equipmentCode": "EQ-CONV",
+  "equipmentName": "Conveyor Belt",
+  "criticality": "Low",
+  "meterUnit": "Hours",
+  "currentReading": 900,
+  "location_ID": "{{loc.response.body.$.ID}}"
+}
+
+
+### 1.7 Invalid criticality is rejected
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/Equipment
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "equipmentCode": "EQ-BAD",
+  "equipmentName": "Bad",
+  "criticality": "Extreme",
+  "location_ID": "{{loc.response.body.$.ID}}"
+}
+
+
+### 1.8 Duplicate equipment code is rejected
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/Equipment
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "equipmentCode": "EQ-PRESS",
+  "equipmentName": "Duplicate",
+  "criticality": "Low",
+  "location_ID": "{{loc.response.body.$.ID}}"
+}
+
+
+### 1.9 Create technician (userId must be the login name)
+# @name tech
+# Expected: 201
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/Technicians
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "userId": "technician@company.com",
+  "name": "Test Technician",
+  "email": "technician@company.com",
+  "skill": "Mechanical",
+  "isActive": true
+}
+
+
+### 1.10 Create inactive technician
+# @name techOff
+# Expected: 201
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/Technicians
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "userId": "inactive.tech@company.com",
+  "name": "Inactive Technician",
+  "skill": "Electrical",
+  "isActive": false
+}
+
+
+### 1.11 Create cheap spare part
+# @name seal
+# Expected: 201
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/SpareParts
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "partNumber": "SP-SEAL",
+  "partName": "Hydraulic Seal",
+  "unitOfMeasure": "PC",
+  "standardCost": 500,
+  "stockQuantity": 10
+}
+
+
+### 1.12 Create expensive spare part (for the approval flow)
+# @name pump
+# Expected: 201
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/SpareParts
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "partNumber": "SP-PUMP",
+  "partName": "Hydraulic Pump",
+  "unitOfMeasure": "PC",
+  "standardCost": 60000,
+  "stockQuantity": 5
+}
+
+
+### 1.13 Negative stock is rejected
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/SpareParts
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "partNumber": "SP-BAD",
+  "partName": "Bad",
+  "standardCost": 10,
+  "stockQuantity": -1
+}
+
+
+### 1.14 Calendar plan that is already due
+# @name planCal
+# Expected: 201
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/MaintenancePlans
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "planCode": "MP-CAL-DUE",
+  "planName": "Press Monthly Service",
+  "triggerType": "Calendar",
+  "intervalValue": 30,
+  "leadDays": 5,
+  "lastMaintenanceDate": "2026-10-01",
+  "isActive": true,
+  "equipment_ID": "{{press.response.body.$.ID}}"
+}
+
+
+### 1.15 Meter plan that is already due (reading 1600, due at 1500)
+# @name planMet
+# Expected: 201
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/MaintenancePlans
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "planCode": "MP-MET-DUE",
+  "planName": "Press 500-hour Service",
+  "triggerType": "Meter",
+  "intervalValue": 500,
+  "lastMaintenanceReading": 1000,
+  "isActive": true,
+  "equipment_ID": "{{press.response.body.$.ID}}"
+}
+
+
+### 1.16 Calendar plan that is not due yet
+# @name planLater
+# Expected: 201
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/MaintenancePlans
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "planCode": "MP-CAL-LATER",
+  "planName": "Conveyor Yearly Service",
+  "triggerType": "Calendar",
+  "intervalValue": 365,
+  "leadDays": 7,
+  "lastMaintenanceDate": "2026-11-10",
+  "isActive": true,
+  "equipment_ID": "{{conv.response.body.$.ID}}"
+}
+
+
+### 1.17 Inactive plan
+# @name planOff
+# Expected: 201
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/MaintenancePlans
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "planCode": "MP-OFF",
+  "planName": "Inactive Plan",
+  "triggerType": "Calendar",
+  "intervalValue": 30,
+  "lastMaintenanceDate": "2026-09-01",
+  "isActive": false,
+  "equipment_ID": "{{conv.response.body.$.ID}}"
+}
+
+
+### 1.18 Interval of zero is rejected
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/MaintenancePlans
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "planCode": "MP-BAD1",
+  "planName": "Bad",
+  "triggerType": "Calendar",
+  "intervalValue": 0,
+  "equipment_ID": "{{conv.response.body.$.ID}}"
+}
+
+
+### 1.19 Calendar interval must be whole days
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/MaintenancePlans
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "planCode": "MP-BAD2",
+  "planName": "Bad",
+  "triggerType": "Calendar",
+  "intervalValue": 2.5,
+  "equipment_ID": "{{conv.response.body.$.ID}}"
+}
+
+
+
+###
+# =====================================================================
+# 2. BREAKDOWN REQUESTS (production user)
+# Step 2 of the process: a production user reports a breakdown with symptom, impact and photos. Priority is calculated automatically.
+# =====================================================================
+
+
+### 2.1 Photo is mandatory
+# Expected: reject
+# Role: Production User (ProductionUser)
+# Login: productionUser@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/reportBreakdown
+Authorization: Basic productionUser@company.com:abc
+Content-Type: application/json
+
+{
+  "equipment": "{{press.response.body.$.ID}}",
+  "symptom": "No photo",
+  "description": "Problem seen during production.",
+  "requestedPriority": "High",
+  "safetyImpact": "High",
+  "productionImpact": "High",
+  "category": "Mechanical",
+  "reportedBy": "anyone",
+  "photos": []
+}
+
+
+### 2.2 Unsupported photo format is rejected
+# Expected: reject
+# Role: Production User (ProductionUser)
+# Login: productionUser@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/reportBreakdown
+Authorization: Basic productionUser@company.com:abc
+Content-Type: application/json
+
+{
+  "equipment": "{{press.response.body.$.ID}}",
+  "symptom": "Bad photo",
+  "description": "Problem seen during production.",
+  "requestedPriority": "High",
+  "safetyImpact": "High",
+  "productionImpact": "High",
+  "category": "Mechanical",
+  "reportedBy": "anyone",
+  "photos": [
+    {
+      "fileName": "a.pdf",
+      "mimeType": "application/pdf",
+      "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+    }
+  ]
+}
+
+
+### 2.3 Unknown equipment is rejected
+# Expected: reject
+# Role: Production User (ProductionUser)
+# Login: productionUser@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/reportBreakdown
+Authorization: Basic productionUser@company.com:abc
+Content-Type: application/json
+
+{
+  "equipment": "00000000-0000-0000-0000-000000000000",
+  "symptom": "Unknown equipment",
+  "description": "Problem seen during production.",
+  "requestedPriority": "High",
+  "safetyImpact": "High",
+  "productionImpact": "High",
+  "category": "Mechanical",
+  "reportedBy": "anyone",
+  "photos": [
+    {
+      "fileName": "problem.png",
+      "mimeType": "image/png",
+      "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+    }
+  ]
+}
+
+
+### 2.4 Technician cannot report a breakdown
+# Expected: 403
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/reportBreakdown
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "equipment": "{{press.response.body.$.ID}}",
+  "symptom": "Wrong role",
+  "description": "Problem seen during production.",
+  "requestedPriority": "High",
+  "safetyImpact": "High",
+  "productionImpact": "High",
+  "category": "Mechanical",
+  "reportedBy": "anyone",
+  "photos": [
+    {
+      "fileName": "problem.png",
+      "mimeType": "image/png",
+      "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+    }
+  ]
+}
+
+
+### 2.5 Report breakdown on CRITICAL equipment (priority should be Critical)
+# @name req1
+# Expected: 200
+# Check: priority = Critical, status = Submitted, reportedBy = productionUser@company.com (not the name you send).
+# Role: Production User (ProductionUser)
+# Login: productionUser@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/reportBreakdown
+Authorization: Basic productionUser@company.com:abc
+Content-Type: application/json
+
+{
+  "equipment": "{{press.response.body.$.ID}}",
+  "symptom": "Hydraulic pressure dropping",
+  "description": "Problem seen during production.",
+  "requestedPriority": "High",
+  "safetyImpact": "High",
+  "productionImpact": "High",
+  "category": "Mechanical",
+  "reportedBy": "anyone",
+  "photos": [
+    {
+      "fileName": "problem.png",
+      "mimeType": "image/png",
+      "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+    }
+  ]
+}
+
+
+### 2.6 Report breakdown on LOW equipment, small impact
+# @name req2
+# Expected: 200
+# Check: a lower priority than request 1.
+# Role: Production User (ProductionUser)
+# Login: productionUser@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/reportBreakdown
+Authorization: Basic productionUser@company.com:abc
+Content-Type: application/json
+
+{
+  "equipment": "{{conv.response.body.$.ID}}",
+  "symptom": "Belt slipping",
+  "description": "Problem seen during production.",
+  "requestedPriority": "Low",
+  "safetyImpact": "None",
+  "productionImpact": "Low",
+  "category": "Mechanical",
+  "reportedBy": "anyone",
+  "photos": [
+    {
+      "fileName": "problem.png",
+      "mimeType": "image/png",
+      "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+    }
+  ]
+}
+
+
+### 2.7 Production user sees only their own requests
+# Expected: 200
+# Role: Production User (ProductionUser)
+# Login: productionUser@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/MaintenanceRequests
+Authorization: Basic productionUser@company.com:abc
+
+
+### 2.8 Photo is stored as a document linked to the request
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/MaintenanceDocuments?$select=ID,fileName,mimeType,fileSize,documentType,maintenanceRequest_ID
+Authorization: Basic planner@company.com:lmn
+
+
+
+###
+# =====================================================================
+# 3. PLANNER REVIEWS AND CONVERTS (planner)
+# Steps 3 to 5: the planner reviews the request, converts it to a work order with operations and planned dates.
+# =====================================================================
+
+
+### 3.1 Planner marks the request under review
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+PATCH http://localhost:4004/odata/v4/equipment-maintenance/MaintenanceRequests({{req1.response.body.$.ID}})
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "status": "UnderReview"
+}
+
+
+### 3.2 Production user cannot convert
+# Expected: 403
+# Role: Production User (ProductionUser)
+# Login: productionUser@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/convertToWorkOrder
+Authorization: Basic productionUser@company.com:abc
+Content-Type: application/json
+
+{
+  "RequestID": "{{req1.response.body.$.ID}}",
+  "orderType": "Breakdown",
+  "category": "Mechanical",
+  "plannedStartDate": "2026-12-01T08:00:00Z",
+  "plannedEndDate": "2026-12-01T17:00:00Z",
+  "operations": [
+    {
+      "operationName": "Inspect pump",
+      "plannedHours": 2,
+      "isMandatory": true
+    }
+  ]
+}
+
+
+### 3.3 At least one operation is required
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/convertToWorkOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "RequestID": "{{req1.response.body.$.ID}}",
+  "orderType": "Breakdown",
+  "category": "Mechanical",
+  "plannedStartDate": "2026-12-01T08:00:00Z",
+  "plannedEndDate": "2026-12-01T17:00:00Z",
+  "operations": []
+}
+
+
+### 3.4 End date must be after start date
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/convertToWorkOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "RequestID": "{{req1.response.body.$.ID}}",
+  "orderType": "Breakdown",
+  "category": "Mechanical",
+  "plannedStartDate": "2026-12-01T08:00:00Z",
+  "plannedEndDate": "2026-11-30T08:00:00Z",
+  "operations": [
+    {
+      "operationName": "Inspect pump",
+      "plannedHours": 2,
+      "isMandatory": true
+    }
+  ]
+}
+
+
+### 3.5 Planned hours must be greater than zero
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/convertToWorkOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "RequestID": "{{req1.response.body.$.ID}}",
+  "orderType": "Breakdown",
+  "category": "Mechanical",
+  "plannedStartDate": "2026-12-01T08:00:00Z",
+  "plannedEndDate": "2026-12-01T17:00:00Z",
+  "operations": [
+    {
+      "operationName": "Inspect pump",
+      "plannedHours": 0,
+      "isMandatory": true
+    }
+  ]
+}
+
+
+### 3.6 Convert request 1 into a BREAKDOWN work order (two mandatory operations)
+# @name wo1
+# Expected: 200
+# Check: status = Planned, priority = Critical (copied from the request). A downtime event is also opened for a breakdown order.
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/convertToWorkOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "RequestID": "{{req1.response.body.$.ID}}",
+  "orderType": "Breakdown",
+  "category": "Mechanical",
+  "plannedStartDate": "2026-12-01T08:00:00Z",
+  "plannedEndDate": "2026-12-01T17:00:00Z",
+  "operations": [
+    {
+      "operationName": "Inspect hydraulic pump",
+      "plannedHours": 2,
+      "isMandatory": true
+    },
+    {
+      "operationName": "Replace seal and test pressure",
+      "plannedHours": 3,
+      "isMandatory": true
+    }
+  ]
+}
+
+
+### 3.7 The same request cannot be converted twice
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/convertToWorkOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "RequestID": "{{req1.response.body.$.ID}}",
+  "orderType": "Breakdown",
+  "category": "Mechanical",
+  "plannedStartDate": "2026-12-01T08:00:00Z",
+  "plannedEndDate": "2026-12-01T17:00:00Z",
+  "operations": [
+    {
+      "operationName": "Again",
+      "plannedHours": 1,
+      "isMandatory": true
+    }
+  ]
+}
+
+
+### 3.8 Operations of work order 1 (in sequence)
+# @name ops1
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders({{wo1.response.body.$.ID}})/operations?$orderby=sequenceNumber
+Authorization: Basic planner@company.com:lmn
+
+
+### 3.9 Downtime event opened by the breakdown order
+# Expected: 200
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/DowntimeEvents?$filter=workOrder_ID eq {{wo1.response.body.$.ID}}
+Authorization: Basic manager@company.com:xyz
+
+
+
+###
+# =====================================================================
+# 4. ASSIGN AND RELEASE (planner)
+# Steps 6 and 7: assign technicians, then release the order for execution.
+# =====================================================================
+
+
+### 4.1 Cannot release before a technician is assigned
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/releaseOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}"
+}
+
+
+### 4.2 Inactive technician cannot be assigned
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/assignTechnician
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "TechnicianID": "{{techOff.response.body.$.ID}}",
+  "isLead": false
+}
+
+
+### 4.3 Technician cannot assign technicians
+# Expected: 403
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/assignTechnician
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "isLead": true
+}
+
+
+### 4.4 Assign the lead technician
+# Expected: 200
+# Check: status = Assigned.
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/assignTechnician
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "isLead": true
+}
+
+
+### 4.5 The same technician cannot be assigned twice
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/assignTechnician
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "isLead": true
+}
+
+
+### 4.6 Assignments of work order 1
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/TechnicianAssignments?$filter=workOrder_ID eq {{wo1.response.body.$.ID}}
+Authorization: Basic planner@company.com:lmn
+
+
+### 4.7 Release the work order
+# Expected: 200
+# Check: status = Released.
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/releaseOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}"
+}
+
+
+### 4.8 Cannot release twice
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/releaseOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}"
+}
+
+
+### 4.9 No assignment after release
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/assignTechnician
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "TechnicianID": "{{techOff.response.body.$.ID}}",
+  "isLead": false
+}
+
+
+### 4.10 Technician sees the assigned order
+# Expected: 200
+# Check: Only the orders assigned to this technician are returned.
+# Role: Technician (Technician)
+# Login: technician@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders
+Authorization: Basic technician@company.com:pqr
+
+
+
+###
+# =====================================================================
+# 5. EXECUTION (technician)
+# Step 8: the technician records time, findings, readings and spare parts, operation by operation.
+# =====================================================================
+
+
+### 5.1 Planner cannot confirm an operation
+# Expected: 403
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/confirmOperation
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "OperationID": "{{ops1.response.body.$.value[0].ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "startTime": "2026-11-12T08:00:00Z",
+  "stopTime": "2026-11-12T09:30:00Z",
+  "workDescription": "Checked hydraulic pump pressure and connections",
+  "findings": "Seal worn",
+  "meterReading": 1650,
+  "markCompleted": true
+}
+
+
+### 5.2 Operation 2 cannot be done before operation 1
+# Expected: reject
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/confirmOperation
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "OperationID": "{{ops1.response.body.$.value[1].ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "startTime": "2026-11-12T08:00:00Z",
+  "stopTime": "2026-11-12T09:30:00Z",
+  "workDescription": "Checked hydraulic pump pressure and connections",
+  "findings": "Seal worn",
+  "meterReading": 1650,
+  "markCompleted": true
+}
+
+
+### 5.3 Stop time cannot be in the future
+# Expected: reject
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/confirmOperation
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "OperationID": "{{ops1.response.body.$.value[0].ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "startTime": "2026-11-12T08:00:00Z",
+  "stopTime": "2030-01-01T10:00:00Z",
+  "workDescription": "Checked hydraulic pump pressure and connections",
+  "findings": "Seal worn",
+  "meterReading": 1650,
+  "markCompleted": true
+}
+
+
+### 5.4 Stop time must be after start time
+# Expected: reject
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/confirmOperation
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "OperationID": "{{ops1.response.body.$.value[0].ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "startTime": "2026-11-12T10:00:00Z",
+  "stopTime": "2026-11-12T09:00:00Z",
+  "workDescription": "Checked hydraulic pump pressure and connections",
+  "findings": "Seal worn",
+  "meterReading": 1650,
+  "markCompleted": true
+}
+
+
+### 5.5 Meter reading cannot be lower than the equipment reading
+# Expected: reject
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/confirmOperation
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "OperationID": "{{ops1.response.body.$.value[0].ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "startTime": "2026-11-12T08:00:00Z",
+  "stopTime": "2026-11-12T09:30:00Z",
+  "workDescription": "Checked hydraulic pump pressure and connections",
+  "findings": "Seal worn",
+  "meterReading": 1000,
+  "markCompleted": true
+}
+
+
+### 5.6 Quantity must be greater than zero
+# Expected: reject
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/consumePart
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "OperationID": "{{ops1.response.body.$.value[0].ID}}",
+  "SparePartID": "{{seal.response.body.$.ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "quantity": 0
+}
+
+
+### 5.7 Cannot consume more than the stock
+# Expected: reject
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/consumePart
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "OperationID": "{{ops1.response.body.$.value[0].ID}}",
+  "SparePartID": "{{seal.response.body.$.ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "quantity": 999
+}
+
+
+### 5.8 Planner cannot consume parts
+# Expected: 403
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/consumePart
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "OperationID": "{{ops1.response.body.$.value[0].ID}}",
+  "SparePartID": "{{seal.response.body.$.ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "quantity": 1
+}
+
+
+### 5.9 Consume 2 seals (stock 10 to 8, cost 1000)
+# Expected: 200
+# Check: unitCost = 500, totalCost = 1000.
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/consumePart
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "OperationID": "{{ops1.response.body.$.value[0].ID}}",
+  "SparePartID": "{{seal.response.body.$.ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "quantity": 2
+}
+
+
+### 5.10 Stock after consumption
+# Expected: 200
+# Check: stockQuantity should now be 8.
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/SpareParts({{seal.response.body.$.ID}})
+Authorization: Basic planner@company.com:lmn
+
+
+### 5.11 Confirm operation 1 but not finished yet (status becomes InProgress)
+# Expected: 200
+# Check: operation status = InProgress.
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/confirmOperation
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "OperationID": "{{ops1.response.body.$.value[0].ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "startTime": "2026-11-12T08:00:00Z",
+  "stopTime": "2026-11-12T09:30:00Z",
+  "workDescription": "Checked hydraulic pump pressure and connections",
+  "findings": "Seal worn",
+  "meterReading": 1610,
+  "markCompleted": false
+}
+
+
+### 5.12 Cannot complete the order while mandatory operations are pending
+# Expected: reject
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/completeOrder
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "closureCode": "Repaired",
+  "completionRemarks": "Too early"
+}
+
+
+### 5.13 Confirm operation 1 finished
+# Expected: 200
+# Check: operation status = Completed.
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/confirmOperation
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "OperationID": "{{ops1.response.body.$.value[0].ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "startTime": "2026-11-12T09:30:00Z",
+  "stopTime": "2026-11-12T10:30:00Z",
+  "workDescription": "Checked hydraulic pump pressure and connections",
+  "findings": "Seal worn",
+  "meterReading": 1620,
+  "markCompleted": true
+}
+
+
+### 5.14 Confirm operation 2 finished, with a meter reading
+# Expected: 200
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/confirmOperation
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "OperationID": "{{ops1.response.body.$.value[1].ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "startTime": "2026-11-12T10:30:00Z",
+  "stopTime": "2026-11-12T13:30:00Z",
+  "workDescription": "Checked hydraulic pump pressure and connections",
+  "findings": "Seal worn",
+  "meterReading": 1650,
+  "markCompleted": true
+}
+
+
+### 5.15 Completed operation cannot be confirmed again
+# Expected: reject
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/confirmOperation
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "OperationID": "{{ops1.response.body.$.value[1].ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "startTime": "2026-11-12T08:00:00Z",
+  "stopTime": "2026-11-12T09:30:00Z",
+  "workDescription": "Checked hydraulic pump pressure and connections",
+  "findings": "Seal worn",
+  "meterReading": 1650,
+  "markCompleted": true
+}
+
+
+### 5.16 Closure code must be valid
+# Expected: reject
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/completeOrder
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "closureCode": "COMPLETED",
+  "completionRemarks": "Done"
+}
+
+
+### 5.17 Completion remarks are required
+# Expected: reject
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/completeOrder
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "closureCode": "Repaired"
+}
+
+
+### 5.18 Technician completes the order
+# Expected: 200
+# Check: status = Completed, actualHours and actualCost calculated, approvalStatus = NotRequired (cost is small).
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/completeOrder
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "closureCode": "Repaired",
+  "completionRemarks": "Seal replaced, pressure back to normal"
+}
+
+
+
+###
+# =====================================================================
+# 6. REVIEW AND CLOSURE (manager)
+# Steps 10 and 11: the supervisor reviews the completed order and closes it. Closing updates history and downtime.
+# =====================================================================
+
+
+### 6.1 Technician cannot close
+# Expected: 403
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/closeOrder
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}"
+}
+
+
+### 6.2 Planner cannot close
+# Expected: 403
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/closeOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}"
+}
+
+
+### 6.3 Manager closes the work order
+# Expected: 200
+# Check: status = Closed, closedBy = manager@company.com.
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/closeOrder
+Authorization: Basic manager@company.com:xyz
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}"
+}
+
+
+### 6.4 A closed order cannot be closed again
+# Expected: reject
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/closeOrder
+Authorization: Basic manager@company.com:xyz
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}"
+}
+
+
+### 6.5 Downtime event is closed with a duration
+# Expected: 200
+# Check: endTime is now filled. The duration is near 0 here only because the test uses past times for the work.
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/DowntimeEvents?$filter=workOrder_ID eq {{wo1.response.body.$.ID}}
+Authorization: Basic manager@company.com:xyz
+
+
+### 6.6 Equipment history shows the closed order
+# Expected: 200
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/EquipmentHistory?$filter=equipmentCode eq 'EQ-PRESS'
+Authorization: Basic manager@company.com:xyz
+
+
+### 6.7 Time confirmations of the order (technician sees own)
+# Expected: 200
+# Role: Technician (Technician)
+# Login: technician@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/TimeConfirmations
+Authorization: Basic technician@company.com:pqr
+
+
+### 6.8 Report a second breakdown on the same press
+# @name req3
+# Expected: 200
+# Role: Production User (ProductionUser)
+# Login: productionUser@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/reportBreakdown
+Authorization: Basic productionUser@company.com:abc
+Content-Type: application/json
+
+{
+  "equipment": "{{press.response.body.$.ID}}",
+  "symptom": "Pressure dropped again",
+  "description": "Problem seen during production.",
+  "requestedPriority": "High",
+  "safetyImpact": "High",
+  "productionImpact": "High",
+  "category": "Mechanical",
+  "reportedBy": "anyone",
+  "photos": [
+    {
+      "fileName": "problem.png",
+      "mimeType": "image/png",
+      "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+    }
+  ]
+}
+
+
+### 6.9 Convert it to a breakdown order (creates a repeat failure)
+# @name wo3
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/convertToWorkOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "RequestID": "{{req3.response.body.$.ID}}",
+  "orderType": "Breakdown",
+  "category": "Mechanical",
+  "plannedStartDate": "2026-12-01T08:00:00Z",
+  "plannedEndDate": "2026-12-01T17:00:00Z",
+  "operations": [
+    {
+      "operationName": "Inspect again",
+      "plannedHours": 1,
+      "isMandatory": true
+    }
+  ]
+}
+
+
+
+###
+# =====================================================================
+# 7. HIGH-COST APPROVAL FLOW (technician, manager)
+# Step 9: work above the cost limit (100000) needs manager approval before it can be closed. A rejection sends the order back for rework.
+# =====================================================================
+
+
+### 7.1 Convert the conveyor request to a CORRECTIVE order
+# @name wo2
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/convertToWorkOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "RequestID": "{{req2.response.body.$.ID}}",
+  "orderType": "Corrective",
+  "category": "Mechanical",
+  "plannedStartDate": "2026-12-01T08:00:00Z",
+  "plannedEndDate": "2026-12-01T17:00:00Z",
+  "operations": [
+    {
+      "operationName": "Replace belt drive pump",
+      "plannedHours": 2,
+      "isMandatory": true
+    }
+  ]
+}
+
+
+### 7.2 Operations of work order 2
+# @name ops2
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders({{wo2.response.body.$.ID}})/operations?$orderby=sequenceNumber
+Authorization: Basic planner@company.com:lmn
+
+
+### 7.3 Assign the technician
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/assignTechnician
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo2.response.body.$.ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "isLead": true
+}
+
+
+### 7.4 Release
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/releaseOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo2.response.body.$.ID}}"
+}
+
+
+### 7.5 Consume 2 expensive pumps (2 x 60000 = 120000)
+# Expected: 200
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/consumePart
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo2.response.body.$.ID}}",
+  "OperationID": "{{ops2.response.body.$.value[0].ID}}",
+  "SparePartID": "{{pump.response.body.$.ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "quantity": 2
+}
+
+
+### 7.6 Confirm the operation finished
+# Expected: 200
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/confirmOperation
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo2.response.body.$.ID}}",
+  "OperationID": "{{ops2.response.body.$.value[0].ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "startTime": "2026-11-12T08:00:00Z",
+  "stopTime": "2026-11-12T11:00:00Z",
+  "workDescription": "Replaced drive pump",
+  "findings": "Pump failed",
+  "meterReading": 950,
+  "markCompleted": true
+}
+
+
+### 7.7 Complete the order (approval becomes Pending)
+# Expected: 200
+# Check: status = Completed, approvalStatus = Pending.
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/completeOrder
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo2.response.body.$.ID}}",
+  "closureCode": "Replaced",
+  "completionRemarks": "Drive pump replaced"
+}
+
+
+### 7.8 Cannot close while approval is pending
+# Expected: reject
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/closeOrder
+Authorization: Basic manager@company.com:xyz
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo2.response.body.$.ID}}"
+}
+
+
+### 7.9 Planner cannot approve
+# Expected: 403
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/approveWorkOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo2.response.body.$.ID}}",
+  "remarks": "Approved"
+}
+
+
+### 7.10 Manager must give remarks
+# Expected: reject
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/rejectWorkOrder
+Authorization: Basic manager@company.com:xyz
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo2.response.body.$.ID}}"
+}
+
+
+### 7.11 Manager rejects (rework needed)
+# Expected: 200
+# Check: approvalStatus = Rejected, status = InProgress.
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/rejectWorkOrder
+Authorization: Basic manager@company.com:xyz
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo2.response.body.$.ID}}",
+  "remarks": "Attach the failure report and complete again"
+}
+
+
+### 7.12 Technician completes again after rework
+# Expected: 200
+# Check: approvalStatus = Pending again.
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/completeOrder
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo2.response.body.$.ID}}",
+  "closureCode": "Replaced",
+  "completionRemarks": "Drive pump replaced, failure report attached"
+}
+
+
+### 7.13 Manager approves
+# Expected: 200
+# Check: approvalStatus = Approved.
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/approveWorkOrder
+Authorization: Basic manager@company.com:xyz
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo2.response.body.$.ID}}",
+  "remarks": "Cost approved"
+}
+
+
+### 7.14 Manager closes the approved order
+# Expected: 200
+# Check: status = Closed.
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/closeOrder
+Authorization: Basic manager@company.com:xyz
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo2.response.body.$.ID}}"
+}
+
+
+### 7.15 Approval cannot be given to an order that is not pending
+# Expected: reject
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/approveWorkOrder
+Authorization: Basic manager@company.com:xyz
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{wo1.response.body.$.ID}}",
+  "remarks": "Late"
+}
+
+
+
+###
+# =====================================================================
+# 8. PREVENTIVE MAINTENANCE (planner)
+# Preventive orders are generated from calendar plans and meter plans. Closing the order moves the plan to its next due date.
+# =====================================================================
+
+
+### 8.1 Plan that is not due yet is rejected
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/createPreventiveOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "PlanID": "{{planLater.response.body.$.ID}}"
+}
+
+
+### 8.2 Inactive plan is rejected
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/createPreventiveOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "PlanID": "{{planOff.response.body.$.ID}}"
+}
+
+
+### 8.3 Technician cannot create preventive orders
+# Expected: 403
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/createPreventiveOrder
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "PlanID": "{{planCal.response.body.$.ID}}"
+}
+
+
+### 8.4 Calendar plan that is due creates a work order
+# @name pm1
+# Expected: 200
+# Check: orderType = Preventive, status = Created.
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/createPreventiveOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "PlanID": "{{planCal.response.body.$.ID}}"
+}
+
+
+### 8.5 A second order for the same plan is rejected
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/createPreventiveOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "PlanID": "{{planCal.response.body.$.ID}}"
+}
+
+
+### 8.6 Meter plan that is due creates a work order
+# @name pm2
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/createPreventiveOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "PlanID": "{{planMet.response.body.$.ID}}"
+}
+
+
+### 8.7 Generate all due orders: nothing new, no duplicates
+# Expected: 200
+# Check: Both due plans already have an open order, so the list is empty.
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/generateDuePreventiveOrders
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{}
+
+
+### 8.8 Manager cannot generate preventive orders
+# Expected: 403
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/generateDuePreventiveOrders
+Authorization: Basic manager@company.com:xyz
+Content-Type: application/json
+
+{}
+
+
+### 8.9 Preventive orders of the calendar plan
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders?$filter=maintenancePlan_ID eq {{planCal.response.body.$.ID}}
+Authorization: Basic planner@company.com:lmn
+
+
+### 8.10 Operations of the preventive order
+# @name opsPm
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders({{pm1.response.body.$.ID}})/operations?$orderby=sequenceNumber
+Authorization: Basic planner@company.com:lmn
+
+
+### 8.11 Assign the technician to the preventive order
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/assignTechnician
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{pm1.response.body.$.ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "isLead": true
+}
+
+
+### 8.12 Release the preventive order
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/releaseOrder
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{pm1.response.body.$.ID}}"
+}
+
+
+### 8.13 Technician performs the preventive operation
+# Expected: 200
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/confirmOperation
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{pm1.response.body.$.ID}}",
+  "OperationID": "{{opsPm.response.body.$.value[0].ID}}",
+  "TechnicianID": "{{tech.response.body.$.ID}}",
+  "startTime": "2026-11-12T08:00:00Z",
+  "stopTime": "2026-11-12T09:00:00Z",
+  "workDescription": "Monthly service done",
+  "findings": "All normal",
+  "meterReading": 1660,
+  "markCompleted": true
+}
+
+
+### 8.14 Technician completes the preventive order
+# Expected: 200
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/completeOrder
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{pm1.response.body.$.ID}}",
+  "closureCode": "Adjusted",
+  "completionRemarks": "Monthly service completed"
+}
+
+
+### 8.15 Manager closes the preventive order
+# Expected: 200
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/closeOrder
+Authorization: Basic manager@company.com:xyz
+Content-Type: application/json
+
+{
+  "WorkOrderID": "{{pm1.response.body.$.ID}}"
+}
+
+
+### 8.16 The plan now has a new next due date
+# Expected: 200
+# Check: lastMaintenanceDate is updated and nextDueDate = last maintenance date + 30 days.
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/MaintenancePlans({{planCal.response.body.$.ID}})
+Authorization: Basic planner@company.com:lmn
+
+
+
+###
+# =====================================================================
+# 9. DASHBOARD AND REPORTS (manager, planner)
+# Downtime, PM compliance, repeat failures and equipment history.
+# =====================================================================
+
+
+### 9.1 Equipment history
+# Expected: 200
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/EquipmentHistory
+Authorization: Basic manager@company.com:xyz
+
+
+### 9.2 Downtime summary per equipment
+# Expected: 200
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/DowntimeSummary
+Authorization: Basic manager@company.com:xyz
+
+
+### 9.3 Preventive maintenance compliance
+# Expected: 200
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/PMCompliance
+Authorization: Basic manager@company.com:xyz
+
+
+### 9.4 Repeat failures (press has 2 breakdowns)
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/RepeatFailures
+Authorization: Basic planner@company.com:lmn
+
+
+### 9.5 All work orders (manager sees everything)
+# Expected: 200
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders
+Authorization: Basic manager@company.com:xyz
+
+
+### 9.6 Open work orders
+# Expected: 200
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders?$filter=status ne 'Closed'
+Authorization: Basic manager@company.com:xyz
+
+
+### 9.7 Spare part stock after use
+# Expected: 200
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/SpareParts
+Authorization: Basic planner@company.com:lmn
+
+
+
+###
+# =====================================================================
+# 10. ACCESS CONTROL AND BLOCKED CHANGES
+# Each role sees and changes only what the BRD allows.
+# =====================================================================
+
+
+### 10.1 Production user cannot read work orders
+# Expected: 403
+# Role: Production User (ProductionUser)
+# Login: productionUser@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders
+Authorization: Basic productionUser@company.com:abc
+
+
+### 10.2 Technician cannot read the downtime report
+# Expected: 403
+# Role: Technician (Technician)
+# Login: technician@company.com
+GET http://localhost:4004/odata/v4/equipment-maintenance/DowntimeSummary
+Authorization: Basic technician@company.com:pqr
+
+
+### 10.3 Manager cannot create master data
+# Expected: 403
+# Role: Maintenance Manager (MaintenanceManager)
+# Login: manager@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/Equipment
+Authorization: Basic manager@company.com:xyz
+Content-Type: application/json
+
+{
+  "equipmentCode": "EQ-X",
+  "equipmentName": "X",
+  "criticality": "Low",
+  "location_ID": "{{loc.response.body.$.ID}}"
+}
+
+
+### 10.4 Planner cannot edit a work order directly
+# Expected: 403
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+PATCH http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders({{wo3.response.body.$.ID}})
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "title": "Changed directly"
+}
+
+
+### 10.5 Direct creation of a work order is blocked
+# Expected: 403
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "orderNumber": "WO-X",
+  "orderType": "Corrective",
+  "title": "Direct",
+  "priority": "High",
+  "equipment_ID": "{{press.response.body.$.ID}}"
+}
+
+
+### 10.6 Direct creation of a time confirmation is blocked
+# Expected: 403
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/TimeConfirmations
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "technicianUserId": "technician@company.com",
+  "startTime": "2026-11-12T08:00:00Z",
+  "stopTime": "2026-11-12T09:00:00Z",
+  "workOrder_ID": "{{wo3.response.body.$.ID}}",
+  "technician_ID": "{{tech.response.body.$.ID}}"
+}
+
+
+### 10.7 Direct creation of a part consumption is blocked
+# Expected: 403
+# Role: Technician (Technician)
+# Login: technician@company.com
+POST http://localhost:4004/odata/v4/equipment-maintenance/PartConsumptions
+Authorization: Basic technician@company.com:pqr
+Content-Type: application/json
+
+{
+  "quantity": 1,
+  "workOrder_ID": "{{wo3.response.body.$.ID}}",
+  "sparePart_ID": "{{seal.response.body.$.ID}}"
+}
+
+
+### 10.8 Spare part stock cannot be edited directly
+# Expected: reject
+# Role: Maintenance Planner (MaintenancePlanner)
+# Login: planner@company.com
+PATCH http://localhost:4004/odata/v4/equipment-maintenance/SpareParts({{seal.response.body.$.ID}})
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json
+
+{
+  "stockQuantity": 999
+}

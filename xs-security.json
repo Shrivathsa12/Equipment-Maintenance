@@ -1,5 +1,57 @@
 {
-  "scopes": [],
+  "xsappname": "equipmentmaintenance-f3b9ba19trial-dev",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.ProductionUser",
+      "description": "ProductionUser"
+    },
+    {
+      "name": "$XSAPPNAME.MaintenancePlanner",
+      "description": "MaintenancePlanner"
+    },
+    {
+      "name": "$XSAPPNAME.Technician",
+      "description": "Technician"
+    },
+    {
+      "name": "$XSAPPNAME.MaintenanceManager",
+      "description": "MaintenanceManager"
+    }
+  ],
   "attributes": [],
-  "role-templates": []
+  "role-templates": [
+    {
+      "name": "ProductionUser",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.ProductionUser"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "MaintenancePlanner",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.MaintenancePlanner"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "Technician",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.Technician"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "MaintenanceManager",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.MaintenanceManager"
+      ],
+      "attribute-references": []
+    }
+  ]
 }

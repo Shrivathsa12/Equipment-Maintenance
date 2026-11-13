@@ -54,3 +54,20 @@ resources:
           credential-types:
             - "binding-secret"
             - "x509"
+        role-collections:
+          - name: 'ProductionUser (equipmentmaintenance ${org}-${space})'
+            description: 'generated'
+            role-template-references:
+              - '$XSAPPNAME.ProductionUser'
+          - name: 'MaintenancePlanner (equipmentmaintenance ${org}-${space})'
+            description: 'generated'
+            role-template-references:
+              - '$XSAPPNAME.MaintenancePlanner'
+          - name: 'Technician (equipmentmaintenance ${org}-${space})'
+            description: 'generated'
+            role-template-references:
+              - '$XSAPPNAME.Technician'
+          - name: 'MaintenanceManager (equipmentmaintenance ${org}-${space})'
+            description: 'generated'
+            role-template-references:
+              - '$XSAPPNAME.MaintenanceManager'

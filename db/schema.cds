@@ -25,7 +25,7 @@ entity Equipment : cuid, managed {
     manufacturer     : String(100);
     serialNumber     : String(100);
 
-    criticality      : Criticality default #Medium;
+    criticality      : Criticality default #Low;
     warrantyEndDate  : Date;
 
     meterUnit        : String(20);
