@@ -54,7 +54,7 @@
         }
       },
       "[production]": {
-        "auth": "dummy"
+        "auth": "xsuaa"
       }
     },
     "server": {

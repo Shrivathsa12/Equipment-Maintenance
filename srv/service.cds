@@ -239,13 +239,9 @@ service EquipmentMaintenance {
     })                                                                              returns MaintenanceRequests;
 
 
-    //action createPreventiveOrder(PlanID: UUID)                                      returns WorkOrders;
+    // AUTOMATIC PREVENTIVE MAINTENANCE - JOB SCHEDULER
     @requires: 'MaintenancePlanner'
-    action createPreventiveOrder(PlanID: UUID)                                      returns WorkOrders;
-
-    // ACTION FOR jOB SCHEDULAR
-    @requires: 'MaintenancePlanner'
-    action generateDuePreventiveOrders()                                            returns many WorkOrders;
+    action createPreventiveOrder()                                                  returns many WorkOrders;
 
     @requires: 'MaintenancePlanner'
     action assignTechnician(WorkOrderID: UUID, TechnicianID: UUID, isLead: Boolean) returns WorkOrders;
@@ -328,7 +324,6 @@ service EquipmentMaintenance {
                 closureCode
         };
 
-   
 
     // Equipment with more than one breakdown (repeat failures)
     @restrict: [{

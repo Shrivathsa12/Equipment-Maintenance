@@ -505,15 +505,7 @@ Content-Type: application/json
 GET http://localhost:4004/odata/v4/equipment-maintenance/MaintenancePlans(a1111111-1111-4111-8111-111111111111)?$select=planCode,nextDueDate,lastMaintenanceDate,nextDueReading
 Authorization: Basic planner@company.com:lmn
 
-///JOB Scheduling service
-### 47. generateDuePreventiveOrders - create orders for all due plans
-POST http://localhost:4004/odata/v4/equipment-maintenance/generateDuePreventiveOrders
-Authorization: Basic planner@company.com:lmn
-Content-Type: application/json
 
-{}
-
-###
 
 ### 48. Equipment history
 GET http://localhost:4004/odata/v4/equipment-maintenance/EquipmentHistory
