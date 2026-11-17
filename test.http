@@ -556,3 +556,9 @@ Content-Type: application/json
   "WorkOrderID": "a8398ec4-d2ed-46f8-b96a-2b01d33274b0",
   "remarks": "ok"
 }
+
+
+### check SLA rules
+POST http://localhost:4004/odata/v4/equipment-maintenance/checkSLABreaches
+Authorization: Basic planner@company.com:lmn
+Content-Type: application/json

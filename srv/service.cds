@@ -295,6 +295,9 @@ service EquipmentMaintenance {
     action rejectWorkOrder(WorkOrderID: UUID,
                            remarks: String(500))                                    returns WorkOrders;
 
+    @requires: 'MaintenancePlanner'
+    action checkSLABreaches()                                                       returns Integer;
+
     // Every work order of every equipment (equipment history)
     @restrict: [{
         grant: 'READ',

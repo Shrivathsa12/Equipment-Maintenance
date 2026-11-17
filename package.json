@@ -15,7 +15,8 @@
     "@cap-js/hana": "^3",
     "@sap_oss/alert-notification-client": "^1.14.0",
     "@sap/cds": "^10.2.2",
-    "@sap/xssec": "^4"
+    "@sap/xssec": "^4",
+    "@cap-js/notifications": "*"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^3",
@@ -55,8 +56,9 @@
         }
       },
       "[production]": {
-        "auth": "dummy"
-      }
+        "auth": "xsuaa"
+      },
+      "destinations": true
     },
     "server": {
       "body_parser": {

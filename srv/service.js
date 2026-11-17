@@ -1,6 +1,5 @@
 const cds = require('@sap/cds');
-const { sendCriticalBreakdownAlert } = require("../lib/alertNotification");
-
+const { sendCriticalBreakdownAlert, sendSLABreachAlert } = require("./alertNotification");
 module.exports = cds.service.impl(async function () {
 
     const { EquipmentLocations, Equipment, MaintenancePlans, MaintenanceRequests, WorkOrders, WorkOrderOperations, Technicians, TechnicianAssignments, TimeConfirmations, SpareParts, PartConsumptions, DowntimeEvents, EquipmentReadings, MaintenanceDocuments } = this.entities;
@@ -55,22 +54,23 @@ module.exports = cds.service.impl(async function () {
 
         await INSERT.into(MaintenanceDocuments).entries(documents.map(photo => ({ ...photo, maintenanceRequest_ID: ID })));
 
-        if (equipmentData.criticality === "Critical") {
-            try {
-                await sendCriticalBreakdownAlert({
-                    requestNumber,
-                    equipmentCode: equipmentData.equipmentCode,
-                    equipmentName: equipmentData.equipmentName,
-                    priority,
-                    symptom,
-                    description
-                });
+        if (equipmentData.criticality === "Critical")
+            req.on("succeeded", async () => {
+                try {
+                    await sendCriticalBreakdownAlert({
+                        requestNumber,
+                        equipmentCode: equipmentData.equipmentCode,
+                        equipmentName: equipmentData.equipmentName,
+                        priority,
+                        symptom,
+                        description
+                    });
 
-                console.log(`[ALERT] Critical breakdown notification sent for ${requestNumber}`);
-            } catch (error) {
-                console.error("[ALERT] Failed to send critical breakdown notification:", error.response?.data || error.message);
-            }
-        }
+                    console.log(`[ALERT] Critical breakdown notification handled for ${requestNumber}`);
+                } catch (error) {
+                    console.error("[ALERT] Failed to send critical breakdown notification:", error.response?.data || error.message);
+                }
+            });
 
         return SELECT.one.from(MaintenanceRequests).where({ ID });
     });
@@ -1004,6 +1004,56 @@ module.exports = cds.service.impl(async function () {
         return await SELECT.one
             .from(WorkOrders)
             .where({ ID: WorkOrderID });
+    });
+
+
+    // check SLA rules action
+    this.on("checkSLABreaches", async (req) => {
+        const today = new Date().toISOString().slice(0, 10);
+
+        // All open orders. Schedule this job once a day: each overdue order then gets one reminder per day until it is completed.
+        const workOrders = await SELECT.from(WorkOrders)
+            .where({ status: { "not in": ["Completed", "Closed"] } });
+
+        let notificationCount = 0;
+
+        for (const workOrder of workOrders) {
+            // Preventive orders have only a planned start date
+            const dueDate = workOrder.plannedEndDate || workOrder.plannedStartDate;
+
+            if (!dueDate || String(dueDate).slice(0, 10) >= today) continue;
+
+            try {
+                const equipmentData = await SELECT.one.from(Equipment)
+                    .where({ ID: workOrder.equipment_ID });
+
+                if (!equipmentData) {
+                    console.log(`[SLA ALERT] Equipment not found for ${workOrder.orderNumber}`);
+                    continue;
+                }
+
+                const sent = await sendSLABreachAlert({
+                    orderNumber: workOrder.orderNumber,
+                    equipmentName: equipmentData.equipmentName,
+                    equipmentCode: equipmentData.equipmentCode,
+                    priority: workOrder.priority,
+                    status: workOrder.status,
+                    plannedEndDate: dueDate
+                });
+
+                if (sent) {
+                    notificationCount++;
+                    console.log(`[SLA ALERT] Notification sent for ${workOrder.orderNumber}`);
+                }
+
+            } catch (error) {
+                console.error(`[SLA ALERT] Failed for ${workOrder.orderNumber}:`, error.response?.data || error.message);
+            }
+        }
+
+        console.log(`[SLA ALERT] Total notifications sent: ${notificationCount}`);
+
+        return notificationCount;
     });
 
     // before validation
