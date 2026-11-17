@@ -1,4 +1,5 @@
 const cds = require('@sap/cds');
+const { sendCriticalBreakdownAlert } = require("../lib/alertNotification");
 
 module.exports = cds.service.impl(async function () {
 
@@ -54,12 +55,28 @@ module.exports = cds.service.impl(async function () {
 
         await INSERT.into(MaintenanceDocuments).entries(documents.map(photo => ({ ...photo, maintenanceRequest_ID: ID })));
 
-        if (equipmentData.criticality === "Critical") console.log("[ALERT] Critical breakdown:", equipmentData.equipmentCode, "-", symptom);
+        if (equipmentData.criticality === "Critical") {
+            try {
+                await sendCriticalBreakdownAlert({
+                    requestNumber,
+                    equipmentCode: equipmentData.equipmentCode,
+                    equipmentName: equipmentData.equipmentName,
+                    priority,
+                    symptom,
+                    description
+                });
+
+                console.log(`[ALERT] Critical breakdown notification sent for ${requestNumber}`);
+            } catch (error) {
+                console.error("[ALERT] Failed to send critical breakdown notification:", error.response?.data || error.message);
+            }
+        }
 
         return SELECT.one.from(MaintenanceRequests).where({ ID });
     });
 
 
+    // job schedular helper function
     async function createPreventiveOrderForPlan(PlanID) {
         const plan = await SELECT.one.from(MaintenancePlans).where({ ID: PlanID });
 
