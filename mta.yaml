@@ -1,7 +1,7 @@
 _schema-version: 3.3.0
 ID: equipmentmaintenance
 version: 1.0.0
-description: "Welcome to your new CAP project."
+description: "Equipment Maintenance CAP project"
 parameters:
   enable-parallel-deployments: true
 build-parameters:
@@ -24,8 +24,8 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: equipmentmaintenance-db
       - name: equipmentmaintenance-auth
+      - name: equipmentmaintenance-db
       - name: equipmentmaintenance-destination
       - name: equipmentmaintenance-alert
       - name: equipmentmaintenance-job-scheduler
@@ -37,28 +37,8 @@ modules:
       buildpack: nodejs_buildpack
     requires:
       - name: equipmentmaintenance-db
-  - name: notification-content-deployment
-    type: nodejs
-    path: gen/srv
-    parameters:
-      no-route: true
-      no-start: true
-      memory: 256MB
-      disk-quota: 1GB
-      tasks:
-        - name: notification-content-deployment
-          command: "node node_modules/@cap-js/notifications/lib/content-deployment.js"
-          memory: 256MB
-          disk-quota: 1GB
-    requires:
-      - name: equipmentmaintenance-destination
 
 resources:
-  - name: equipmentmaintenance-db
-    type: com.sap.xs.hdi-container
-    parameters:
-      service: hana
-      service-plan: hdi-shared
   - name: equipmentmaintenance-auth
     type: org.cloudfoundry.managed-service
     parameters:
@@ -89,6 +69,11 @@ resources:
             description: "generated"
             role-template-references:
               - "$XSAPPNAME.MaintenanceManager"
+  - name: equipmentmaintenance-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
   - name: equipmentmaintenance-destination
     type: org.cloudfoundry.managed-service
     parameters:

@@ -1,0 +1,103 @@
+_schema-version: 3.3.0
+ID: equipmentmaintenance
+version: 1.0.0
+description: "Welcome to your new CAP project."
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+modules:
+  - name: equipmentmaintenance-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      instances: 1
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: equipmentmaintenance-db
+      - name: equipmentmaintenance-auth
+      - name: equipmentmaintenance-destination
+      - name: equipmentmaintenance-alert
+      - name: equipmentmaintenance-job-scheduler
+
+  - name: equipmentmaintenance-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: equipmentmaintenance-db
+  - name: notification-content-deployment
+    type: nodejs
+    path: gen/srv
+    parameters:
+      no-route: true
+      no-start: true
+      memory: 256MB
+      disk-quota: 1GB
+      tasks:
+        - name: notification-content-deployment
+          memory: 256MB
+          disk-quota: 1GB
+    requires:
+      - name: equipmentmaintenance-destination
+
+resources:
+  - name: equipmentmaintenance-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: equipmentmaintenance-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: equipmentmaintenance-${org}-${space}
+        tenant-mode: dedicated
+        oauth2-configuration:
+          credential-types:
+            - "binding-secret"
+            - "x509"
+        role-collections:
+          - name: "ProductionUser (equipmentmaintenance ${org}-${space})"
+            description: "generated"
+            role-template-references:
+              - "$XSAPPNAME.ProductionUser"
+          - name: "MaintenancePlanner (equipmentmaintenance ${org}-${space})"
+            description: "generated"
+            role-template-references:
+              - "$XSAPPNAME.MaintenancePlanner"
+          - name: "Technician (equipmentmaintenance ${org}-${space})"
+            description: "generated"
+            role-template-references:
+              - "$XSAPPNAME.Technician"
+          - name: "MaintenanceManager (equipmentmaintenance ${org}-${space})"
+            description: "generated"
+            role-template-references:
+              - "$XSAPPNAME.MaintenanceManager"
+  - name: equipmentmaintenance-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+  - name: equipmentmaintenance-alert
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: equipment-alert
+  - name: equipmentmaintenance-job-scheduler
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: equipment-schedular

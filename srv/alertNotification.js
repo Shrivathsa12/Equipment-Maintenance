@@ -1,4 +1,6 @@
+
 const cds = require("@sap/cds");
+
 const {
     AlertNotificationClient,
     OAuthAuthentication,
@@ -9,40 +11,80 @@ const {
 
 let client = null;
 
-// Created on first use, so the application still starts when Alert Notification is not configured (local development)
 function getClient() {
     if (client) return client;
 
-    // Bound service on BTP first, environment variables as a fallback
-    const bound = cds.env.requires?.["alert-notification"]?.credentials || {};
+    // Read credentials from Cloud Foundry VCAP_SERVICES
+    let vcapServices = {};
+
+    try {
+        vcapServices = JSON.parse(process.env.VCAP_SERVICES || "{}");
+    } catch (error) {
+        console.error("[ALERT] Unable to parse VCAP_SERVICES");
+    }
+
+    const alertBindings = vcapServices["alert-notification"] || [];
+
+    const alertBinding = alertBindings.find(
+        binding => binding.name === "equipment-alert"
+    );
+
+    // Cloud Foundry binding first, CAP configuration as fallback
+    const bound =
+        alertBinding?.credentials ||
+        cds.env.requires?.["alert-notification"]?.credentials ||
+        {};
 
     const username = bound.client_id || process.env.AN_CLIENT_ID;
     const password = bound.client_secret || process.env.AN_CLIENT_SECRET;
-    const oAuthTokenUrl = bound.oauth_url ? `${bound.oauth_url}/oauth/token` : process.env.AN_OAUTH_URL;
 
-    if (!username || !password || !oAuthTokenUrl) return null;
+    // oauth_url already contains /oauth/token
+    const oAuthTokenUrl = bound.oauth_url || process.env.AN_OAUTH_URL;
 
-    const region = RegionUtils[process.env.AN_REGION || "US10"];
-    if (!region) throw new Error(`Unknown AN_REGION ${process.env.AN_REGION}`);
+    if (!username || !password || !oAuthTokenUrl) {
+        console.error("[ALERT] Missing Alert Notification credentials:", {
+            clientId: !!username,
+            clientSecret: !!password,
+            oauthUrl: !!oAuthTokenUrl
+        });
+        return null;
+    }
+
+    const regionName = process.env.AN_REGION || "US10";
+    const region = RegionUtils[regionName];
+
+    if (!region) {
+        throw new Error(`Unknown AN_REGION ${regionName}`);
+    }
 
     client = new AlertNotificationClient({
-        authentication: new OAuthAuthentication({ username, password, oAuthTokenUrl }),
+        authentication: new OAuthAuthentication({
+            username,
+            password,
+            oAuthTokenUrl
+        }),
         region
     });
+
+    console.log("[ALERT] Alert Notification client initialized successfully");
 
     return client;
 }
 
-// Sends one event. Returns false when Alert Notification is not configured, so callers can tell nothing was sent.
 async function send(event) {
     const alertClient = getClient();
 
     if (!alertClient) {
-        console.log(`[ALERT - not configured, not sent] ${event.eventType}: ${event.subject}`);
+        console.log(
+            `[ALERT - not configured, not sent] ${event.eventType}: ${event.subject}`
+        );
         return false;
     }
 
     await alertClient.sendEvent(event);
+
+    console.log(`[ALERT] Event sent successfully: ${event.eventType}`);
+
     return true;
 }
 
@@ -107,5 +149,6 @@ async function sendSLABreachAlert(data) {
 }
 
 module.exports = {
-    sendCriticalBreakdownAlert, sendSLABreachAlert
+    sendCriticalBreakdownAlert,
+    sendSLABreachAlert
 };
