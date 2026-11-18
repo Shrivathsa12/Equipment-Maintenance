@@ -1,0 +1,170 @@
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:49:47.497837] Updated app with guid 9bb0a506-7896-4dfb-8480-169e80a2569a ({"lifecycle" => {"data" => {"buildpacks" => ["nodejs_buildpack"]}, "type" => "buildpack"}}) (STDOUT, API)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:49:47.596603] Updating process: "web" (STDOUT, API)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:33.016500] Uploading app package for app with guid 9bb0a506-7896-4dfb-8480-169e80a2569a (STDOUT, API)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:33.177378] Updated app with guid 9bb0a506-7896-4dfb-8480-169e80a2569a ({"environment_variables" => "[PRIVATE DATA HIDDEN]"}) (STDOUT, API)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:43.083317] Stopping app with guid 9bb0a506-7896-4dfb-8480-169e80a2569a (STDOUT, API)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:43.136911] Cell c839c7b1-088e-41af-b9b7-66256aacd457 stopping instance 839c158c-b7ef-42f7-673e-0589 (STDOUT, CELL)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:43.329856] Creating build for app with guid 9bb0a506-7896-4dfb-8480-169e80a2569a (STDOUT, API)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:43.726248] Downloading nodejs_buildpack... (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:43.778013] Downloaded nodejs_buildpack (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:43.778109] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 creating container for instance 8e1c695d-6974-46ab-b8b4-4cc2201beb68 (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:44.460492] Security group rules were updated (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:44.528557] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 successfully created container for instance 8e1c695d-6974-46ab-b8b4-4cc2201beb68 (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:45.410174] Downloading app package... (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:45.410268] Downloading build artifacts cache... (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:45.491509] Downloaded build artifacts cache (224B) (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:46.185425] Downloaded app package (5M) (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:46.317933] -----> Nodejs Buildpack version 1.9.7 (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:46.542482] -----> Bootstrapping python (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:46.542557] -----> Installing python 3.13.18 (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:46.542581] Copy [/tmp/buildpacks/e692b33510ec4c3a/dependencies/19ba5035b2de64a4656a3359a44a66ca/python_3.13.18_linux_x64_cflinuxfs4_86d7d323.tgz] (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:51.614770] -----> Installing binaries (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:51.615019] engines.node (package.json): >=20 (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:51.615182] engines.npm (package.json): unspecified (use default) (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:51.615190] [31;1m**WARNING**[0m Dangerous semver range (>) in engines.node. See: http://docs.cloudfoundry.org/buildpacks/node/node-tips.html (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:51.615196] -----> Installing node 24.22.1 (STDOUT, STG)#
+#2026 11 18 05:50:52.892#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19966#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:51.615379] Copy [/tmp/buildpacks/e692b33510ec4c3a/dependencies/81943ffafa7adf07ff6ffc6aaa402b41/node_24.22.1_linux_x64_cflinuxfs4_e062d949.tgz] (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:54.885737] Using default npm version: 11.19.1 (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:54.885775] -----> Installing yarn 1.22.22 (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:54.885955] Copy [/tmp/buildpacks/e692b33510ec4c3a/dependencies/e4fe26756e9984a665478d350474fa2e/yarn_1.22.22_linux_noarch_any-stack_b6132b86.tgz] (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:55.341077] Installed yarn 1.22.22 (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:55.341095] -----> Creating runtime environment (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:55.343300] NODE_ENV=production (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:55.343330] NODE_HOME=/tmp/contents388560782/deps/0/node (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:55.343335] NODE_MODULES_CACHE=true (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:55.343341] NODE_VERBOSE=false (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:55.343434] NPM_CONFIG_LOGLEVEL=error (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:55.343466] NPM_CONFIG_PRODUCTION=true (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:55.343550] -----> Building dependencies (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:55.343556] Prebuild detected (node_modules already exists) (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:55.343635] Rebuilding any native modules (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:56.200667] rebuilt dependencies successfully (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:56.203100] npm notice (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:56.203141] npm notice New major version of npm available! 11.19.1 -> 12.2.3 (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:56.203146] npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.3 (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:56.203149] npm notice To update run: npm install -g npm@12.2.3 (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:56.203152] npm notice (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:56.285815] Installing any new modules (package.json + package-lock.json) (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:57.057960] up to date in 676ms (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:57.058420] 35 packages are looking for funding (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:57.058515] run `npm fund` for details (STDOUT, STG)#
+#2026 11 18 05:51:02.887#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-10569#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:50:57.866510] Contrast Security no credentials found. Will not write environment files. (STDOUT, STG)#
+#2026 11 18 05:51:12.937#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19983#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:09.825226] Exit status 0 (STDOUT, STG)#
+#2026 11 18 05:51:12.937#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19983#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:09.825296] Uploading droplet, build artifacts cache... (STDOUT, STG)#
+#2026 11 18 05:51:12.937#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19983#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:09.825341] Uploading droplet... (STDOUT, STG)#
+#2026 11 18 05:51:12.937#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19983#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:09.825675] Uploading build artifacts cache... (STDOUT, STG)#
+#2026 11 18 05:51:12.937#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19983#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:09.845474] Uploaded build artifacts cache (228B) (STDOUT, STG)#
+#2026 11 18 05:51:12.937#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19983#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:10.613062] Creating droplet for app with guid 9bb0a506-7896-4dfb-8480-169e80a2569a (STDOUT, API)#
+#2026 11 18 05:51:22.971#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-13660#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:13.686908] Uploaded droplet (62.3M) (STDOUT, STG)#
+#2026 11 18 05:51:22.971#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-13660#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:13.721500] Uploading complete (STDOUT, STG)#
+#2026 11 18 05:51:22.971#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-13660#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:14.236688] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 stopping instance 8e1c695d-6974-46ab-b8b4-4cc2201beb68 (STDOUT, STG)#
+#2026 11 18 05:51:22.971#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-13660#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:14.236731] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 destroying container for instance 8e1c695d-6974-46ab-b8b4-4cc2201beb68 (STDOUT, STG)#
+#2026 11 18 05:51:22.971#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-13660#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:14.273116] Staging complete for build 8e1c695d-6974-46ab-b8b4-4cc2201beb68 (STDOUT, API)#
+#2026 11 18 05:51:22.971#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-13660#
+[PollStageAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:17.992356] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 successfully destroyed container for instance 8e1c695d-6974-46ab-b8b4-4cc2201beb68 (STDOUT, STG)#
+#2026 11 18 05:51:33.058#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19989#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:23.030915] Updated app with guid 9bb0a506-7896-4dfb-8480-169e80a2569a ({droplet_guid: "631e9294-7c84-4afd-9f34-cc563809828f"}) (STDOUT, API)#
+#2026 11 18 05:51:33.058#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19989#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:23.188071] Creating revision for app with guid 9bb0a506-7896-4dfb-8480-169e80a2569a (STDOUT, API)#
+#2026 11 18 05:51:33.058#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19989#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:23.226484] Starting app with guid 9bb0a506-7896-4dfb-8480-169e80a2569a (STDOUT, API)#
+#2026 11 18 05:51:33.058#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19989#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:23.458769] Cell c839c7b1-088e-41af-b9b7-66256aacd457 creating container for instance 66ed6bcb-137e-4fc1-47fd-820b (STDOUT, CELL)#
+#2026 11 18 05:51:33.058#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19989#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:24.239248] Security group rules were updated (STDOUT, CELL)#
+#2026 11 18 05:51:33.058#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19989#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:24.311863] Cell c839c7b1-088e-41af-b9b7-66256aacd457 successfully created container for instance 66ed6bcb-137e-4fc1-47fd-820b (STDOUT, CELL)#
+#2026 11 18 05:51:33.058#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19989#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:25.759993] Downloading droplet... (STDOUT, CELL)#
+#2026 11 18 05:51:33.058#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19989#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:31.058116] Downloaded droplet (62.3M) (STDOUT, CELL)#
+#2026 11 18 05:51:33.058#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19989#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:31.058955] Starting health monitoring of container (STDOUT, CELL)#
+#2026 11 18 05:51:33.058#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19989#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:31.217865] Invoking pre-start scripts. (STDOUT, APP/PROC/WEB)#
+#2026 11 18 05:51:33.058#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19989#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:31.479286] Invoking start command. (STDOUT, APP/PROC/WEB)#
+#2026 11 18 05:51:33.058#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19989#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:32.074114] > equipmentmaintenance@1.0.0 start (STDOUT, APP/PROC/WEB)#
+#2026 11 18 05:51:33.058#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19989#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:32.074200] > cds-serve (STDOUT, APP/PROC/WEB)#
+#2026 11 18 05:51:33.058#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19989#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:32.654551] {"level":"info","logger":"cds","timestamp":"2026-11-18T05:51:32.652Z","layer":"cds","component_type":"application","container_id":"10.32.2.6","component_id":"9bb0a506-7896-4dfb-8480-169e80a2569a","component_name":"equipmentmaintenance-srv","component_instance":0,"source_instance":0,"organization_name":"f3b9ba19trial","organization_id":"12e4faf9-6f00-4cc8-8877-c3df52f3d5e2","space_name":"dev","space_id":"89d49d55-614e-42c1-8891-41d023466d28","msg":"loaded model from 1 file(s):\n ","type":"log"} (STDOUT, APP/PROC/WEB)#
+#2026 11 18 05:51:33.058#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-19989#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:32.655103] srv/csn.json (STDOUT, APP/PROC/WEB)#
+#2026 11 18 05:51:42.982#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-13675#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:33.101097] {"level":"info","logger":"cds","timestamp":"2026-11-18T05:51:33.100Z","layer":"cds","component_type":"application","container_id":"10.32.2.6","component_id":"9bb0a506-7896-4dfb-8480-169e80a2569a","component_name":"equipmentmaintenance-srv","component_instance":0,"source_instance":0,"organization_name":"f3b9ba19trial","organization_id":"12e4faf9-6f00-4cc8-8877-c3df52f3d5e2","space_name":"dev","space_id":"89d49d55-614e-42c1-8891-41d023466d28","msg":"connect to db > hana {\n  database_id: '8311e3d2-6555-4c86-a9a0-8554f4f35113',\n  host: '8311e3d2-6555-4c86-a9a0-8554f4f35113.hna0.prod-us10.hanacloud.ondemand.com',\n  port: '443',\n  driver: 'com.sap.db.jdbc.Driver',\n  url: 'jdbc:sap://8311e3d2-6555-4c86-a9a0-8554f4f35113.hna0.prod-us10.hanacloud.ondemand.com:443?encrypt=true&validateCertificate=true&currentschema=1B0F26BA75A94D16AE2121F58F67054B',\n  schema: '1B0F26BA75A94D16AE2121F58F67054B',\n  certificate: '...',\n  hdi_user: '1B0F26BA75A94D16AE2121F58F67054B_81OVKLB8XRDL32F2RLKE3XQY7_DT',\n  hdi_password: '...',\n  user: '1B0F26BA75A94D16AE2121F58F67054B_81OVKLB8XRDL32F2RLKE3XQY7_RT',\n  password: '...'\n}","type":"log"} (STDOUT, APP/PROC/WEB)#
+#2026 11 18 05:51:42.982#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-13675#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:33.286003] {"level":"info","logger":"cds","timestamp":"2026-11-18T05:51:33.285Z","layer":"cds","component_type":"application","container_id":"10.32.2.6","component_id":"9bb0a506-7896-4dfb-8480-169e80a2569a","component_name":"equipmentmaintenance-srv","component_instance":0,"source_instance":0,"organization_name":"f3b9ba19trial","organization_id":"12e4faf9-6f00-4cc8-8877-c3df52f3d5e2","space_name":"dev","space_id":"89d49d55-614e-42c1-8891-41d023466d28","msg":"using auth strategy { kind: 'xsuaa' }","type":"log"} (STDOUT, APP/PROC/WEB)#
+#2026 11 18 05:51:42.982#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-13675#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:33.332310] {"level":"info","logger":"cds","timestamp":"2026-11-18T05:51:33.331Z","layer":"cds","component_type":"application","container_id":"10.32.2.6","component_id":"9bb0a506-7896-4dfb-8480-169e80a2569a","component_name":"equipmentmaintenance-srv","component_instance":0,"source_instance":0,"organization_name":"f3b9ba19trial","organization_id":"12e4faf9-6f00-4cc8-8877-c3df52f3d5e2","space_name":"dev","space_id":"89d49d55-614e-42c1-8891-41d023466d28","msg":"serving EquipmentMaintenance {\n  at: [ '/odata/v4/equipment-maintenance' ],\n  decl: 'srv/csn.json:2040',\n  impl: 'srv/service.js'\n}","type":"log"} (STDOUT, APP/PROC/WEB)#
+#2026 11 18 05:51:42.982#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-13675#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:33.336680] {"level":"info","logger":"cds","timestamp":"2026-11-18T05:51:33.336Z","layer":"cds","component_type":"application","container_id":"10.32.2.6","component_id":"9bb0a506-7896-4dfb-8480-169e80a2569a","component_name":"equipmentmaintenance-srv","component_instance":0,"source_instance":0,"organization_name":"f3b9ba19trial","organization_id":"12e4faf9-6f00-4cc8-8877-c3df52f3d5e2","space_name":"dev","space_id":"89d49d55-614e-42c1-8891-41d023466d28","msg":"server listening on { url: 'http://localhost:8080' }","type":"log"} (STDOUT, APP/PROC/WEB)#
+#2026 11 18 05:51:42.982#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-13675#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:33.337035] {"level":"info","logger":"cds","timestamp":"2026-11-18T05:51:33.336Z","layer":"cds","component_type":"application","container_id":"10.32.2.6","component_id":"9bb0a506-7896-4dfb-8480-169e80a2569a","component_name":"equipmentmaintenance-srv","component_instance":0,"source_instance":0,"organization_name":"f3b9ba19trial","organization_id":"12e4faf9-6f00-4cc8-8877-c3df52f3d5e2","space_name":"dev","space_id":"89d49d55-614e-42c1-8891-41d023466d28","msg":"server v10.2.2 launched in 1248 ms","type":"log"} (STDOUT, APP/PROC/WEB)#
+#2026 11 18 05:51:42.982#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-13675#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:33.844988] Container became healthy (STDOUT, CELL)#
+#2026 11 18 05:51:42.982#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-srv#flowable-async-job-executor-thread-13675#
+[PollStartAppStatusExecution] 9bb0a506-7896-4dfb-8480-169e80a2569a [2026-11-18T05:51:33.859472] Process became ready with guid 9bb0a506-7896-4dfb-8480-169e80a2569a payload: {"instance" => "66ed6bcb-137e-4fc1-47fd-820b", "index" => 0, "cell_id" => "c839c7b1-088e-41af-b9b7-66256aacd457", "ready" => true, "version" => "3de98810-476e-45af-8a02-0a863c7622af"} (STDOUT, API)#

@@ -1,0 +1,432 @@
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:49:44.465723] Updated app with guid 0ca80ac5-3e7d-4840-958c-8f682432a840 ({"lifecycle" => {"data" => {"buildpacks" => ["nodejs_buildpack"]}, "type" => "buildpack"}}) (STDOUT, API)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:49:44.561916] Updating process: "web" (STDOUT, API)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:49:52.707977] Uploading app package for app with guid 0ca80ac5-3e7d-4840-958c-8f682432a840 (STDOUT, API)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:49:52.880032] Updated app with guid 0ca80ac5-3e7d-4840-958c-8f682432a840 ({"environment_variables" => "[PRIVATE DATA HIDDEN]"}) (STDOUT, API)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:02.930108] Creating build for app with guid 0ca80ac5-3e7d-4840-958c-8f682432a840 (STDOUT, API)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:03.325810] Downloading nodejs_buildpack... (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:03.371232] Downloaded nodejs_buildpack (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:03.371322] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 creating container for instance d85cb105-28cc-4db7-bc3e-b9e54a1ce159 (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:04.088583] Security group rules were updated (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:04.135689] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 successfully created container for instance d85cb105-28cc-4db7-bc3e-b9e54a1ce159 (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.216768] Downloading app package... (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.217254] Downloading build artifacts cache... (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.285718] Downloaded build artifacts cache (224B) (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.531667] Downloaded app package (2.4M) (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.665282] -----> Nodejs Buildpack version 1.9.7 (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.765861] -----> Bootstrapping python (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.766591] -----> Installing python 3.13.18 (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.766768] Copy [/tmp/buildpacks/e692b33510ec4c3a/dependencies/19ba5035b2de64a4656a3359a44a66ca/python_3.13.18_linux_x64_cflinuxfs4_86d7d323.tgz] (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:10.908323] -----> Installing binaries (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:10.908553] engines.node (package.json): >=18 (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:10.908576] engines.npm (package.json): unspecified (use default) (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:10.908646] [31;1m**WARNING**[0m Dangerous semver range (>) in engines.node. See: http://docs.cloudfoundry.org/buildpacks/node/node-tips.html (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:10.908793] -----> Installing node 24.22.1 (STDOUT, STG)#
+#2026 11 18 05:50:12.654#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13634#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:10.909636] Copy [/tmp/buildpacks/e692b33510ec4c3a/dependencies/81943ffafa7adf07ff6ffc6aaa402b41/node_24.22.1_linux_x64_cflinuxfs4_e062d949.tgz] (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.205386] Using default npm version: 11.19.1 (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.205462] -----> Installing yarn 1.22.22 (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.205488] Copy [/tmp/buildpacks/e692b33510ec4c3a/dependencies/e4fe26756e9984a665478d350474fa2e/yarn_1.22.22_linux_noarch_any-stack_b6132b86.tgz] (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.662046] Installed yarn 1.22.22 (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.662081] -----> Creating runtime environment (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664317] NODE_ENV=production (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664360] NODE_HOME=/tmp/contents1199653047/deps/0/node (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664364] NODE_MODULES_CACHE=true (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664382] NODE_VERBOSE=false (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664384] NPM_CONFIG_LOGLEVEL=error (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664389] NPM_CONFIG_PRODUCTION=true (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664392] -----> Building dependencies (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664394] Prebuild detected (node_modules already exists) (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664400] Rebuilding any native modules (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:15.316183] rebuilt dependencies successfully (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:15.394162] Installing any new modules (package.json + package-lock.json) (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:15.937668] up to date in 440ms (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:15.938019] 4 packages are looking for funding (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:15.938170] run `npm fund` for details (STDOUT, STG)#
+#2026 11 18 05:50:22.652#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19940#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:16.706108] Contrast Security no credentials found. Will not write environment files. (STDOUT, STG)#
+#2026 11 18 05:50:32.680#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-10547#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:28.082059] Exit status 0 (STDOUT, STG)#
+#2026 11 18 05:50:32.680#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-10547#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:28.082115] Uploading droplet, build artifacts cache... (STDOUT, STG)#
+#2026 11 18 05:50:32.680#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-10547#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:28.082156] Uploading droplet... (STDOUT, STG)#
+#2026 11 18 05:50:32.680#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-10547#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:28.082543] Uploading build artifacts cache... (STDOUT, STG)#
+#2026 11 18 05:50:32.680#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-10547#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:28.105547] Uploaded build artifacts cache (224B) (STDOUT, STG)#
+#2026 11 18 05:50:32.680#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-10547#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:28.950456] Creating droplet for app with guid 0ca80ac5-3e7d-4840-958c-8f682432a840 (STDOUT, API)#
+#2026 11 18 05:50:42.730#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13649#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:33.024049] Uploaded droplet (60.2M) (STDOUT, STG)#
+#2026 11 18 05:50:42.730#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13649#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:33.061534] Uploading complete (STDOUT, STG)#
+#2026 11 18 05:50:42.730#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13649#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:34.121754] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 stopping instance d85cb105-28cc-4db7-bc3e-b9e54a1ce159 (STDOUT, STG)#
+#2026 11 18 05:50:42.730#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13649#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:34.121808] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 destroying container for instance d85cb105-28cc-4db7-bc3e-b9e54a1ce159 (STDOUT, STG)#
+#2026 11 18 05:50:42.730#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13649#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:34.163112] Staging complete for build d85cb105-28cc-4db7-bc3e-b9e54a1ce159 (STDOUT, API)#
+#2026 11 18 05:50:42.730#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-13649#
+[PollStageAppStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:36.604702] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 successfully destroyed container for instance d85cb105-28cc-4db7-bc3e-b9e54a1ce159 (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:49:44.465723] Updated app with guid 0ca80ac5-3e7d-4840-958c-8f682432a840 ({"lifecycle" => {"data" => {"buildpacks" => ["nodejs_buildpack"]}, "type" => "buildpack"}}) (STDOUT, API)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:49:44.561916] Updating process: "web" (STDOUT, API)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:49:52.707977] Uploading app package for app with guid 0ca80ac5-3e7d-4840-958c-8f682432a840 (STDOUT, API)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:49:52.880032] Updated app with guid 0ca80ac5-3e7d-4840-958c-8f682432a840 ({"environment_variables" => "[PRIVATE DATA HIDDEN]"}) (STDOUT, API)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:02.930108] Creating build for app with guid 0ca80ac5-3e7d-4840-958c-8f682432a840 (STDOUT, API)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:03.325810] Downloading nodejs_buildpack... (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:03.371232] Downloaded nodejs_buildpack (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:03.371322] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 creating container for instance d85cb105-28cc-4db7-bc3e-b9e54a1ce159 (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:04.088583] Security group rules were updated (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:04.135689] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 successfully created container for instance d85cb105-28cc-4db7-bc3e-b9e54a1ce159 (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.216768] Downloading app package... (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.217254] Downloading build artifacts cache... (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.285718] Downloaded build artifacts cache (224B) (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.531667] Downloaded app package (2.4M) (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.665282] -----> Nodejs Buildpack version 1.9.7 (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.765861] -----> Bootstrapping python (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.766591] -----> Installing python 3.13.18 (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:05.766768] Copy [/tmp/buildpacks/e692b33510ec4c3a/dependencies/19ba5035b2de64a4656a3359a44a66ca/python_3.13.18_linux_x64_cflinuxfs4_86d7d323.tgz] (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:10.908323] -----> Installing binaries (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:10.908553] engines.node (package.json): >=18 (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:10.908576] engines.npm (package.json): unspecified (use default) (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:10.908646] [31;1m**WARNING**[0m Dangerous semver range (>) in engines.node. See: http://docs.cloudfoundry.org/buildpacks/node/node-tips.html (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:10.908793] -----> Installing node 24.22.1 (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:10.909636] Copy [/tmp/buildpacks/e692b33510ec4c3a/dependencies/81943ffafa7adf07ff6ffc6aaa402b41/node_24.22.1_linux_x64_cflinuxfs4_e062d949.tgz] (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.205386] Using default npm version: 11.19.1 (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.205462] -----> Installing yarn 1.22.22 (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.205488] Copy [/tmp/buildpacks/e692b33510ec4c3a/dependencies/e4fe26756e9984a665478d350474fa2e/yarn_1.22.22_linux_noarch_any-stack_b6132b86.tgz] (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.662046] Installed yarn 1.22.22 (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.662081] -----> Creating runtime environment (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664317] NODE_ENV=production (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664360] NODE_HOME=/tmp/contents1199653047/deps/0/node (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664364] NODE_MODULES_CACHE=true (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664382] NODE_VERBOSE=false (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664384] NPM_CONFIG_LOGLEVEL=error (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664389] NPM_CONFIG_PRODUCTION=true (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664392] -----> Building dependencies (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664394] Prebuild detected (node_modules already exists) (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:14.664400] Rebuilding any native modules (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:15.316183] rebuilt dependencies successfully (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:15.394162] Installing any new modules (package.json + package-lock.json) (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:15.937668] up to date in 440ms (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:15.938019] 4 packages are looking for funding (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:15.938170] run `npm fund` for details (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:16.706108] Contrast Security no credentials found. Will not write environment files. (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:28.082059] Exit status 0 (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:28.082115] Uploading droplet, build artifacts cache... (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:28.082156] Uploading droplet... (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:28.082543] Uploading build artifacts cache... (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:28.105547] Uploaded build artifacts cache (224B) (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:28.950456] Creating droplet for app with guid 0ca80ac5-3e7d-4840-958c-8f682432a840 (STDOUT, API)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:33.024049] Uploaded droplet (60.2M) (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:33.061534] Uploading complete (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:34.121754] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 stopping instance d85cb105-28cc-4db7-bc3e-b9e54a1ce159 (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:34.121808] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 destroying container for instance d85cb105-28cc-4db7-bc3e-b9e54a1ce159 (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:34.163112] Staging complete for build d85cb105-28cc-4db7-bc3e-b9e54a1ce159 (STDOUT, API)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:36.604702] Cell 77283d80-dfa7-40ba-ba4e-265aef112085 successfully destroyed container for instance d85cb105-28cc-4db7-bc3e-b9e54a1ce159 (STDOUT, STG)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:42.819887] Updated app with guid 0ca80ac5-3e7d-4840-958c-8f682432a840 ({droplet_guid: "4173c082-9365-4496-bdb0-9285c5c33a36"}) (STDOUT, API)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:43.302140] Cell 684caff8-89cd-492b-be01-b3d0835f1763 creating container for instance bec4ea80-7b50-42ba-a11d-9f7bc137f7f5 (STDOUT, CELL)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:44.131108] Security group rules were updated (STDOUT, CELL)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:44.231787] Cell 684caff8-89cd-492b-be01-b3d0835f1763 successfully created container for instance bec4ea80-7b50-42ba-a11d-9f7bc137f7f5 (STDOUT, CELL)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:51.065688] Invoking pre-start scripts. (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:51.309536] Invoking start command. (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:51.840531] > start (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:51.840563] > node node_modules/@sap/hdi-deploy/deploy.js --use-hdb --parameter com.sap.hana.di.table/try_fast_table_migration=true (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.020915] VCAP_SERVICES: (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021913] { (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021934] "hana": [ (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021944] { (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021948] "name": "equipmentmaintenance-db", (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021953] "label": "hana", (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021957] "plan": "hdi-shared", (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021960] "credentials": { (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021963] "schema": "1B0F26BA75A94D16AE2121F58F67054B", (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021967] "database_id": "8311e3d2-6555-4c86-a9a0-8554f4f35113", (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021971] "user": "1B0F26BA75A94D16AE2121F58F67054B_BGNL9JWZ4AK2TEFDAORG1GALE_RT", (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021975] "hdi_user": "1B0F26BA75A94D16AE2121F58F67054B_BGNL9JWZ4AK2TEFDAORG1GALE_DT" (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021978] }, (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021980] "tags": [ (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021983] "hana", (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021986] "database", (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021991] "relational" (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021996] ] (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.021998] } (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.022] ] (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.022003] } (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.520665] @sap/hdi-deploy, version 5.7.0 (mode default), server version 4.00.000.00.1788856605 (4.0.0.0), cloud version 2026.14.19, node version 24.22.1, HDI version 1016, container API version 1007 (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.520698] Deployment started at 2026-11-18 05:50:52 (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.520703] Using hdb@2.30.1 for connection (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.543139] No ignore file at /home/vcap/app/.hdiignore. (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.543611] Collecting files... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.551418] Collecting files... ok (0s 8ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.551443] 3 directories collected (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.551448] 68 files collected (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.551450] 0 reusable modules collected (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:50:52.797#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19973#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.551479] Target service: equipmentmaintenance-db (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.893#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.718955] Previous build with request ID 1857 finished at 2026-11-18T05:21:12.737 with status Rolled back and message: Starting make in the container "1B0F26BA75A94D16AE2121F58F67054B" with 0 files to deploy, 0 files to undeploy... ok. (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.893#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.719293] Processing revoke files... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.719313] Processing revoke files... ok (0s 0ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.719372] Processing grants files... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.719551] Processing grants files... ok (0s 0ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.722873] Preprocessing files... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.723147] Preprocessing files... ok (0s 0ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.723284] Connecting to the container "1B0F26BA75A94D16AE2121F58F67054B"... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.796089] Connecting to the container "1B0F26BA75A94D16AE2121F58F67054B"... ok (0s 73ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.796312] Locking the container "1B0F26BA75A94D16AE2121F58F67054B"... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.931606] Locking the container "1B0F26BA75A94D16AE2121F58F67054B"... ok (0s 135ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:52.931703] Synchronizing files with the container "1B0F26BA75A94D16AE2121F58F67054B"... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.198073] Deleting files... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.357811] Deleting files... ok (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.358029] Writing files... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.358122] Writing 3 items (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.535088] Writing files... ok (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.535237] Synchronizing files with the container "1B0F26BA75A94D16AE2121F58F67054B"... ok (0s 603ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.535690] added files: [] (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.535717] modified files: [] (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.535721] deleted files: [] (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.535847] 0 modified or added files are scheduled for deploy based on delta detection (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.535995] 0 deleted files are scheduled for undeploy based on delta detection (filtered by undeploy allowlist) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.536106] 0 files are scheduled for deploy based on explicit specification (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.536114] 0 files are scheduled for undeploy based on explicit specification (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.536188] Deploying to the container "1B0F26BA75A94D16AE2121F58F67054B"... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.871906] Starting make in the container "1B0F26BA75A94D16AE2121F58F67054B" with 0 files to deploy, 0 files to undeploy... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.871942] Disabling table replication for the container schema "1B0F26BA75A94D16AE2121F58F67054B"... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.871947] Disabling table replication for the container schema "1B0F26BA75A94D16AE2121F58F67054B"... ok (0s 15ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.871952] Migrating libraries... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.871956] Migrating libraries... ok (0s 15ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.871960] Making... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.871967] Preparing... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.871970] Preparing... ok (0s 0ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.871973] Preparing the make transaction... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.872029] Preparing the make transaction... ok (0s 14ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.872048] Calculating dependencies... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873563] Expanding... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873594] Expanding... ok (0s 5ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873599] Precompiling... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873602] Precompiling... ok (0s 0ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873610] Merging... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873613] Merging... ok (0s 1ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873618] Calculating dependencies... ok (0s 7ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873621] No make necessary (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873624] Making... ok (0s 63ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873635] Enabling table replication for the container schema "1B0F26BA75A94D16AE2121F58F67054B"... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873639] Enabling table replication for the container schema "1B0F26BA75A94D16AE2121F58F67054B"... ok (0s 11ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873643] Starting make in the container "1B0F26BA75A94D16AE2121F58F67054B" with 0 files to deploy, 0 files to undeploy... ok (0s 111ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873650] Deploying to the container "1B0F26BA75A94D16AE2121F58F67054B"... ok (0s 336ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873652] No default-access-role handling needed; global role "1B0F26BA75A94D16AE2121F58F67054B::access_role" will not be adapted (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873659] Unlocking the container "1B0F26BA75A94D16AE2121F58F67054B"... (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.873662] Unlocking the container "1B0F26BA75A94D16AE2121F58F67054B"... ok (0s 0ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.877588] Deployment to container 1B0F26BA75A94D16AE2121F58F67054B done [Deployment ID: none]. (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.877620] Deployment ended at 2026-11-18 05:50:53 (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.877623] (1s 973ms) (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.894008] npm notice (STDERR, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.894043] npm notice New major version of npm available! 11.19.1 -> 12.2.3 (STDERR, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.894049] npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.3 (STDERR, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.894052] npm notice To update run: npm install -g npm@12.2.3 (STDERR, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.894054] npm notice (STDERR, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:53.973281] Exit status 0 (STDOUT, APP/TASK/deploy)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:54.579543] Cell 684caff8-89cd-492b-be01-b3d0835f1763 stopping instance bec4ea80-7b50-42ba-a11d-9f7bc137f7f5 (STDOUT, CELL)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:54.579587] Cell 684caff8-89cd-492b-be01-b3d0835f1763 destroying container for instance bec4ea80-7b50-42ba-a11d-9f7bc137f7f5 (STDOUT, CELL)#
+#2026 11 18 05:51:02.894#Z#DEBUG#d153a641-e313-11f1-8845-eeee0a811286.equipmentmaintenance-db-deployer#flowable-async-job-executor-thread-19977#
+[PollExecuteTaskStatusExecution] 0ca80ac5-3e7d-4840-958c-8f682432a840 [2026-11-18T05:50:58.339340] Cell 684caff8-89cd-492b-be01-b3d0835f1763 successfully destroyed container for instance bec4ea80-7b50-42ba-a11d-9f7bc137f7f5 (STDOUT, CELL)#
