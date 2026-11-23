@@ -511,6 +511,10 @@ Authorization: Basic planner@company.com:lmn
 GET http://localhost:4004/odata/v4/equipment-maintenance/EquipmentHistory
 Authorization: Basic manager@company.com:xyz
 
+###
+GET http://localhost:4004/odata/v4/equipment-maintenance/MaintenanceRequests?$select=requestNumber,symptom,status,workOrder_ID
+Authorization: Basic planner@company.com:lmn
+ 
 ### 49. Repeat failures
 GET http://localhost:4004/odata/v4/equipment-maintenance/RepeatFailures
 Authorization: Basic manager@company.com:xyz

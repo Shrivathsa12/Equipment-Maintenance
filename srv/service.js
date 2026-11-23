@@ -6,41 +6,23 @@ module.exports = cds.service.impl(async function () {
 
 
     // action for report breakdown 
-    this.on("reportBreakdown", async (req) => {
-        const { equipment, symptom, description, requestedPriority, safetyImpact, productionImpact, category, reportedBy, photos } = req.data;
+    function calculateRequestPriority(criticality, safetyImpact, productionImpact) {
+        const criticalityPoints = {
+            Low: 10,
+            Medium: 20,
+            High: 30,
+            Critical: 40
+        };
 
-        if (!equipment || !symptom || !description || !requestedPriority || !safetyImpact || !productionImpact || !category || !reportedBy)
-            return req.reject(400, "All breakdown fields are required");
+        const impactPoints = {
+            None: 0,
+            Low: 10,
+            Medium: 20,
+            High: 30
+        };
 
-        if (!Array.isArray(photos) || !photos.length) return req.reject(400, "At least one photo is required");
-
-        if (photos.length > 5) return req.reject(400, "Maximum 5 photos are allowed");
-
-        const documents = [];
-
-        for (const [i, photo] of photos.entries()) {
-            if (!photo.fileName?.trim() || !photo.mimeType || !photo.content) return req.reject(400, `Photo ${i + 1}: file name, MIME type and content are required`);
-
-            if (!["image/jpeg", "image/png", "image/webp"].includes(photo.mimeType.toLowerCase())) return req.reject(400, `Photo ${i + 1}: unsupported image format`);
-
-            const content = Buffer.isBuffer(photo.content) ? photo.content : Buffer.from(photo.content, "base64");
-
-            if (!content.length || content.length > 5 * 1024 * 1024)
-                return req.reject(400, `Photo ${i + 1}: image must be between 1 byte and 5 MB`);
-
-            documents.push({ ID: cds.utils.uuid(), fileName: photo.fileName, mimeType: photo.mimeType, documentType: "Photo", fileSize: content.length, content });
-        }
-
-        const equipmentData = await SELECT.one.from(Equipment).where({ ID: equipment });
-        if (!equipmentData) return req.reject(404, "Equipment not found");
-
-        const result = await SELECT.one.from(MaintenanceRequests).columns("count(*) as total");
-        const requestNumber = `MR-${String(Number(result.total || 0) + 1).padStart(4, "0")}`;
-
-        const criticalityPoints = { Low: 10, Medium: 20, High: 30, Critical: 40 };
-        const impactPoints = { None: 0, Low: 10, Medium: 20, High: 30 };
-
-        const priorityScore = (criticalityPoints[equipmentData.criticality] ?? 20) +
+        const priorityScore =
+            (criticalityPoints[criticality] ?? 20) +
             (impactPoints[safetyImpact] ?? 0) +
             (impactPoints[productionImpact] ?? 0);
 
@@ -48,13 +30,114 @@ module.exports = cds.service.impl(async function () {
             priorityScore >= 60 ? "High" :
                 priorityScore >= 40 ? "Medium" : "Low";
 
+        return { priority, priorityScore };
+    }
+    this.on("reportBreakdown", async (req) => {
+        const {
+            equipment,
+            symptom,
+            description,
+            requestedPriority,
+            safetyImpact,
+            productionImpact,
+            category,
+            photos
+        } = req.data;
+
+        // Get the authenticated user from CAP
+        const reportedBy = req.user.id;
+
+        if (!reportedBy) {
+            return req.reject(401, "Authenticated user information not available");
+        }
+
+        if (!equipment || !symptom || !description || !requestedPriority ||
+            !safetyImpact || !productionImpact || !category) {
+            return req.reject(400, "All breakdown fields are required");
+        }
+
+        if (!Array.isArray(photos) || !photos.length) {
+            return req.reject(400, "At least one photo is required");
+        }
+
+        if (photos.length > 5) {
+            return req.reject(400, "Maximum 5 photos are allowed");
+        }
+
+        const documents = [];
+
+        for (const [i, photo] of photos.entries()) {
+            if (!photo.fileName?.trim() || !photo.mimeType || !photo.content) {
+                return req.reject(400, `Photo ${i + 1}: file name, MIME type and content are required`);
+            }
+
+            if (!["image/jpeg", "image/png", "image/webp"].includes(photo.mimeType.toLowerCase())) {
+                return req.reject(400, `Photo ${i + 1}: unsupported image format`);
+            }
+
+            const content = Buffer.isBuffer(photo.content)
+                ? photo.content
+                : Buffer.from(photo.content, "base64");
+
+            if (!content.length || content.length > 5 * 1024 * 1024) {
+                return req.reject(400, `Photo ${i + 1}: image must be between 1 byte and 5 MB`);
+            }
+
+            documents.push({
+                ID: cds.utils.uuid(),
+                fileName: photo.fileName,
+                mimeType: photo.mimeType,
+                documentType: "Photo",
+                fileSize: content.length,
+                content
+            });
+        }
+
+        const equipmentData = await SELECT.one.from(Equipment).where({ ID: equipment });
+
+        if (!equipmentData) {
+            return req.reject(404, "Equipment not found");
+        }
+
+        const result = await SELECT.one.from(MaintenanceRequests)
+            .columns("count(*) as total");
+
+        const requestNumber = `MR-${String(Number(result.total || 0) + 1).padStart(4, "0")}`;
+
+        const { priority, priorityScore } = calculateRequestPriority(
+            equipmentData.criticality,
+            safetyImpact,
+            productionImpact
+        );
+
         const ID = cds.utils.uuid();
 
-        await INSERT.into(MaintenanceRequests).entries({ ID, requestNumber, equipment_ID: equipment, location_ID: equipmentData.location_ID, symptom, description, requestedPriority, priority, priorityScore, safetyImpact, productionImpact, category, reportedBy, reportedAt: new Date().toISOString(), status: "Submitted" });
+        await INSERT.into(MaintenanceRequests).entries({
+            ID,
+            requestNumber,
+            equipment_ID: equipment,
+            location_ID: equipmentData.location_ID,
+            symptom,
+            description,
+            requestedPriority,
+            priority,
+            priorityScore,
+            safetyImpact,
+            productionImpact,
+            category,
+            reportedBy,
+            reportedAt: new Date().toISOString(),
+            status: "Submitted"
+        });
 
-        await INSERT.into(MaintenanceDocuments).entries(documents.map(photo => ({ ...photo, maintenanceRequest_ID: ID })));
+        await INSERT.into(MaintenanceDocuments).entries(
+            documents.map(photo => ({
+                ...photo,
+                maintenanceRequest_ID: ID
+            }))
+        );
 
-        if (equipmentData.criticality === "Critical")
+        if (equipmentData.criticality === "Critical") {
             req.on("succeeded", async () => {
                 try {
                     await sendCriticalBreakdownAlert({
@@ -68,12 +151,17 @@ module.exports = cds.service.impl(async function () {
 
                     console.log(`[ALERT] Critical breakdown notification handled for ${requestNumber}`);
                 } catch (error) {
-                    console.error("[ALERT] Failed to send critical breakdown notification:", error.response?.data || error.message);
+                    console.error(
+                        "[ALERT] Failed to send critical breakdown notification:",
+                        error.response?.data || error.message
+                    );
                 }
             });
+        }
 
         return SELECT.one.from(MaintenanceRequests).where({ ID });
     });
+
 
 
     // job schedular helper function
@@ -1310,7 +1398,7 @@ module.exports = cds.service.impl(async function () {
             return req.reject("Equipment is required for a maintenance request.");
         }
 
-        await validateEquipment(data.equipment_ID, req);
+        const equipmentData = await validateEquipment(data.equipment_ID, req);
 
         if (
             !["Low", "Medium", "High", "Critical"].includes(data.requestedPriority)
@@ -1340,28 +1428,86 @@ module.exports = cds.service.impl(async function () {
             }
         }
 
-        if (req.event === "UPDATE" && hasField(req.data, "status")) {
-            const existing = await getExistingRecord(MaintenanceRequests, req);
+        if (req.event === "UPDATE") {
 
-            if (["Converted", "Rejected"].includes(existing.status)) {
+            // Priority must always be calculated by the backend
+            if (
+                hasField(req.data, "priority") ||
+                hasField(req.data, "priorityScore")
+            ) {
                 return req.reject(
-                    "Converted or rejected requests cannot be modified."
+                    "Priority and priority score are calculated automatically."
                 );
             }
 
-            if (data.status !== "UnderReview") {
-                return req.reject(
-                    "Request status can only be changed to UnderReview directly. Use the appropriate workflow for other status changes."
-                );
-            }
+            const assessmentFields = [
+                "category",
+                "safetyImpact",
+                "productionImpact"
+            ];
 
-            if (existing.status !== "Submitted") {
-                return req.reject(
-                    "Only Submitted requests can be moved to UnderReview."
-                );
-            }
+            const hasAssessmentChanges = assessmentFields.some(field =>
+                hasField(req.data, field)
+            );
 
-            requireRole(req, "MaintenancePlanner");
+            const hasStatusChange = hasField(req.data, "status");
+
+            if (hasAssessmentChanges || hasStatusChange) {
+
+                const existing = await getExistingRecord(MaintenanceRequests, req);
+
+                if (["Converted", "Rejected"].includes(existing.status)) {
+                    return req.reject(
+                        "Converted or rejected requests cannot be modified."
+                    );
+                }
+
+                requireRole(req, "MaintenancePlanner");
+
+                // Allow only the supported planner status transitions
+                if (hasStatusChange) {
+
+                    if (!["UnderReview", "Rejected"].includes(data.status)) {
+                        return req.reject(
+                            "Request status can only be changed to UnderReview or Rejected through this update."
+                        );
+                    }
+
+                    if (!["Submitted", "UnderReview"].includes(existing.status)) {
+                        return req.reject(
+                            `Cannot update request with status ${existing.status}.`
+                        );
+                    }
+                }
+
+                // Recalculate priority whenever assessment is saved
+                if (hasAssessmentChanges || data.status === "UnderReview") {
+
+                    if (!["Submitted", "UnderReview"].includes(existing.status)) {
+                        return req.reject(
+                            "Only Submitted or UnderReview requests can be assessed."
+                        );
+                    }
+
+                    if (data.status === "Rejected") {
+                        return req.reject(
+                            "Assessment cannot be saved while rejecting the request."
+                        );
+                    }
+
+                    const { priority, priorityScore } = calculateRequestPriority(
+                        equipmentData.criticality,
+                        data.safetyImpact,
+                        data.productionImpact
+                    );
+
+                    req.data.priority = priority;
+                    req.data.priorityScore = priorityScore;
+
+                    // Saving an assessment moves the request to UnderReview
+                    req.data.status = "UnderReview";
+                }
+            }
         }
     });
 
