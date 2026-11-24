@@ -190,7 +190,6 @@ entity Technicians : cuid, managed {
 
 //  TECHNICIAN ASSIGNMENT ENTITY
 
-
 entity TechnicianAssignments : cuid, managed {
     technicianUserId : String(100);
     isLead           : Boolean default false;
@@ -202,8 +201,6 @@ entity TechnicianAssignments : cuid, managed {
 
 
 // TIME CONFIRMATION ENTITY
-
-
 entity TimeConfirmations : cuid, managed {
     technicianUserId : String(100) not null;
 
@@ -222,8 +219,6 @@ entity TimeConfirmations : cuid, managed {
 
 
 // SPARE PART ENTITY
-
-
 @assert.unique: {partNumber: [partNumber]}
 entity SpareParts : cuid, managed {
     partNumber    : String(50) not null;
@@ -235,8 +230,6 @@ entity SpareParts : cuid, managed {
 
 
 // PART CONSUMPTION ENTITY
-
-
 entity PartConsumptions : cuid, managed {
     quantity   : Decimal(15, 3) not null;
     unitCost   : Decimal(15, 2);
@@ -250,8 +243,6 @@ entity PartConsumptions : cuid, managed {
 
 
 // DOWNTIME EVENT ENTITY
-
-
 entity DowntimeEvents : cuid, managed {
     startTime       : Timestamp not null;
     endTime         : Timestamp;
@@ -265,8 +256,6 @@ entity DowntimeEvents : cuid, managed {
 
 
 //  EQUIPMENT READING ENTITY
-
-
 entity EquipmentReadings : cuid, managed {
     readingValue : Decimal(15, 3) not null;
     readingDate  : Timestamp not null;
@@ -276,8 +265,6 @@ entity EquipmentReadings : cuid, managed {
 
 
 // MAINTENANCE DOCUMENT ENTITY
-
-
 entity MaintenanceDocuments : cuid, managed {
     fileName           : String(255) not null;
 

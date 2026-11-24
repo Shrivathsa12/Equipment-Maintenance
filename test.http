@@ -3,6 +3,11 @@ GET http://localhost:4004/odata/v4/equipment-maintenance/Equipment
 Authorization: Basic planner@company.com:lmn
 
 ###  Read maintenance plans
+GET http://localhost:4004/odata/v4/equipment-maintenance/MaintenanceRequests
+Authorization: Basic productionUser@company.com:abc
+
+
+###  Read maintenance plans
 GET http://localhost:4004/odata/v4/equipment-maintenance/MaintenancePlans
 Authorization: Basic planner@company.com:lmn
 
@@ -62,7 +67,7 @@ GET http://localhost:4004/odata/v4/equipment-maintenance/MaintenanceRequests?$se
 Authorization: Basic productionUser@company.com:abc
 
 ###  Planner moves the request to UnderReview
-PATCH http://localhost:4004/odata/v4/equipment-maintenance/MaintenanceRequests(936d8bec-15d4-4636-a92d-3f67b61edd2b)
+PATCH http://localhost:4004/odata/v4/equipment-maintenance/MaintenanceRequests(59419747-1a67-4704-92c9-71a86e8c33c4)
 Authorization: Basic planner@company.com:lmn
 Content-Type: application/json
 
@@ -76,7 +81,7 @@ Authorization: Basic planner@company.com:lmn
 Content-Type: application/json
 
 {
-  "RequestID": "936d8bec-15d4-4636-a92d-3f67b61edd2b",
+  "RequestID": "59419747-1a67-4704-92c9-71a86e8c33c4",
   "orderType": "Breakdown",
   "category": "Mechanical",
   "plannedStartDate": "2026-11-20T08:00:00Z",
@@ -97,26 +102,35 @@ Content-Type: application/json
 
 ### Read the operations of the work order
 GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrderOperations
+Authorization: Basic planner@company.com:lmn
+
+###
+GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders?$filter=orderNumber eq 'WO-0004'&$expand=operations
+Authorization: Basic planner@company.com:lmn
+
+###
+GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders
+Authorization: Basic planner@company.com:lmn
+
 
 ###  releaseOrder before a technician is assigned (rejected)
-
 POST http://localhost:4004/odata/v4/equipment-maintenance/releaseOrder
 Authorization: Basic planner@company.com:lmn
 Content-Type: application/json
 
 {
-  "WorkOrderID": "0b3f3df6-0113-4691-bcb8-278e79289f39"
+  "WorkOrderID": "f5b39d1b-731c-4707-9d5b-73a7f3db6bef"
 }
 
-###  assignTechnician - assign the lead technician
+###  assignTechnician - assign the technician
 POST http://localhost:4004/odata/v4/equipment-maintenance/assignTechnician
 Authorization: Basic planner@company.com:lmn
 Content-Type: application/json
 
 {
-  "WorkOrderID": "0b3f3df6-0113-4691-bcb8-278e79289f39",
+  "WorkOrderID": "0b2fb083-b2ee-4212-8681-ee699a079c5a",
   "TechnicianID": "a0000003-0000-4000-8000-000000000001",
-  "isLead": true
+  "isLead": false
 }
 
 ###  releaseOrder - release to the technician
@@ -125,7 +139,7 @@ Authorization: Basic planner@company.com:lmn
 Content-Type: application/json
 
 {
-  "WorkOrderID": "0b3f3df6-0113-4691-bcb8-278e79289f39"
+  "WorkOrderID": "0b2fb083-b2ee-4212-8681-ee699a079c5a"
 }
 
 ### Technician reads assigned work orders
@@ -139,9 +153,9 @@ Authorization: Basic technician@company.com:pqr
 Content-Type: application/json
 
 {
-  "WorkOrderID": "0b3f3df6-0113-4691-bcb8-278e79289f39",
-  "OperationID": "dae21690-fe05-46c7-94e3-9913ad15c45f",
-  "TechnicianID": "a0000003-0000-4000-8000-000000000001",
+  "WorkOrderID": "f5b39d1b-731c-4707-9d5b-73a7f3db6bef",
+  "OperationID": "0cb617e5-e104-4f9f-b762-7fc91ebd2d23",
+  "TechnicianID": "1882c304-b9fd-41e3-9373-da157e9180c1",
   "startTime": "2026-11-15T10:00:00Z",
   "stopTime": "2026-11-15T12:00:00Z",
   "workDescription": "Replaced hose",
@@ -156,8 +170,8 @@ Authorization: Basic technician@company.com:pqr
 Content-Type: application/json
 
 {
-  "WorkOrderID": "0b3f3df6-0113-4691-bcb8-278e79289f39",
-  "OperationID": "08a0b42e-f002-43bb-98e4-86864663edc4",
+  "WorkOrderID": "0b2fb083-b2ee-4212-8681-ee699a079c5a",
+  "OperationID": "696bcc9c-b3a5-4465-bfd6-5e6ddb602a72",
   "TechnicianID": "a0000003-0000-4000-8000-000000000001",
   "startTime": "2026-11-15T08:00:00Z",
   "stopTime": "2026-11-15T10:00:00Z",
@@ -173,8 +187,8 @@ Authorization: Basic technician@company.com:pqr
 Content-Type: application/json
 
 {
-  "WorkOrderID": "0b3f3df6-0113-4691-bcb8-278e79289f39",
-  "OperationID": "08a0b42e-f002-43bb-98e4-86864663edc4",
+  "WorkOrderID": "0b2fb083-b2ee-4212-8681-ee699a079c5a",
+  "OperationID": "696bcc9c-b3a5-4465-bfd6-5e6ddb602a72",
   "SparePartID": "31a94cc6-b104-437c-95d7-f8d82ea4cb48",
   "TechnicianID": "a0000003-0000-4000-8000-000000000001",
   "quantity": 1
@@ -187,9 +201,9 @@ Authorization: Basic technician@company.com:pqr
 Content-Type: application/json
 
 {
-  "WorkOrderID": "0b3f3df6-0113-4691-bcb8-278e79289f39",
-  "OperationID": "0b3f3df6-0113-4691-bcb8-278e79289f39",
-  "SparePartID": "8d47c4e0-110d-4d84-8735-d47fed586ffd",
+ "WorkOrderID": "0b2fb083-b2ee-4212-8681-ee699a079c5a",
+  "OperationID": "696bcc9c-b3a5-4465-bfd6-5e6ddb602a72",
+  "SparePartID": "31a94cc6-b104-437c-95d7-f8d82ea4cb48",
   "TechnicianID": "a0000003-0000-4000-8000-000000000001",
   "quantity": 500
 }
@@ -201,8 +215,8 @@ Authorization: Basic technician@company.com:pqr
 Content-Type: application/json
 
 {
-  "WorkOrderID": "0b3f3df6-0113-4691-bcb8-278e79289f39",
-  "OperationID": "08a0b42e-f002-43bb-98e4-86864663edc4",
+ "WorkOrderID": "0b2fb083-b2ee-4212-8681-ee699a079c5a",
+  "OperationID": "37a6bba0-40af-4478-8599-d96d5e2434a7",
   "TechnicianID": "a0000003-0000-4000-8000-000000000001",
   "startTime": "2026-11-15T10:00:00Z",
   "stopTime": "2026-11-15T13:00:00Z",
@@ -219,7 +233,7 @@ Authorization: Basic technician@company.com:pqr
 Content-Type: application/json
 
 {
-  "WorkOrderID": "0b3f3df6-0113-4691-bcb8-278e79289f39",
+ "WorkOrderID": "0b2fb083-b2ee-4212-8681-ee699a079c5a",
   "completionRemarks": "Hose replaced and press tested at full load",
   "closureCode": "Replaced"
 }
@@ -230,7 +244,7 @@ Authorization: Basic manager@company.com:xyz
 Content-Type: application/json
 
 {
-  "WorkOrderID": "0b3f3df6-0113-4691-bcb8-278e79289f39"
+  "WorkOrderID": "0b2fb083-b2ee-4212-8681-ee699a079c5a"
 }
 
 ###  Downtime events of the Hydraulic Press
@@ -409,32 +423,21 @@ Content-Type: application/json
 
 ###
 
-### 37. createPreventiveOrder - MP-001 (an order is already open, rejected)
+### 37. createPreventiveOrder 
 POST http://localhost:4004/odata/v4/equipment-maintenance/createPreventiveOrder
 Authorization: Basic planner@company.com:lmn
-Content-Type: application/json
-
-{
-  "PlanID": "9d7d0524-5aee-4fe3-ad6d-68787873e3fb"
-}
 
 ### 38. createPreventiveOrder - MP-003 (not due yet, rejected)
 POST http://localhost:4004/odata/v4/equipment-maintenance/createPreventiveOrder
 Authorization: Basic planner@company.com:lmn
 Content-Type: application/json
 
-{
-  "PlanID": "96dbf658-ab18-4d97-8dcd-c15a3e024fc7"
-}
 
 ### 39. createPreventiveOrder - MP-006 (Conveyor Motor, due)
 POST http://localhost:4004/odata/v4/equipment-maintenance/createPreventiveOrder
 Authorization: Basic planner@company.com:lmn
 Content-Type: application/json
 
-{
-  "PlanID": "a1111111-1111-4111-8111-111111111111"
-}
 
 ###
 GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders
@@ -528,6 +531,7 @@ Authorization: Basic manager@company.com:xyz
 ### 51. Production user tries to read work orders (not allowed)
 GET http://localhost:4004/odata/v4/equipment-maintenance/WorkOrders
 Authorization: Basic productionUser@company.com:abc
+
 
 ### 52. Production user tries createPreventiveOrder (not allowed)
 POST http://localhost:4004/odata/v4/equipment-maintenance/createPreventiveOrder

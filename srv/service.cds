@@ -65,7 +65,7 @@ service EquipmentMaintenance {
         {
             grant: 'READ',
             to   : 'ProductionUser',
-            where: 'reportedBy = $user'
+            where: (reportedBy = $user)
         }
     ]
     entity MaintenanceRequests   as projection on EM.MaintenanceRequests;
@@ -81,7 +81,7 @@ service EquipmentMaintenance {
         {
             grant: 'READ',
             to   : 'Technician',
-            where: 'exists assignments[technicianUserId = $user]'
+            where: 'exists assignments[technician.email = $user]'
         }
     ]
     @cds.redirection.target
@@ -98,7 +98,7 @@ service EquipmentMaintenance {
         {
             grant: 'READ',
             to   : 'Technician',
-            where: 'exists workOrder.assignments[technicianUserId = $user]'
+            where: 'exists workOrder.assignments[technician.email = $user]'
         }
     ]
     entity WorkOrderOperations   as projection on EM.WorkOrderOperations;
@@ -130,7 +130,7 @@ service EquipmentMaintenance {
         {
             grant: 'READ',
             to   : 'Technician',
-            where: 'technicianUserId = $user'
+            where: 'technician.email = $user'
         }
     ]
     entity TechnicianAssignments as projection on EM.TechnicianAssignments;
@@ -178,7 +178,7 @@ service EquipmentMaintenance {
         {
             grant: 'READ',
             to   : 'Technician',
-            where: 'exists workOrder.assignments[technicianUserId = $user]'
+            where: 'exists workOrder.assignments[technician.email = $user]'
         }
     ]
     entity PartConsumptions      as projection on EM.PartConsumptions;
@@ -220,10 +220,7 @@ service EquipmentMaintenance {
     entity MaintenanceDocuments  as projection on EM.MaintenanceDocuments;
 
     // action
-    @requires: [
-        'ProductionUser',
-        'MaintenancePlanner'
-    ]
+    @requires: ['ProductionUser']
     action reportBreakdown(equipment: UUID,
                            symptom: String(255),
                            description: String(1000),

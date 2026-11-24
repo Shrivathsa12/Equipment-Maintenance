@@ -32,6 +32,7 @@ module.exports = cds.service.impl(async function () {
 
         return { priority, priorityScore };
     }
+
     this.on("reportBreakdown", async (req) => {
         const {
             equipment,
@@ -50,6 +51,9 @@ module.exports = cds.service.impl(async function () {
         if (!reportedBy) {
             return req.reject(401, "Authenticated user information not available");
         }
+
+        console.log("Authenticated User ID:", req.user.id);
+        console.log("Authenticated User Roles:", req.user.roles);
 
         if (!equipment || !symptom || !description || !requestedPriority ||
             !safetyImpact || !productionImpact || !category) {
@@ -321,6 +325,7 @@ module.exports = cds.service.impl(async function () {
     }
 
 
+
     // AUTOMATIC PREVENTIVE WORK ORDER GENERATION - JOB SCHEDULER
     this.on("createPreventiveOrder", async (req) => {
 
@@ -328,6 +333,8 @@ module.exports = cds.service.impl(async function () {
             .where({ isActive: true });
 
         const createdOrders = [];
+        const skippedPlans = [];
+        const failedPlans = [];
 
         for (const plan of plans) {
             try {
@@ -340,12 +347,22 @@ module.exports = cds.service.impl(async function () {
                         `[PM Scheduler] Created ${result.workOrder.orderNumber} for ${plan.planCode}`
                     );
                 } else {
+                    skippedPlans.push({
+                        planCode: plan.planCode,
+                        reason: result.reason
+                    });
+
                     console.log(
                         `[PM Scheduler] Skipped ${plan.planCode}: ${result.reason}`
                     );
                 }
 
             } catch (error) {
+                failedPlans.push({
+                    planCode: plan.planCode,
+                    error: error.message
+                });
+
                 console.error(
                     `[PM Scheduler] Failed for ${plan.planCode}: ${error.message}`
                 );
@@ -356,8 +373,17 @@ module.exports = cds.service.impl(async function () {
             `[PM Scheduler] Completed. ${createdOrders.length} preventive work order(s) created.`
         );
 
-        return createdOrders;
+        return {
+            totalPlans: plans.length,
+            createdCount: createdOrders.length,
+            skippedCount: skippedPlans.length,
+            failedCount: failedPlans.length,
+            createdOrders,
+            skippedPlans,
+            failedPlans
+        };
     });
+
 
 
     // action for Assign Technicians
@@ -1279,6 +1305,13 @@ module.exports = cds.service.impl(async function () {
     });
 
 
+    this.before("READ", "MaintenanceRequests", (req) => {
+        console.log("READ User:", req.user.id);
+        console.log("READ Roles:", req.user.roles);
+        console.log("READ WHERE:", JSON.stringify(req.query?.SELECT?.where));
+        console.log("READ QUERY:", JSON.stringify(req.query));
+    });
+
     // 2. MAINTENANCE PLANS
 
     this.before(["CREATE", "UPDATE"], "MaintenancePlans", async req => {
@@ -1514,40 +1547,53 @@ module.exports = cds.service.impl(async function () {
 
     // 4. WORK ORDERS
 
+    this.before("READ", "WorkOrders", (req) => {
+        console.log("Logged-in user ID:", req.user.id);
+    });
+
     this.before(["CREATE", "UPDATE"], "WorkOrders", async req => {
         const data = await getMergedData(WorkOrders, req);
 
-        if (!["Breakdown", "Corrective", "Preventive"].includes(data.orderType)) {
+        if (
+            !data.orderType ||
+            !["Breakdown", "Corrective", "Preventive"].includes(data.orderType)
+        ) {
             return req.reject("Invalid work order type.");
         }
 
-        if (!data.title?.trim()) {
+        if (!data.title) {
             return req.reject("Work order title is required.");
         }
 
         if (!data.equipment_ID) {
-            return req.reject("Equipment is required for a work order.");
+            return req.reject("Equipment is required.");
         }
 
-        await validateEquipment(data.equipment_ID, req);
-
-        if (!["Low", "Medium", "High", "Critical"].includes(data.priority)) {
+        if (
+            data.priority &&
+            !["Low", "Medium", "High", "Critical"].includes(data.priority)
+        ) {
             return req.reject("Invalid work order priority.");
         }
 
         if (
-            data.priorityScore !== null &&
             data.priorityScore !== undefined &&
-            !isNonNegativeNumber(data.priorityScore)
+            (data.priorityScore < 0 || data.priorityScore > 100)
         ) {
-            return req.reject("Priority score cannot be negative.");
+            return req.reject("Priority score must be between 0 and 100.");
         }
 
-        if (data.plannedStartDate && !isValidDate(data.plannedStartDate)) {
+        if (
+            data.plannedStartDate &&
+            !isValidDate(data.plannedStartDate)
+        ) {
             return req.reject("Invalid planned start date.");
         }
 
-        if (data.plannedEndDate && !isValidDate(data.plannedEndDate)) {
+        if (
+            data.plannedEndDate &&
+            !isValidDate(data.plannedEndDate)
+        ) {
             return req.reject("Invalid planned end date.");
         }
 
@@ -1556,73 +1602,91 @@ module.exports = cds.service.impl(async function () {
             data.plannedEndDate &&
             new Date(data.plannedEndDate) <= new Date(data.plannedStartDate)
         ) {
-            return req.reject("Planned end date must be after planned start date.");
+            return req.reject(
+                "Planned end date must be later than planned start date."
+            );
         }
 
-        for (const field of [
-            "plannedHours",
-            "actualHours",
-            "estimatedCost",
-            "actualCost"
-        ]) {
-            if (
-                data[field] !== null &&
-                data[field] !== undefined &&
-                !isNonNegativeNumber(data[field])
-            ) {
-                return req.reject(`${field} cannot be negative.`);
-            }
+        if (
+            data.plannedHours !== undefined &&
+            data.plannedHours < 0
+        ) {
+            return req.reject("Planned hours cannot be negative.");
+        }
+
+        if (
+            data.actualHours !== undefined &&
+            data.actualHours < 0
+        ) {
+            return req.reject("Actual hours cannot be negative.");
+        }
+
+        if (
+            data.estimatedCost !== undefined &&
+            data.estimatedCost < 0
+        ) {
+            return req.reject("Estimated cost cannot be negative.");
+        }
+
+        if (
+            data.actualCost !== undefined &&
+            data.actualCost < 0
+        ) {
+            return req.reject("Actual cost cannot be negative.");
         }
 
         if (
             data.approvalStatus &&
-            !["NotRequired", "Pending", "Approved", "Rejected"].includes(data.approvalStatus)
+            !["NotRequired", "Pending", "Approved", "Rejected"].includes(
+                data.approvalStatus
+            )
         ) {
-            return req.reject("Invalid work order approval status.");
+            return req.reject("Invalid approval status.");
         }
 
         if (req.event === "CREATE") {
             if (data.status && data.status !== "Created") {
                 return req.reject(
-                    "Work orders must be created with Created status."
+                    "New work orders must have Created status."
                 );
             }
 
-            if (data.approvalStatus && data.approvalStatus !== "NotRequired") {
+            if (
+                data.approvalStatus &&
+                data.approvalStatus !== "NotRequired"
+            ) {
                 return req.reject(
-                    "Approval status cannot be set during direct work order creation."
+                    "Approval status cannot be set during work order creation."
                 );
             }
 
-            const protectedCreateFields = [
-                "approvedBy",
-                "approvalAt",
-                "approvalRemarks",
+            const protectedFields = [
                 "actualStartDate",
                 "actualEndDate",
+                "completedBy",
                 "closedBy",
                 "closedAt",
-                "completedBy",
                 "completionRemarks",
                 "closureCode"
             ];
 
-            const suppliedField = protectedCreateFields.find(field =>
+            const changedProtectedField = protectedFields.find(field =>
                 hasField(req.data, field)
             );
 
-            if (suppliedField) {
+            if (changedProtectedField) {
                 return req.reject(
-                    `Cannot set ${suppliedField} during work order creation.`
+                    `Direct modification of ${changedProtectedField} is not allowed.`
                 );
             }
 
-            for (const field of ["actualHours", "actualCost"]) {
-                if (Number(data[field] || 0) !== 0) {
-                    return req.reject(
-                        `${field} must be zero during work order creation.`
-                    );
-                }
+            if (
+                (data.actualHours || 0) !== 0 ||
+                (data.actualCost || 0) !== 0
+            ) {
+                return req.reject(
+                    "Actual hours and actual cost must be zero during creation."
+                );
             }
         }
 
@@ -1669,7 +1733,60 @@ module.exports = cds.service.impl(async function () {
                 );
             }
         }
+
+        // Prevent overlapping schedules for the same equipment
+        if (data.plannedStartDate && data.plannedEndDate) {
+            const newStart = new Date(data.plannedStartDate);
+            const newEnd = new Date(data.plannedEndDate);
+
+            const currentOrderID =
+                req.event === "UPDATE"
+                    ? getRecordID(req)
+                    : data.ID;
+
+            const equipmentOrders = await SELECT.from(WorkOrders)
+                .where({
+                    equipment_ID: data.equipment_ID
+                });
+
+            const conflictingOrder = equipmentOrders.find(order => {
+                // Ignore the current work order during updates
+                if (order.ID === currentOrderID) {
+                    return false;
+                }
+
+                // Ignore completed and closed work orders
+                if (["Completed", "Closed"].includes(order.status)) {
+                    return false;
+                }
+
+                // Ignore work orders without valid schedule dates
+                if (
+                    !isValidDate(order.plannedStartDate) ||
+                    !isValidDate(order.plannedEndDate)
+                ) {
+                    return false;
+                }
+
+                const existingStart = new Date(order.plannedStartDate);
+                const existingEnd = new Date(order.plannedEndDate);
+
+                // Check whether the two schedules overlap
+                return (
+                    newStart < existingEnd &&
+                    newEnd > existingStart
+                );
+            });
+
+            if (conflictingOrder) {
+                return req.reject(
+                    409,
+                    `Schedule conflict with ${conflictingOrder.orderNumber}. Another work order for this equipment is already scheduled during this time.`
+                );
+            }
+        }
     });
+
 
 
     // 5. WORK ORDER OPERATIONS
